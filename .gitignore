@@ -1,0 +1,27 @@
+# Datasets (huge)
+twcs.csv
+
+# Generated data
+data/generated/
+
+# Caches and execution artifacts
+cache/
+evaluation/results/
+*.jsonl
+*.json
+!data/split.py
+!config.py
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
