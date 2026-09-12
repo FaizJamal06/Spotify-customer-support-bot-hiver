@@ -9,6 +9,8 @@ Usage:
     python data/prepare.py
 """
 import sys
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 import json
 import time
 from pathlib import Path
@@ -146,7 +148,15 @@ def build_thread_records(threads, spotify_df, tweet_to_root):
     - thread_id (root tweet_id)
     - messages: list of {tweet_id, author_id, inbound, created_at, text,
                          in_response_to_tweet_id}
-      sorted by tweet_id (proxy for chronological order)
+      sorted by tweet_id, NOT by created_at.
+
+      WARNING: tweet_id is only approximately chronological (Twitter's
+      Snowflake ID generation can produce out-of-order IDs across tweets),
+      so this list order must NOT be assumed to be chronological order.
+      Each message retains its own `created_at` field; any consumer that
+      needs "what happened before this message" (e.g. target-message
+      context for annotation) must sort/filter by `created_at` explicitly.
+      See discovery/chronology.py for the shared, corrected implementation.
     - customer_brand_pairs: list of (customer_msg, brand_reply) dicts
     """
     # Build tweet lookup
@@ -234,7 +244,7 @@ def print_summary(records):
     print("\n=== SPOTIFY THREAD SUMMARY ===")
     print(f"  Total threads: {num_threads:,}")
     print(f"  Total messages: {total_messages:,}")
-    print(f"  Total customer→brand pairs: {total_pairs:,}")
+    print(f"  Total customer->brand pairs: {total_pairs:,}")
     print(f"\n  Thread length distribution:")
     print(f"    Mean: {tl.mean():.1f}")
     print(f"    Median: {tl.median():.0f}")

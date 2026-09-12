@@ -1,21 +1,28 @@
 # Assignment Requirements Checklist
 
-| Requirement | Status | Evidence/Notes |
+| Phase / Requirement | Status | Notes |
 |---|---|---|
-| Runnable repo | NOT STARTED | Repo not initialized. |
-| Reproduction in under 15 minutes | NOT STARTED | Scripts not executed yet. |
-| 150–250 hand-labelled golden examples | NOT STARTED | Pending Phase 3. |
-| Sampling methodology documented | IN PROGRESS | Planned in implementation_plan.md. |
-| Labeling methodology documented | NOT STARTED | Pending annotation guidelines. |
-| Automated evaluation metrics | NOT STARTED | Pending Phase 14. |
-| LLM-as-a-judge | NOT STARTED | Pending Phase 12. |
-| Human-vs-judge agreement evidence | NOT STARTED | Pending Phase 13. |
-| Trivial baseline | NOT STARTED | Pending Phase 4. |
-| Simple baseline | NOT STARTED | Pending Phase 4. |
-| Top 5 failure modes with real examples | NOT STARTED | Pending Phase 14. |
-| "What is misleading about my headline number?" | NOT STARTED | Pending Phase 16 (Report). |
-| One-week-next-steps section | NOT STARTED | Pending Phase 16 (Report). |
-| 10–15 decision log entries | IN PROGRESS | 4 entries recorded in DECISION_LOG.md. |
-| Citations for borrowed work | NOT STARTED | Pending references.md. |
-| No secrets committed | IN PROGRESS | `config.py` enforces env vars. |
-| Live-code-review-friendly architecture | IN PROGRESS | Modular pipeline planned in implementation_plan.md. |
+| **COMPLETED** | | |
+| Dataset exploration | COMPLETED | Kaggle TWCS dataset analyzed. |
+| Spotify brand selection | COMPLETED | SpotifyCares chosen. |
+| Thread reconstruction | COMPLETED | Handled in `data/prepare.py`. |
+| Split creation | COMPLETED | DEV, RETRIEVAL, TEST splits done. |
+| Leakage checks | COMPLETED | Thread-level separation verified. |
+| Taxonomy discovery | COMPLETED | 300-example human review completed. |
+| Annotation-guide refinement | COMPLETED | Edge cases resolved. |
+| Taxonomy freeze | COMPLETED | Locked to 8 labels. |
+| Chronology bug discovery/fix | COMPLETED | `created_at` used for target context. |
+| Pilot workbook / protocol preparation | COMPLETED | Workbook generation, annotation-protocol/interface design, and context/chronology workflow prepared (4 iterations, `discovery/PILOT_ANNOTATION_100*.xlsx`). Human annotation of the 100 examples has NOT been performed. |
+| **CURRENT** | | |
+| Golden-set sampling design | IN PROGRESS | Inspecting DEV pool to produce a sampling proposal. |
+| **NOT YET COMPLETED** | | |
+| 100-example pilot human annotation | DEFERRED | Pilot workbook exists but contains no human-assigned gold labels. Deferred; not required to proceed with golden-set methodology design or taxonomy confidence, which rest on the completed 300-example discovery review. |
+| Final 150-250 example selection | NOT STARTED | Pending sampling proposal. |
+| Final golden annotation | NOT STARTED | Pending golden set creation. |
+| Classifier implementation/evaluation| NOT STARTED | Pending golden labels. |
+| Retrieval evaluation | NOT STARTED | Pending. |
+| Escalation evaluation | NOT STARTED | Pending. |
+| Response generation evaluation | NOT STARTED | Pending. |
+| LLM judge calibration | NOT STARTED | Pending approx 40 human-graded examples. |
+| Final failure analysis | NOT STARTED | Pending evaluation results. |
+| Headline-number limitations analysis | NOT STARTED | Pending final report. |
