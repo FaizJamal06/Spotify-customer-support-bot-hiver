@@ -80,4 +80,15 @@ The final, isolated 200-example Golden Evaluation Set, sampled entirely from the
 
 ## 📂 `evaluation/`
 
-Currently contains an empty `results/` subdirectory. Will house the automated evaluation scripts for intent classification, LLM judge metrics, and baseline comparisons. **Not yet implemented** — next milestone.
+Contains the completed intent-classification baseline implementation:
+
+- **`data_loading.py`**: Loads the 296 parseable DEVELOPMENT-pool discovery examples (4 excluded as unparseable — Ex 70, 78, 164, 265) as training data, and the 200 golden TEST examples as evaluation-only data.
+- **`leakage_checks.py`**: Hard assertions that training, evaluation, and the RETRIEVAL pool share zero tweet_id/thread_id overlap.
+- **`baselines.py`**: The majority-class and TF-IDF + Logistic Regression baseline models.
+- **`metrics.py`**: Accuracy, macro/per-class precision/recall/F1, and confusion matrix computation.
+- **`run_baselines.py`**: End-to-end entry point — trains both baselines on the 296 discovery examples and evaluates them on the 200 golden TEST examples.
+- **`test_baseline_milestone.py`**: Tests for the data-loading/exclusion logic, leakage checks, and baseline sanity.
+- **`BASELINE_RESULTS.md`**: The results report.
+- **`results/baseline_results.json`**: Machine-readable metrics for both baselines.
+
+**Status**: Majority-class and TF-IDF + Logistic Regression baselines are **complete**. LLM judge and later evaluation components (Exp 2-5, judge calibration, triage evaluation) remain pending.

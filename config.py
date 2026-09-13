@@ -25,6 +25,11 @@ TEST_PAIRS_PATH = DATA_DIR / "test_pairs.jsonl"
 SPLIT_STATS_PATH = DATA_DIR / "split_stats.json"
 ISOLATION_REPORT_PATH = DATA_DIR / "isolation_report.json"
 
+# Discovery / golden-set artifacts used by the baseline milestone
+DISCOVERY_HUMAN_REVIEW_PATH = DISCOVERY_DIR / "HUMAN_REVIEW_labeled.md"  # frozen; never modify
+DISCOVERY_AUDIT_CSV_PATH = DISCOVERY_DIR / "DISCOVERY_300_AUDIT.csv"    # frozen; read-only reference
+GOLDEN_FINAL_CSV_PATH = GOLDEN_DIR / "GOLDEN_200_FINAL.csv"             # frozen; evaluation-only, never train on this
+
 # === Brand ===
 BRAND_AUTHOR_ID = "SpotifyCares"
 
@@ -32,6 +37,24 @@ BRAND_AUTHOR_ID = "SpotifyCares"
 SPLIT_SEED = 42
 DISCOVERY_SAMPLE_SEED = 123
 GOLDEN_SAMPLE_SEED = 456
+BASELINE_SEED = 42  # governs the TF-IDF+LogReg baseline's random_state
+
+# === Frozen 8-intent taxonomy (discovery/TAXONOMY_REVIEW_GUIDE.md) ===
+FROZEN_LABELS = [
+    "ACCOUNT_ACCESS",
+    "SUBSCRIPTION_BILLING",
+    "APP_TECH_ISSUE",
+    "CONTENT_CATALOG",
+    "FEATURE_FEEDBACK",
+    "ARTIST_SUPPORT",
+    "GENERAL_HOW_TO_INFO",
+    "UNKNOWN_OTHER",
+]
+
+# === Baseline milestone: documented, non-tuned hyperparameters ===
+# Standard/default choices only -- no grid search, no tuning against golden-200 performance.
+TFIDF_PARAMS = dict()                                   # sklearn TfidfVectorizer defaults
+LOGREG_PARAMS = dict(max_iter=1000, random_state=BASELINE_SEED)  # max_iter raised only to reach convergence
 
 # === Pool Fractions ===
 DEV_FRACTION = 0.15

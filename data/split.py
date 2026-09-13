@@ -35,7 +35,9 @@ def split_threads(threads):
     """
     Split threads into three disjoint pools.
     
-    DEVELOPMENT (15%): taxonomy discovery, pilot labeling, few-shot selection
+    DEVELOPMENT (15%): taxonomy discovery (later reused as the baseline
+                       training substitution); future few-shot selection
+                       (source TBD)
     RETRIEVAL   (65%): historical retrieval index
     TEST        (20%): golden evaluation set (sealed until final evaluation)
     """

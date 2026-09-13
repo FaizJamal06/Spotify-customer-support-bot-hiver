@@ -11,8 +11,9 @@ The split is at the **thread level**: every tweet in a conversation goes to the 
 All SpotifyCares threads (~27K conversations)
   │
   ├── DEVELOPMENT POOL  (~15%, ~4K threads)
-  │     Used for: taxonomy discovery, pilot labeling,
-  │               few-shot example selection, TF-IDF training
+  │     Used for: taxonomy discovery (later reused as baseline training data --
+  │               see §1 "Named data subsets" below), few-shot example
+  │               selection (OPEN DECISION, see §6), TF-IDF training
   │     Never used for: evaluation, retrieval index
   │
   ├── RETRIEVAL POOL    (~65%, ~18K threads)
@@ -31,8 +32,8 @@ All SpotifyCares threads (~27K conversations)
 | Name | Source pool | Size | Purpose |
 |---|---|---|---|
 | **Discovery sample** | DEVELOPMENT | 300 customer messages | Manual inspection for taxonomy development |
-| **Pilot labels** | DEVELOPMENT | 100 examples (subset of discovery sample, or additional) | Labeled with frozen taxonomy; used to train TF-IDF+LogReg and select few-shot examples |
-| **Few-shot examples** | Pilot labels (DEVELOPMENT) | 3-5 per intent (~25-40 total) | Drawn from pilot labels; used in LLM classification prompt |
+| **Discovery-296 training set** | DEVELOPMENT | 296 parseable examples from the 300-example DEVELOPMENT discovery review, with Ex 70, 78, 164, and 265 excluded because the source human label is unparseable | Labeled with frozen taxonomy; used to train the majority-class and TF-IDF+LogReg baselines. (The originally-planned separate 100-example pilot-labeling pass was never performed -- see §4 Step 5.) |
+| **Few-shot examples** | OPEN DECISION / TBD | 3-5 per intent (~25-40 total), planned | **OPEN DECISION / TBD**: few-shot example source for the LLM classifier is not yet decided. The originally-planned 100 pilot-labeled examples were never collected. This must be resolved before Phase 2 begins -- do not assume the 296-example discovery substitution used for the baselines automatically extends to few-shot selection without an explicit decision. |
 | **Retrieval index** | RETRIEVAL | All (customer_msg, brand_reply) pairs from retrieval-pool threads | Embedding index for historical retrieval |
 | **Golden evaluation set** | TEST | 200 annotated examples | Final evaluation; no data from this set influences any design decision |
 | **Judge calibration subset** | Golden evaluation set (TEST) | 40 examples (subset of golden 200) | Human-graded for judge-human agreement analysis |
@@ -127,6 +128,24 @@ With a two-pool split (retrieval + test), taxonomy discovery would have to use e
 └──────────────────────────────────────────────────────────────────────────┘
 ```
 
+> **⚠ FOOTNOTE — diagram correction (baseline training data):** The "Pilot
+> labels (100 msgs)" box above depicts a step that was **never actually
+> performed** -- the 100-example pilot-labeling pass described in the original
+> plan was never carried out. The diagram is left structurally unedited above
+> to avoid corrupting the ASCII layout, but its actual current meaning is:
+>
+> - The **"TF-IDF+LR train"** box is fed instead by **296 parseable examples
+>   from the 300-example DEVELOPMENT discovery review, with Ex 70, 78, 164,
+>   and 265 excluded because the source human label is unparseable** (i.e.
+>   the same discovery-sample box two levels up, reused directly -- not a
+>   separate pilot-labeled set).
+> - The **"Few-shot examples"** box is an **OPEN DECISION / TBD**: few-shot
+>   example source for the LLM classifier is not yet decided. The
+>   originally-planned 100 pilot-labeled examples were never collected. This
+>   must be resolved before Phase 2 begins -- do not assume the 296-example
+>   discovery substitution used for the baselines automatically extends to
+>   few-shot selection without an explicit decision.
+
 ### Arrows that do NOT exist (prohibited data flows)
 
 | From | To | Why prohibited |
@@ -146,9 +165,9 @@ With a two-pool split (retrieval + test), taxonomy discovery would have to use e
 
 | System | Allowed to see | Must NOT see |
 |---|---|---|
-| Majority baseline | Pilot labels (for majority class count) | Golden 200 labels |
-| TF-IDF + LogReg | Pilot labels (100 texts + labels for training); TF-IDF fit on pilot texts only | Golden 200 texts/labels; retrieval pool; test pool |
-| LLM few-shot | Few-shot examples (from pilot labels); intent definitions (from taxonomy) | Golden 200 texts/labels; pilot label distribution |
+| Majority baseline | 296 parseable examples from the 300-example DEVELOPMENT discovery review, with Ex 70, 78, 164, and 265 excluded because the source human label is unparseable (for majority class count) | Golden 200 labels |
+| TF-IDF + LogReg | 296 parseable examples from the 300-example DEVELOPMENT discovery review, with Ex 70, 78, 164, and 265 excluded because the source human label is unparseable (texts + labels for training); TF-IDF fit on these 296 texts only | Golden 200 texts/labels; retrieval pool; test pool |
+| LLM few-shot | Few-shot examples (source: **OPEN DECISION / TBD** -- see §6 "LLM Few-Shot"); intent definitions (from taxonomy) | Golden 200 texts/labels; discovery-296 label distribution |
 
 **Evaluated on**: Golden 200 (test pool). Gold labels compared to predictions.
 
@@ -207,10 +226,24 @@ With a two-pool split (retrieval + test), taxonomy discovery would have to use e
 
 **Step 4**: Add UNKNOWN as a valid intent category (see §7).
 
-**Step 5**: Pilot-label 100 development-pool examples against the frozen taxonomy. These 100 serve as:
-- Training data for TF-IDF + LogReg baseline
-- Source of few-shot examples for LLM classifier
-- Validation that the taxonomy is applicable
+**Step 5**: **[SUPERSEDED -- pilot labeling was never performed.]** The original
+plan called for hand-labeling 100 additional DEVELOPMENT-pool examples here.
+That pass was never carried out.
+
+Per the approved human decision on record, the majority-class and TF-IDF+LogReg
+baselines instead train on **296 parseable examples from the 300-example
+DEVELOPMENT discovery review** (the same 300 examples sampled and labeled in
+Steps 1-3 above), **with Ex 70, 78, 164, and 265 excluded because the source
+human label is unparseable**. These 296 serve as:
+- Training data for the TF-IDF + LogReg baseline (and the majority-class count)
+- Source of few-shot examples for the LLM classifier: **OPEN DECISION / TBD**
+  -- see §6 "LLM Few-Shot". Do not assume this defaults to the same 296.
+
+Validation that the taxonomy is applicable in practice was instead provided by
+the golden-200 annotation process (§5) -- all 200 TEST-pool examples were
+successfully annotated under the frozen taxonomy -- and later cross-checked by
+a full compatibility audit of these same 300 discovery labels against the
+frozen guide (`discovery/DISCOVERY_300_AUDIT_REPORT.md`).
 
 **Step 6**: Freeze the taxonomy. No changes after this point.
 
@@ -286,12 +319,12 @@ Each example is annotated using the frozen taxonomy from Step 6 of §4.
 ### Majority Baseline
 
 ```python
-def majority_baseline(pilot_labels):
-    majority_class = Counter(pilot_labels).most_common(1)[0][0]
+def majority_baseline(discovery_labels):
+    majority_class = Counter(discovery_labels).most_common(1)[0][0]
     return lambda text: majority_class
 ```
 
-Training data: pilot labels (count only).
+Training data: 296 parseable examples from the 300-example DEVELOPMENT discovery review, with Ex 70, 78, 164, and 265 excluded because the source human label is unparseable (count only).
 Expected performance: ~15-25% macro F1 (depends on class balance).
 Purpose: absolute floor.
 
@@ -306,17 +339,22 @@ clf = Pipeline([
     ('tfidf', TfidfVectorizer(max_features=5000, ngram_range=(1, 2))),
     ('lr', LogisticRegression(max_iter=1000, class_weight='balanced'))
 ])
-clf.fit(pilot_texts, pilot_labels)  # 100 examples from DEVELOPMENT
+clf.fit(discovery_texts, discovery_labels)  # 296 parseable examples from the 300-example DEVELOPMENT discovery review (Ex 70, 78, 164, 265 excluded)
 ```
 
-Training data: 100 pilot-labeled examples from development pool.
-TF-IDF vocabulary: fit on pilot texts only.
-Expected performance: unknown — 100 training examples is small, but the task may be easy enough.
+Training data: 296 parseable examples from the 300-example DEVELOPMENT discovery review, with Ex 70, 78, 164, and 265 excluded because the source human label is unparseable.
+TF-IDF vocabulary: fit on these 296 discovery texts only.
+Expected performance: unknown — 296 training examples is a modest amount, but the task may be easy enough.
 Purpose: tests whether a classical ML pipeline is competitive.
 
 ### LLM Few-Shot
 
-Few-shot examples: 3-5 per intent, drawn from pilot labels (development pool).
+Few-shot examples: 3-5 per intent. **OPEN DECISION / TBD: few-shot example
+source for the LLM classifier is not yet decided. The originally-planned 100
+pilot-labeled examples were never collected. This must be resolved before
+Phase 2 begins -- do not assume the 296-example discovery substitution used
+for the baselines automatically extends to few-shot selection without an
+explicit decision.**
 Model: configurable (initially gpt-4o-mini).
 Temperature: 0 for reproducibility.
 Output: `{intent, confidence, reasoning}` with UNKNOWN as valid intent.
@@ -325,7 +363,7 @@ Expected performance: unknown — likely better than LogReg due to pre-trained k
 
 ### What we do NOT assume
 
-- We do not assume the LLM wins. If TF-IDF+LogReg matches or beats the LLM on 100 training examples, that is a meaningful and reportable finding. It would suggest that the intent categories are lexically distinguishable and don't require deep semantic understanding.
+- We do not assume the LLM wins. If TF-IDF+LogReg matches or beats the LLM on 296 training examples, that is a meaningful and reportable finding. It would suggest that the intent categories are lexically distinguishable and don't require deep semantic understanding.
 - We do not assume the LLM confidence is useful. Experiment 2 determines this.
 
 ### Evaluation
@@ -501,10 +539,10 @@ To switch providers: replace the API call implementation inside each method. The
 |---|---|---|---|---|
 | **Data prep** | twcs.csv | Full dataset | — | Three disjoint thread pools |
 | **Taxonomy discovery** | 300 customer messages | DEVELOPMENT pool only | RETRIEVAL, TEST | Draft taxonomy |
-| **Pilot labeling** | 100 messages + taxonomy | DEVELOPMENT pool only | RETRIEVAL, TEST | Labeled pilot set |
+| **Pilot labeling** *(SUPERSEDED -- never performed; see §4 Step 5)* | ~~100 messages + taxonomy~~ | -- | -- | **Not produced.** Baselines instead train on 296 parseable examples from the 300-example DEVELOPMENT discovery review (Ex 70, 78, 164, 265 excluded) |
 | **Golden annotation** | 200 messages + taxonomy | TEST pool only | System predictions, SpotifyCares responses | Annotated golden set |
 | **Retrieval index** | (customer, reply) pairs | RETRIEVAL pool only | DEVELOPMENT, TEST | Embedding index |
-| **Exp 1: Classification** | Golden 200 texts | Pilot labels (training), golden texts (prediction) | Golden labels (until scoring) | Predictions + metrics |
+| **Exp 1: Classification** | Golden 200 texts | 296 parseable discovery-review examples (training) -- see §4 Step 5; golden texts (prediction) | Golden labels (until scoring) | Predictions + metrics |
 | **Exp 2: Calibration** | Exp 1 outputs + golden labels | Exp 1 predictions, golden labels | — | Calibration curve, threshold or null |
 | **Exp 3: k-ablation** | Golden 200 texts, retrieval index | Retrieval pool (index), golden texts | Gold SpotifyCares response, golden labels | Generated replies per k, judge scores |
 | **Exp 4: Judge calibration** | 40-example subset, LLM judge scores, human scores | Exp 3 outputs (for 40 examples) | Gold labels, gold SpotifyCares response | Agreement statistics |
@@ -524,18 +562,18 @@ To switch providers: replace the API call implementation inside each method. The
 | 2 | Data | Three-way thread-level split + leakage verification | All threads | #1 | 1 |
 | 3 | Discovery | Sample 300 from DEVELOPMENT, manual inspection | DEVELOPMENT | #2 | 3-4 |
 | 4 | Discovery | Draft taxonomy, freeze | Discovery notes | #3 | 1-2 |
-| 5 | Discovery | Pilot-label 100 from DEVELOPMENT | DEVELOPMENT | #4 | 2 |
+| 5 | Discovery | ~~Pilot-label 100 from DEVELOPMENT~~ **SUPERSEDED -- never performed; baselines instead reuse the 296 parseable discovery-review labels (Ex 70, 78, 164, 265 excluded), see §4 Step 5** | DEVELOPMENT | #4 | 2 |
 | 6 | Data | Compute embeddings for RETRIEVAL pool | RETRIEVAL | #2 | 1 |
 | 7 | Data | Build retrieval index | RETRIEVAL embeddings | #6 | 0.5 |
 | 8 | Annotation | Sample 200 from TEST, annotate golden set | TEST | #4 | 5-6 |
 | 9 | Annotation | Re-annotate 40 (intra-annotator), compute κ | Golden subset | #8 | 2 |
 | 10 | Pipeline | LLM provider (classify, generate, judge) | — | — | 2-3 |
-| 11 | Pipeline | TF-IDF + LogReg baseline | Pilot 100 (train) | #5 | 1 |
-| 12 | Pipeline | Majority baseline | Pilot 100 (count) | #5 | 0.5 |
+| 11 | Pipeline | TF-IDF + LogReg baseline | Discovery-296 (train) | #3, #4 (discovery-296 labels); discovery-300 compatibility audit (unnumbered -- see `discovery/DISCOVERY_300_AUDIT_REPORT.md`), not #5 | 1 |
+| 12 | Pipeline | Majority baseline | Discovery-296 (count) | #3, #4 (discovery-296 labels); discovery-300 compatibility audit (unnumbered -- see `discovery/DISCOVERY_300_AUDIT_REPORT.md`), not #5 | 0.5 |
 | 13 | Pipeline | Triage rules (Tier 1 only initially) | — | #4 | 1 |
 | 14 | Pipeline | Retrieval module | Retrieval index | #7 | 1 |
 | 15 | Pipeline | Reply generator | — | #10, #14 | 2 |
-| 16 | Eval | Exp 1: Run all 3 classifiers on golden 200 | Golden 200, pilot labels | #8, #10, #11, #12 | 2 |
+| 16 | Eval | Exp 1: Run all 3 classifiers on golden 200 | Golden 200, discovery-296 labels | #8, #10, #11, #12 | 2 |
 | 17 | Eval | Exp 2: Confidence calibration | Exp 1 outputs | #16 | 1 |
 | 18 | Pipeline | Update triage rules (add Tier 2 if calibration supports it) | Exp 2 results | #17 | 0.5 |
 | 19 | Eval | Exp 3: Retrieval k-ablation (k=0,1,3,5) | Golden 200, retrieval index | #15, #16 | 3-4 |
@@ -617,7 +655,10 @@ hiver-spotify-support-agent/
 ├── discovery/
 │   ├── sample_discovery.py            # Sample 300 from DEVELOPMENT
 │   ├── intent_taxonomy.md             # Frozen taxonomy + definitions
-│   └── pilot_labels.jsonl             # 100 labeled examples (DEVELOPMENT)
+│   └── pilot_labels.jsonl             # NOT CREATED -- pilot labeling was never performed.
+│                                       # Actual baseline training source is
+│                                       # discovery/HUMAN_REVIEW_labeled.md (+
+│                                       # discovery/DISCOVERY_300_AUDIT.csv as the verified parse)
 │
 ├── golden_set/
 │   ├── sample_golden.py               # Stratified sampling from TEST
@@ -634,7 +675,8 @@ hiver-spotify-support-agent/
 │
 ├── baselines/
 │   ├── majority_baseline.py           # Always predict majority class
-│   └── tfidf_logreg.py                # TF-IDF + LogReg on pilot data
+│   └── tfidf_logreg.py                # TF-IDF + LogReg on the 296 parseable discovery-review
+│                                       # examples (pilot data was never collected)
 │
 ├── evaluation/
 │   ├── run_classifiers.py             # Exp 1: three-way comparison
@@ -677,9 +719,9 @@ hiver-spotify-support-agent/
 | Question | Answer |
 |---|---|
 | Can taxonomy decisions leak into the golden set? | No. Taxonomy is built from DEVELOPMENT pool. Golden set is from TEST pool. |
-| Can few-shot examples leak? | No. Few-shot examples are from pilot labels (DEVELOPMENT). Golden set is from TEST. |
+| Can few-shot examples leak? | **OPEN DECISION / TBD** -- few-shot example source for the LLM classifier is not yet decided (see §6 "LLM Few-Shot"). The originally-planned 100 pilot-labeled examples were never collected. Leakage risk cannot be assessed until a source is chosen; must be resolved before Phase 2 begins. |
 | Can retrieval leak? | No. Retrieval index is from RETRIEVAL pool. Golden set is from TEST. |
-| Can TF-IDF vocabulary leak? | No. TF-IDF is fit on pilot texts (DEVELOPMENT only). |
+| Can TF-IDF vocabulary leak? | No. TF-IDF is fit on the 296 parseable discovery-review texts (DEVELOPMENT only, Ex 70/78/164/265 excluded) -- see human decision on baseline training data (§4 Step 5). |
 | Is every threshold empirically determined? | Yes. Confidence threshold from Experiment 2. Retrieval k from Experiment 3. Triage Tier 2 rules from Experiment 5 analysis. |
 | What if TF-IDF+LogReg beats the LLM? | Report it honestly. Discuss why (perhaps the intents are lexically simple). Still use LLM for generation (no classical alternative for open-ended text generation). |
 | What if retrieval doesn't help? | Report it honestly. Discuss what kind of data would make retrieval valuable. Still include the ablation as evidence — a null result is a valid finding. |

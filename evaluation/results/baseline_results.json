@@ -1,0 +1,373 @@
+{
+  "generated_at": "2026-09-14T00:42:30",
+  "config": {
+    "baseline_seed": 42,
+    "tfidf_params": {},
+    "logreg_params": {
+      "max_iter": 1000,
+      "random_state": 42
+    },
+    "frozen_labels": [
+      "ACCOUNT_ACCESS",
+      "SUBSCRIPTION_BILLING",
+      "APP_TECH_ISSUE",
+      "CONTENT_CATALOG",
+      "FEATURE_FEEDBACK",
+      "ARTIST_SUPPORT",
+      "GENERAL_HOW_TO_INFO",
+      "UNKNOWN_OTHER"
+    ]
+  },
+  "data": {
+    "training_source": "discovery/DISCOVERY_300_AUDIT.csv",
+    "training_pool": "DEVELOPMENT (discovery-phase labels, not final golden annotation)",
+    "training_n": 296,
+    "training_excluded_ids": [
+      "70",
+      "78",
+      "164",
+      "265"
+    ],
+    "training_excluded_reason": "source label unparseable (see discovery/DISCOVERY_300_AUDIT_REPORT.md); not relabeled, not imputed, not adjudicated",
+    "training_label_distribution": {
+      "ACCOUNT_ACCESS": 24,
+      "APP_TECH_ISSUE": 69,
+      "ARTIST_SUPPORT": 4,
+      "CONTENT_CATALOG": 27,
+      "FEATURE_FEEDBACK": 49,
+      "GENERAL_HOW_TO_INFO": 26,
+      "SUBSCRIPTION_BILLING": 33,
+      "UNKNOWN_OTHER": 64
+    },
+    "evaluation_source": "golden_set/GOLDEN_200_FINAL.csv",
+    "evaluation_pool": "TEST (final human gold labels, evaluation-only)",
+    "evaluation_n": 200,
+    "leakage_check_summary": {
+      "train_tweet_ids": 296,
+      "train_thread_ids": 285,
+      "golden_tweet_ids": 200,
+      "golden_thread_ids": 197,
+      "retrieval_tweet_ids": 26914,
+      "retrieval_thread_ids": 18380,
+      "checks_passed": 6
+    }
+  },
+  "majority_class_baseline": {
+    "majority_label": "APP_TECH_ISSUE",
+    "training_label_counts": {
+      "SUBSCRIPTION_BILLING": 33,
+      "UNKNOWN_OTHER": 64,
+      "GENERAL_HOW_TO_INFO": 26,
+      "APP_TECH_ISSUE": 69,
+      "CONTENT_CATALOG": 27,
+      "ARTIST_SUPPORT": 4,
+      "ACCOUNT_ACCESS": 24,
+      "FEATURE_FEEDBACK": 49
+    },
+    "metrics": {
+      "accuracy": 0.2,
+      "macro_precision": 0.025,
+      "macro_recall": 0.125,
+      "macro_f1": 0.041666666666666664,
+      "per_class": {
+        "ACCOUNT_ACCESS": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 19
+        },
+        "SUBSCRIPTION_BILLING": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 21
+        },
+        "APP_TECH_ISSUE": {
+          "precision": 0.2,
+          "recall": 1.0,
+          "f1": 0.3333333333333333,
+          "support": 40
+        },
+        "CONTENT_CATALOG": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 15
+        },
+        "FEATURE_FEEDBACK": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 40
+        },
+        "ARTIST_SUPPORT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 14
+        },
+        "GENERAL_HOW_TO_INFO": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 28
+        },
+        "UNKNOWN_OTHER": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 23
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "ACCOUNT_ACCESS",
+          "SUBSCRIPTION_BILLING",
+          "APP_TECH_ISSUE",
+          "CONTENT_CATALOG",
+          "FEATURE_FEEDBACK",
+          "ARTIST_SUPPORT",
+          "GENERAL_HOW_TO_INFO",
+          "UNKNOWN_OTHER"
+        ],
+        "matrix": [
+          [
+            0,
+            0,
+            19,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            21,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            40,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            15,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            40,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            14,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            28,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            23,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "n_examples": 200
+    }
+  },
+  "tfidf_logreg_baseline": {
+    "vocabulary_size": 1408,
+    "metrics": {
+      "accuracy": 0.42,
+      "macro_precision": 0.3714451407765361,
+      "macro_recall": 0.35050738258690206,
+      "macro_f1": 0.3137738453815261,
+      "per_class": {
+        "ACCOUNT_ACCESS": {
+          "precision": 0.6666666666666666,
+          "recall": 0.5263157894736842,
+          "f1": 0.5882352941176471,
+          "support": 19
+        },
+        "SUBSCRIPTION_BILLING": {
+          "precision": 0.6363636363636364,
+          "recall": 0.3333333333333333,
+          "f1": 0.4375,
+          "support": 21
+        },
+        "APP_TECH_ISSUE": {
+          "precision": 0.36904761904761907,
+          "recall": 0.775,
+          "f1": 0.5,
+          "support": 40
+        },
+        "CONTENT_CATALOG": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 15
+        },
+        "FEATURE_FEEDBACK": {
+          "precision": 0.4883720930232558,
+          "recall": 0.525,
+          "f1": 0.5060240963855421,
+          "support": 40
+        },
+        "ARTIST_SUPPORT": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 14
+        },
+        "GENERAL_HOW_TO_INFO": {
+          "precision": 0.5,
+          "recall": 0.03571428571428571,
+          "f1": 0.06666666666666667,
+          "support": 28
+        },
+        "UNKNOWN_OTHER": {
+          "precision": 0.3111111111111111,
+          "recall": 0.6086956521739131,
+          "f1": 0.4117647058823529,
+          "support": 23
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "ACCOUNT_ACCESS",
+          "SUBSCRIPTION_BILLING",
+          "APP_TECH_ISSUE",
+          "CONTENT_CATALOG",
+          "FEATURE_FEEDBACK",
+          "ARTIST_SUPPORT",
+          "GENERAL_HOW_TO_INFO",
+          "UNKNOWN_OTHER"
+        ],
+        "matrix": [
+          [
+            10,
+            0,
+            3,
+            0,
+            1,
+            0,
+            0,
+            5
+          ],
+          [
+            2,
+            7,
+            7,
+            0,
+            1,
+            0,
+            0,
+            4
+          ],
+          [
+            1,
+            1,
+            31,
+            0,
+            2,
+            0,
+            0,
+            5
+          ],
+          [
+            0,
+            0,
+            5,
+            0,
+            7,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            15,
+            0,
+            21,
+            0,
+            0,
+            4
+          ],
+          [
+            0,
+            0,
+            7,
+            0,
+            3,
+            0,
+            1,
+            3
+          ],
+          [
+            2,
+            3,
+            12,
+            0,
+            3,
+            0,
+            1,
+            7
+          ],
+          [
+            0,
+            0,
+            4,
+            0,
+            5,
+            0,
+            0,
+            14
+          ]
+        ]
+      },
+      "n_examples": 200
+    }
+  }
+}

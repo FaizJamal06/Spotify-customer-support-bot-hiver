@@ -22,9 +22,9 @@
 | Post-golden taxonomy-level review | COMPLETED | Taxonomy kept at exactly 8 intents — no disagreement pattern indicated a genuine missing category. `DECISION_LOG.md` #22. |
 | Post-golden guide clarifications | COMPLETED | 7 of 9 proposed wording/example clarifications applied to `discovery/TAXONOMY_REVIEW_GUIDE.md`; 3 deliberately left unresolved. `golden_set/GUIDE_CHANGELOG_AFTER_GOLD.md`. |
 | Documentation / reproducibility checkpoint | COMPLETED | This checkpoint — `DECISION_LOG.md`, `PROJECT_CONTEXT.md`, `REPOSITORY_STRUCTURE.md`, `README.md` brought in sync with current state; git status inspected; commit pushed. |
+| Trivial baseline (majority-class) | COMPLETED | Trained on the 296-example discovery substitution (296 of 300 DEVELOPMENT discovery examples; 4 excluded as unparseable — Ex 70, 78, 164, 265). Evaluated on the 200 golden TEST examples. Results: `evaluation/BASELINE_RESULTS.md`, `evaluation/results/baseline_results.json`. |
+| Simple baseline (TF-IDF + Logistic Regression) | COMPLETED | Same 296-example training substitution as above; TF-IDF vocabulary fit on those 296 texts only. Evaluated on the 200 golden TEST examples. Results: `evaluation/BASELINE_RESULTS.md`, `evaluation/results/baseline_results.json`. |
 | **NOT YET STARTED** | | |
-| Trivial baseline (majority-class) | NOT STARTED | Next milestone. Intentionally not started this session. |
-| Simple baseline (TF-IDF + Logistic Regression) | NOT STARTED | Next milestone. |
 | LLM-based intent classifier | NOT STARTED | Pending baseline results for comparison. |
 | Retrieval index + evaluation | NOT STARTED | Pending; must be built from RETRIEVAL pool only (`DECISION_LOG.md` #18). |
 | Escalation / triage evaluation | NOT STARTED | Pending classifier + calibration. |

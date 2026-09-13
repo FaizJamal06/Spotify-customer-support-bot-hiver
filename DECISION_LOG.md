@@ -80,7 +80,7 @@ built with AI coding assistants (per the assignment's explicit rules):
 
 13. **Simple Baseline Strategy**
     - *Why we made it*: To prove AI utility, use a majority-class baseline (Trivial) and a TF-IDF + Logistic Regression baseline (Simple). Sophistication is not the goal; proving improvement is.
-    - *Status*: Not yet implemented — this is the next milestone, intentionally paused for this documentation checkpoint.
+    - *Status*: **Complete.** Both baselines were trained on the 296-example discovery substitution (296 of the 300 DEVELOPMENT discovery examples, 4 excluded as unparseable), not the originally-planned 100 pilot-labeled examples, which were never collected — see entry #24. Evaluated on the 200 golden TEST examples. Results: `evaluation/BASELINE_RESULTS.md`, `evaluation/results/baseline_results.json`.
 
 14. **Avoiding Over-engineering**
     - *Why we made it*: The intended system deliberately relies on a simple, modular architecture (Intent → Triage → Retrieval → Check → Grounded Reply). Sentiment, information extraction, FAISS, rerankers, and complex multi-agent setups are excluded unless proven necessary.
