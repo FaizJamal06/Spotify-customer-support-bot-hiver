@@ -71,10 +71,15 @@ def get_api_key():
         )
     return key
 
-CLASSIFY_MODEL = "gpt-4o-mini"
+CLASSIFY_MODEL = "gpt-5.4-mini"  # verified callable + accepts temperature/seed at default reasoning_effort="none"
 GENERATE_MODEL = "gpt-4o-mini"
 JUDGE_MODEL = "gpt-4o"
 LLM_TEMPERATURE = 0  # deterministic for reproducibility
+
+# === LLM intent-classifier milestone (added; does not change any constant above) ===
+LLM_SEED = 42  # OpenAI 'seed' param for the classify() calls, supplementing temperature=0
+FEWSHOT_MIN_PER_INTENT = 3
+FEWSHOT_MAX_PER_INTENT = 5
 
 # === Retrieval ===
 EMBEDDING_MODEL = "all-MiniLM-L6-v2"

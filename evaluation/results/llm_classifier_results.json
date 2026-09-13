@@ -1,0 +1,1671 @@
+{
+  "generated_at": "2026-09-14T02:39:34",
+  "prompt_version": "v1",
+  "config": {
+    "classify_model": "gpt-5.4-mini",
+    "temperature": 0,
+    "seed": 42,
+    "determinism_mechanism": "temperature=0 and seed (both empirically verified supported by gpt-5.4-mini at its default reasoning_effort='none'); response_format is a strict JSON schema constraining 'intent' to the 8 frozen labels",
+    "frozen_labels": [
+      "ACCOUNT_ACCESS",
+      "SUBSCRIPTION_BILLING",
+      "APP_TECH_ISSUE",
+      "CONTENT_CATALOG",
+      "FEATURE_FEEDBACK",
+      "ARTIST_SUPPORT",
+      "GENERAL_HOW_TO_INFO",
+      "UNKNOWN_OTHER"
+    ]
+  },
+  "fewshot": {
+    "source": "discovery/DISCOVERY_300_AUDIT.csv existing_human_label, status == MATCH only",
+    "selection_method": "sorted by example_id ascending per intent, deterministic, min=3 max=5",
+    "total_demonstrations": 39,
+    "selected_example_ids_by_intent": {
+      "ACCOUNT_ACCESS": [
+        "11",
+        "46",
+        "60",
+        "75",
+        "89"
+      ],
+      "SUBSCRIPTION_BILLING": [
+        "3",
+        "7",
+        "12",
+        "14",
+        "22"
+      ],
+      "APP_TECH_ISSUE": [
+        "8",
+        "13",
+        "15",
+        "16",
+        "20"
+      ],
+      "CONTENT_CATALOG": [
+        "9",
+        "28",
+        "33",
+        "50",
+        "63"
+      ],
+      "FEATURE_FEEDBACK": [
+        "18",
+        "21",
+        "25",
+        "26",
+        "38"
+      ],
+      "ARTIST_SUPPORT": [
+        "10",
+        "43",
+        "281",
+        "298"
+      ],
+      "GENERAL_HOW_TO_INFO": [
+        "4",
+        "36",
+        "41",
+        "44",
+        "64"
+      ],
+      "UNKNOWN_OTHER": [
+        "5",
+        "6",
+        "17",
+        "19",
+        "24"
+      ]
+    },
+    "leakage_check_summary": {
+      "demo_tweet_ids": 39,
+      "demo_thread_ids": 39,
+      "golden_tweet_ids": 200,
+      "golden_thread_ids": 197,
+      "checks_passed": 2
+    }
+  },
+  "evaluation": {
+    "source": "golden_set/GOLDEN_200_FINAL.csv",
+    "pool": "TEST (evaluation-only)",
+    "n": 200,
+    "elapsed_seconds": 630.7
+  },
+  "llm_classifier": {
+    "metrics": {
+      "accuracy": 0.81,
+      "macro_precision": 0.8028222319045181,
+      "macro_recall": 0.8191208319712324,
+      "macro_f1": 0.8078018137795355,
+      "per_class": {
+        "ACCOUNT_ACCESS": {
+          "precision": 0.7083333333333334,
+          "recall": 0.8947368421052632,
+          "f1": 0.7906976744186046,
+          "support": 19
+        },
+        "SUBSCRIPTION_BILLING": {
+          "precision": 0.8095238095238095,
+          "recall": 0.8095238095238095,
+          "f1": 0.8095238095238095,
+          "support": 21
+        },
+        "APP_TECH_ISSUE": {
+          "precision": 0.84375,
+          "recall": 0.675,
+          "f1": 0.75,
+          "support": 40
+        },
+        "CONTENT_CATALOG": {
+          "precision": 0.7857142857142857,
+          "recall": 0.7333333333333333,
+          "f1": 0.7586206896551724,
+          "support": 15
+        },
+        "FEATURE_FEEDBACK": {
+          "precision": 0.8780487804878049,
+          "recall": 0.9,
+          "f1": 0.8888888888888888,
+          "support": 40
+        },
+        "ARTIST_SUPPORT": {
+          "precision": 0.8125,
+          "recall": 0.9285714285714286,
+          "f1": 0.8666666666666667,
+          "support": 14
+        },
+        "GENERAL_HOW_TO_INFO": {
+          "precision": 0.7586206896551724,
+          "recall": 0.7857142857142857,
+          "f1": 0.7719298245614035,
+          "support": 28
+        },
+        "UNKNOWN_OTHER": {
+          "precision": 0.8260869565217391,
+          "recall": 0.8260869565217391,
+          "f1": 0.8260869565217391,
+          "support": 23
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "ACCOUNT_ACCESS",
+          "SUBSCRIPTION_BILLING",
+          "APP_TECH_ISSUE",
+          "CONTENT_CATALOG",
+          "FEATURE_FEEDBACK",
+          "ARTIST_SUPPORT",
+          "GENERAL_HOW_TO_INFO",
+          "UNKNOWN_OTHER"
+        ],
+        "matrix": [
+          [
+            17,
+            1,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            17,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            2,
+            27,
+            3,
+            0,
+            1,
+            2,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            11,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            36,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            1,
+            13,
+            0,
+            0
+          ],
+          [
+            2,
+            1,
+            2,
+            0,
+            1,
+            0,
+            22,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0,
+            2,
+            0,
+            2,
+            19
+          ]
+        ]
+      },
+      "n_examples": 200
+    }
+  },
+  "comparison": {
+    "majority_class": {
+      "accuracy": 0.2,
+      "macro_precision": 0.025,
+      "macro_recall": 0.125,
+      "macro_f1": 0.041666666666666664
+    },
+    "tfidf_logreg": {
+      "accuracy": 0.42,
+      "macro_precision": 0.3714451407765361,
+      "macro_recall": 0.35050738258690206,
+      "macro_f1": 0.3137738453815261
+    },
+    "llm_classifier": {
+      "accuracy": 0.81,
+      "macro_precision": 0.8028222319045181,
+      "macro_recall": 0.8191208319712324,
+      "macro_f1": 0.8078018137795355
+    }
+  },
+  "limitation_statement": "Few-shot demonstrations are restricted to audit-confirmed MATCH-status discovery examples, which removes known guide-inconsistent labels from the demonstration set. This does not fully equalize demonstration quality with the golden-200 evaluation set: these labels came from a single-pass discovery-phase annotation process, not the golden set's blind-workbook-plus-AI-prelabel-plus-human-adjudication process. The few-shot demonstrations reflect discovery-phase annotation rigor, not golden-set-grade rigor.",
+  "predictions": [
+    {
+      "tweet_id": "1855971",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.98,
+      "reasoning": "The customer is speaking as an artist/creator about a duplicate artist page caused by a release on a label and wants it merged onto their main artist page. This is a creator-side profile/attribution workflow, which fits ARTIST_SUPPORT."
+    },
+    {
+      "tweet_id": "2669338",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.98,
+      "reasoning": "The customer is acting on behalf of an artist and wants control of an artist profile to change profile imagery. This is a creator-side/profile management issue, which falls under ARTIST_SUPPORT rather than listener-facing catalog or account access."
+    },
+    {
+      "tweet_id": "1398598",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a creator-side artist profile management action: merging two artist profiles. This is an artist/support workflow, not a listener-facing catalog or playback issue."
+    },
+    {
+      "tweet_id": "1993429",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.96,
+      "reasoning": "The message is from an artist-side perspective about an artist page and releases not showing up, which points to creator/artist workflow support. Although it mentions being locked out, the primary issue is managing the artist page and release visibility, so ARTIST_SUPPORT is the best fit."
+    },
+    {
+      "tweet_id": "800191",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.96,
+      "reasoning": "The customer is complaining that their single is appearing under another artist page, which is a creator-side artist profile/attribution issue. This fits ARTIST_SUPPORT rather than listener-facing catalog or playback categories."
+    },
+    {
+      "tweet_id": "1161814",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.96,
+      "reasoning": "The customer is asking how to regain access to a verified artist page they cannot access. This is a creator-side/artist-profile access issue, which falls under ARTIST_SUPPORT rather than general account login or listener-facing account access."
+    },
+    {
+      "tweet_id": "672187",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking about adding a picture to their artist page, which is a creator-side/profile management issue. This falls under ARTIST_SUPPORT rather than listener-facing content or general account access."
+    },
+    {
+      "tweet_id": "2246055",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.98,
+      "reasoning": "The customer is speaking as an artist and asking about separating an artist profile/identity from another artist with the same name, which is a creator-side profile/attribution issue. This fits ARTIST_SUPPORT rather than listener-facing catalog or general how-to."
+    },
+    {
+      "tweet_id": "1988904",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.97,
+      "reasoning": "The customer is speaking from an artist/creator perspective about correcting how a release is listed on their artist page. This is a creator-side metadata/workflow issue, not a listener catalog question or a how-to about using the app."
+    },
+    {
+      "tweet_id": "1466241",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.98,
+      "reasoning": "The customer is referring to an album incorrectly attributed to their artist page, which is a creator-side metadata/profile issue. The primary support need is artist-page attribution correction, so ARTIST_SUPPORT fits best."
+    },
+    {
+      "tweet_id": "770810",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.98,
+      "reasoning": "The customer is referring to an artist separation request and asking to move a track to their artist profile so they can share their music. This is a creator-side/profile management issue, which falls under ARTIST_SUPPORT."
+    },
+    {
+      "tweet_id": "776162",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.96,
+      "reasoning": "This is a creator/artist-side release distribution issue: the customer says they used CDBaby to distribute music to Spotify, it has been delivered, but it is not appearing on their artist page yet. That fits artist-side release workflow/support rather than listener catalog or technical playback."
+    },
+    {
+      "tweet_id": "539176",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking for a track to be removed from an artist page because it is incorrectly cluttering the artist’s catalog view. This is a creator/artist-page management issue rather than a listener-facing catalog availability issue, so ARTIST_SUPPORT fits best."
+    },
+    {
+      "tweet_id": "2052421",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.95,
+      "reasoning": "The message is about an artist page and reporting a misplaced album on that page, which is a creator/artist-side metadata and page-management issue rather than a listener catalog request."
+    },
+    {
+      "tweet_id": "622817",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.92,
+      "reasoning": "The customer is asking why a specific artist appears to have two profiles, which is a catalog/metadata issue about how the artist is represented in Spotify's content database. It is not a creator-side request to manage an artist profile, so ARTIST_SUPPORT does not apply."
+    },
+    {
+      "tweet_id": "1620802",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.95,
+      "reasoning": "The customer is describing a creator-side workflow involving making a playlist and trying to showcase it on their artist page. This is not a listener-facing catalog or playback issue; it concerns artist page management and artist-side content visibility, which fits ARTIST_SUPPORT."
+    },
+    {
+      "tweet_id": "2883054",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.74,
+      "reasoning": "The customer is describing incorrect behavior in the app/interface: when viewing Strauss on Android and Windows, the displayed most-played songs/artists seem wrong or mixed up. This is a malfunction or display issue rather than a request to change a feature or a catalog availability problem."
+    },
+    {
+      "tweet_id": "2623509",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.99,
+      "reasoning": "The primary issue is account compromise and inability to regain access: the customer says the account has been hacked and they are locked out of password reset and email change. This is an access/security problem, not billing or a feature request."
+    },
+    {
+      "tweet_id": "1840067",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.98,
+      "reasoning": "The primary issue is account compromise/unauthorized access: the customer says there is a hacker on the account and they cannot stop them from using it. This is an access/security problem, and the requested support action is to regain control of the account and sign out devices."
+    },
+    {
+      "tweet_id": "1579279",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.99,
+      "reasoning": "The primary issue is account compromise and loss of access: the customer says the account was hacked and the email/password were changed. The requested support is to help restore access and secure the account."
+    },
+    {
+      "tweet_id": "2929248",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.99,
+      "reasoning": "Primary issue is account compromise and inability to log in. The customer says the account has been hacked, the email was replaced, and they can't access it, so the next support action is restoring access and investigating unauthorized activity."
+    },
+    {
+      "tweet_id": "2690961",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.99,
+      "reasoning": "The primary issue is account compromise and loss of access: the customer says the account was hacked, cannot log in, and the email address was changed without consent. This is an authentication/access recovery problem, not billing or a feature request."
+    },
+    {
+      "tweet_id": "2713292",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.98,
+      "reasoning": "The primary requested action is to resolve an access/security problem: the customer says the account has been hacked and the email/password have changed, preventing them from managing it. Although they mention canceling the account, the blocker is account compromise and identity/access restoration, so ACCOUNT_ACCESS is the next support need."
+    },
+    {
+      "tweet_id": "1659831",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.98,
+      "reasoning": "The primary support need is restoring account security/access: the customer says their account was hacked and they cannot change their password. The moneyback hashtag is secondary and does not override the concrete access/credential issue."
+    },
+    {
+      "tweet_id": "2641113",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.95,
+      "reasoning": "The message mentions hacking, but the primary requested action is about the subscription being changed ('changed my plan to add his own') and the customer is complaining about the resulting plan/charge issue. Per the billing-vs-access boundary, when the main issue is an unauthorized subscription change, classify as SUBSCRIPTION_BILLING."
+    },
+    {
+      "tweet_id": "2826952",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.93,
+      "reasoning": "The primary support need is restoring account access and recovering control after a hack: the email was changed and the customer can't reset the password. Although billing is mentioned, the main requested action is to fix the compromised account and regain access."
+    },
+    {
+      "tweet_id": "2364820",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.97,
+      "reasoning": "The primary issue is account compromise/hacking and the customer wants help restoring control or investigating unauthorized access. The complaint about not having a phone number is secondary to the hacked account support need."
+    },
+    {
+      "tweet_id": "2909841",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.99,
+      "reasoning": "The primary issue is a billing dispute: the customer says they are being charged the wrong monthly amount despite having a student discount and asks for a refund/adjustment to the correct price. This is a charge/entitlement problem, not an access or how-to question."
+    },
+    {
+      "tweet_id": "822342",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.96,
+      "reasoning": "The customer is asking why their bill increased and references a student discount being disallowed, which indicates a specific pricing/charge dispute rather than a general how-to question. The primary support need is to investigate the billing increase and discount entitlement."
+    },
+    {
+      "tweet_id": "1342991",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.98,
+      "reasoning": "The customer says they subscribed to Premium with the student discount but Premium is not activated on the account. This is a paid entitlement/subscription status problem, so the primary support need is to investigate and fix the subscription rather than account access or how-to info."
+    },
+    {
+      "tweet_id": "551330",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking for eligibility and requirements for an existing student discount, not disputing a charge or reporting a billing error. This is a general informational question about how the promotion works."
+    },
+    {
+      "tweet_id": "566358",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking about eligibility for an existing discount/promotion (whether people who work at educational institutions can get one), not disputing a charge or requesting a policy change. This fits general informational guidance."
+    },
+    {
+      "tweet_id": "1609289",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.96,
+      "reasoning": "The customer is asking how to continue or renew an existing student discount while still eligible as a student. There is no disputed charge or billing error, just an eligibility/how-to question about the discount process."
+    },
+    {
+      "tweet_id": "2139010",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking what to do to extend an existing student discount and describes a login pop-up loop in Unidays as the obstacle. This is primarily a how-to / eligibility / enrollment question about using the student discount process, not a specific disputed charge or billing error."
+    },
+    {
+      "tweet_id": "2407029",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.86,
+      "reasoning": "The customer is blocked from using an email for student discount enrollment because it is reported as already in use. This is primarily an identity/access verification problem around the account/email, not a disputed charge or general how-to question."
+    },
+    {
+      "tweet_id": "2407006",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.96,
+      "reasoning": "The customer is not disputing a specific charge or asking about eligibility; they are criticizing Spotify’s pricing/discount policy and asking for a change in fairness across customers. That is a policy/product feedback request, so FEATURE_FEEDBACK fits best."
+    },
+    {
+      "tweet_id": "2154957",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.97,
+      "reasoning": "The customer is criticizing Spotify's discount policy and asking why a certain group gets a discount while veterans/active duty do not. This is a request for a policy change, not a disputed charge or eligibility question, so FEATURE_FEEDBACK fits best."
+    },
+    {
+      "tweet_id": "2360601",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting that Spotify restore a removed/changed product capability ('bring back the ability to shuffle all the songs in a folder, across multiple playlists'). This is a feature change/restoration request, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "2647449",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking Spotify to bring back a removed/changed playlist-making behavior (drag and drop) and criticizing the new queuing system as a design change. This is a request to restore/change product functionality, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "2422810",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a product change/restoration: bringing back the ability to view all songs by an artist in a list and improve search behavior. This is a feature request, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "1900422",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking Spotify to restore a removed feature ('bring back lyrics' on desktop). This is a product change/restoration request, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "2891301",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.97,
+      "reasoning": "The customer is complaining that Spotify removed a sharing/inbox feature and is criticizing the product change as a degradation of service. This is a request to restore/change functionality, not a malfunction, billing issue, or content availability problem."
+    },
+    {
+      "tweet_id": "2162619",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.99,
+      "reasoning": "The customer is explicitly requesting that Spotify restore a removed feature ('bring back your year in music for 2017'), which is a product change request rather than a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "1990506",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.93,
+      "reasoning": "The customer is trying to sign up for Spotify Premium and says the attempts are unsuccessful. This is primarily a subscription/payment entitlement flow problem, not a general feature request or account access issue. The complaint about the site being bad is secondary to the failed Premium signup."
+    },
+    {
+      "tweet_id": "1063177",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer says they reinstalled the Spotify Windows app and it still won't play songs. This is a playback malfunction in an existing feature, so the primary need is technical troubleshooting rather than billing, access, or feature feedback."
+    },
+    {
+      "tweet_id": "2917808",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer is reporting that an existing core feature (search) is not working: Spotify is not letting them search for music. This is a malfunction/troubleshooting issue, not a how-to question or feature request."
+    },
+    {
+      "tweet_id": "265447",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.93,
+      "reasoning": "The customer is reporting that a previously working control-center Spotify control no longer works, which indicates a malfunction/regression in an existing feature rather than a request for a new feature or how-to help."
+    },
+    {
+      "tweet_id": "1158629",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.96,
+      "reasoning": "The customer is reporting that Tom Petty’s catalog is incomplete on Android compared with PS3. This is a content availability/catalog discrepancy, not a technical malfunction or how-to question."
+    },
+    {
+      "tweet_id": "786634",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.86,
+      "reasoning": "The customer says they can’t listen to specific artists anymore, which points to content availability/removal rather than a login, billing, or general app malfunction issue. The primary support need is to investigate why those artists’ content is unavailable."
+    },
+    {
+      "tweet_id": "1835542",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.97,
+      "reasoning": "The customer is reporting a playback malfunction: specific songs won't play on a device. This is a technical issue with playback, not a catalog availability problem or a request for feature changes."
+    },
+    {
+      "tweet_id": "2886999",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.95,
+      "reasoning": "The customer is complaining about unwanted/repeated recommendation behavior in Release Radar and is implicitly asking Spotify to change how the playlist is curated. This is a product behavior/personalization issue, not missing content or a technical malfunction."
+    },
+    {
+      "tweet_id": "2606362",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.96,
+      "reasoning": "The customer is requesting a new product capability: a way to view previous Discover Weekly playlists. This is a feature request about changing/restoring product behavior, not a how-to question or a technical malfunction."
+    },
+    {
+      "tweet_id": "2627896",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.95,
+      "reasoning": "The customer is suggesting a product change: adding a filter or a way to remove recommended content. This is a feature request about changing recommendation behavior, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "1854203",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.97,
+      "reasoning": "The customer is complaining about shuffle algorithm behavior and repeated song recommendations, which is a product behavior/design issue rather than a malfunction or how-to question. Complaints about recommendation quality and algorithmic behavior fall under FEATURE_FEEDBACK."
+    },
+    {
+      "tweet_id": "2944",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking Spotify to change recommendation behavior in Discovery/playlist suggestions so it stops suggesting Dutch music. This is a product behavior/personalization request, not a malfunction, billing issue, or how-to question."
+    },
+    {
+      "tweet_id": "544585",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.96,
+      "reasoning": "The customer is complaining about Spotify's playback/recommendation behavior and asking for it to change: suggested songs are interrupting the album too much, and they dislike the ad/song insertion pattern. This is a product behavior/design complaint, not a malfunction, billing issue, or how-to question."
+    },
+    {
+      "tweet_id": "2917831",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking how to unlink a deleted Facebook account that is still attached to Spotify. This is an account identity/access management issue, specifically a problem with linking/unlinking a social login used to access the account."
+    },
+    {
+      "tweet_id": "2368021",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking about linking/unlinking a Facebook account from Spotify, which is explicitly included under ACCOUNT_ACCESS because it concerns account identity/access management rather than a general how-to question."
+    },
+    {
+      "tweet_id": "2622906",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.97,
+      "reasoning": "The customer’s stated blocker is inability to log in because the linked Facebook account is gone, and they need Spotify to resolve access/identity before they can proceed. Although cancellation is mentioned, the next support action is restoring account access or handling the login issue, which fits ACCOUNT_ACCESS."
+    },
+    {
+      "tweet_id": "540363",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.98,
+      "reasoning": "The customer’s stated goal is to cancel, but the blocker is that they do not know which email/account was used and have tried all emails. Per the boundary rule, when Spotify must help identify or verify the account before the requested action can proceed, this is an account access/identity issue."
+    },
+    {
+      "tweet_id": "2136539",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking to cancel an ongoing monthly Spotify charge/subscription that is being paid on their debit card. This is a billing/subscription cancellation issue, not an access or how-to question."
+    },
+    {
+      "tweet_id": "540359",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.95,
+      "reasoning": "The customer is asking how to find which address/email is set up on the account and mentions family members can't sign in only as context. This is an informational how-to question, not a direct access recovery request or billing issue."
+    },
+    {
+      "tweet_id": "1845703",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.96,
+      "reasoning": "The customer is asking how to change their postcode in the account and mentions Spotify Family as context. This is primarily a how-to/account settings question, not a billing dispute or access problem."
+    },
+    {
+      "tweet_id": "174967",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.93,
+      "reasoning": "The customer says the problem still happens after reinstalling and asks for help, which indicates an ongoing technical malfunction rather than a how-to, billing, or account-access issue. The Spotify mention is the target support request, and the primary need is troubleshooting a broken behavior."
+    },
+    {
+      "tweet_id": "1835534",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.62,
+      "reasoning": "The message references a specific example/link and notes the customer is in the USA, which suggests a content availability/region issue rather than an account, billing, or technical problem. With no other context, the best fit is CONTENT_CATALOG."
+    },
+    {
+      "tweet_id": "263524",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.96,
+      "reasoning": "The message is too vague and context-free to determine a specific support need. \"What could i do?\" does not indicate whether the customer needs help with access, billing, a technical issue, content, or a how-to question, so it fits UNKNOWN_OTHER as an ambiguous short continuation."
+    },
+    {
+      "tweet_id": "790316",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.86,
+      "reasoning": "The customer is asking for clarification about how a Spotify feature works / what it is specifically for. This is an informational question rather than a report of a malfunction, billing issue, or feature request."
+    },
+    {
+      "tweet_id": "2624563",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking for contact information / how to reach support, which is an informational request rather than reporting a specific account, billing, technical, or content problem."
+    },
+    {
+      "tweet_id": "1048606",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.99,
+      "reasoning": "This is conversational closure/thanks with no actionable support request. It does not ask for help or describe a problem, so UNKNOWN_OTHER fits."
+    },
+    {
+      "tweet_id": "526274",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.98,
+      "reasoning": "This is conversational closure: the customer says they fixed it themselves and is not making a new actionable request. Per the taxonomy, resolved/closing messages should be labeled UNKNOWN_OTHER."
+    },
+    {
+      "tweet_id": "2623503",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.98,
+      "reasoning": "The message is conversational closure: the customer says the issue is resolved ('spotify is working fine now') and is not making a new actionable request. This fits UNKNOWN_OTHER with conversational/closure."
+    },
+    {
+      "tweet_id": "2917914",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.98,
+      "reasoning": "This is conversational closure/thanks with no actionable support request. It does not ask for help, report a problem, or request a change, so UNKNOWN_OTHER fits."
+    },
+    {
+      "tweet_id": "265449",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.98,
+      "reasoning": "This is conversational closure/confirmation rather than a new support request. The customer says the issue is fixed and expresses thanks/approval, with no actionable intent remaining."
+    },
+    {
+      "tweet_id": "1417612",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.98,
+      "reasoning": "The message is conversational closure/thanks and reports that the issue appears resolved ('No need... Thank you!'). It does not make a new actionable request. Per the closure rule, this is UNKNOWN_OTHER."
+    },
+    {
+      "tweet_id": "265069",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.98,
+      "reasoning": "The message is a благодарность/closure message thanking SpotifyCares for help today. It does not make a new actionable request or describe a support problem, so it fits UNKNOWN_OTHER with conversational/closure."
+    },
+    {
+      "tweet_id": "1840697",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.99,
+      "reasoning": "The target message is only a bare link with no visible text or context indicating a support need. It is uninterpretable and does not fit any specific taxonomy category."
+    },
+    {
+      "tweet_id": "1730303",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.96,
+      "reasoning": "The message is off-topic chatter/threat-like commentary and does not clearly request any Spotify support action. It does not fit account, billing, technical, catalog, feature, artist, or how-to categories."
+    },
+    {
+      "tweet_id": "1100179",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.86,
+      "reasoning": "The customer is pointing out a typo/error on Spotify’s platform, which is a content/metadata issue rather than a technical malfunction or feature request. The message references a specific item ('Big White Gate') and implies incorrect representation on the platform."
+    },
+    {
+      "tweet_id": "2384908",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.95,
+      "reasoning": "The customer is asking for a recommendation / where to find a playlist, which is a normal usage request rather than a bug, billing issue, missing content, or feature change."
+    },
+    {
+      "tweet_id": "263526",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.94,
+      "reasoning": "The message is too terse and context-free to determine a support need. It only mentions a country ('Germany i guess') without any actionable request, so it does not clearly fit billing, access, technical, catalog, feature, artist, or how-to categories."
+    },
+    {
+      "tweet_id": "67724",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.95,
+      "reasoning": "The customer is trying to register a new account and cannot complete account creation. This is an account access/identity issue because the primary need is to get an account set up and accessible, not billing or a feature question."
+    },
+    {
+      "tweet_id": "2440986",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.99,
+      "reasoning": "The customer says they paid for Premium but their account is still Free, which is a paid entitlement/subscription status problem. The primary support need is to verify or fix the subscription, not account access."
+    },
+    {
+      "tweet_id": "211091",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.96,
+      "reasoning": "The message says Spotify cannot be saved to the SD card even though memory is still available, which describes a malfunction/technical problem with app storage behavior rather than a how-to question or feature request."
+    },
+    {
+      "tweet_id": "1067218",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The Turkish message says they are connected to the internet but still getting this error, and reinstalling the app three times did not fix it. This is a malfunction/troubleshooting issue, not billing, access, or feature feedback."
+    },
+    {
+      "tweet_id": "2385606",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.98,
+      "reasoning": "The customer is disputing a promotion/price mismatch: they expected a 3-month promo for 4,000 but are being asked to pay 49,999. This is a specific billing/charge issue, not a general question about the promo."
+    },
+    {
+      "tweet_id": "44426",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.98,
+      "reasoning": "The message says the account cannot be accessed, login with the correct username/password is being rejected, and password reset is blocked by an email/username mismatch. Although Premium is mentioned, the primary support need is restoring account access and resolving the login/recovery problem."
+    },
+    {
+      "tweet_id": "44402",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.96,
+      "reasoning": "The message says the payment/charge attempt keeps failing because it reports insufficient credit ('pulsa tidak mencukupi') even though the customer believes there is enough balance. This is a billing/payment problem, not an access or general how-to issue."
+    },
+    {
+      "tweet_id": "1160844",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.98,
+      "reasoning": "The message is a brief contextual follow-up providing system/version details and thanks, with no actionable request or clear problem stated. It functions as conversational closure/context rather than a support issue."
+    },
+    {
+      "tweet_id": "207208",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.93,
+      "reasoning": "The message is a short context-like continuation indicating the problem started after an iOS update. By the taxonomy, update timing alone is not evidence of a deliberate design change; absent any explicit request to change a feature, this is presumptively a malfunction/regression rather than feature feedback."
+    },
+    {
+      "tweet_id": "1517179",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.93,
+      "reasoning": "The message only provides device/app version information with no explicit problem, question, or request. It is context-dependent and uninterpretable on its own, so UNKNOWN_OTHER is appropriate."
+    },
+    {
+      "tweet_id": "566276",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.86,
+      "reasoning": "The message provides device/OS and Spotify version details with no explicit request, which strongly suggests it is context for a technical problem. Given the available text, the most likely primary support need is an app/desktop technical issue rather than billing, access, or content."
+    },
+    {
+      "tweet_id": "1986649",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a product change: increase or remove the offline download cap. This is a feature/policy request, not a malfunction, billing issue, or how-to question."
+    },
+    {
+      "tweet_id": "877460",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.96,
+      "reasoning": "The customer is reporting a playback malfunction: a message/error appears for songs they have downloaded as local files, while music from other artists plays fine. This is a technical issue with playing specific content, not a catalog, billing, or how-to question."
+    },
+    {
+      "tweet_id": "2319364",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is criticizing Spotify for not supporting the larger iPhone X display and implying the app should be updated. This is a product/design request or complaint about missing support, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "1336200",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.96,
+      "reasoning": "The customer is asking an informational question about how downloads/counting work for an album, not reporting a malfunction or billing dispute. This is a normal how-to/eligibility-style question, so GENERAL_HOW_TO_INFO fits best."
+    },
+    {
+      "tweet_id": "1928395",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking for a new capability/change to the desktop application (IPv6 support). This is a feature request, not a malfunction, how-to question, billing issue, or content availability problem."
+    },
+    {
+      "tweet_id": "2397299",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer is reporting that a playback/connectivity feature stopped working after an update: they can’t listen through car Bluetooth. This is a malfunction/regression, not a request for a new feature or how-to help."
+    },
+    {
+      "tweet_id": "2913925",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer reports a playback malfunction: they can only play downloaded content and cannot play anything else. This is an existing feature failing to work properly, not a request for a new feature or a billing/access issue."
+    },
+    {
+      "tweet_id": "1036658",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.95,
+      "reasoning": "The customer is not reporting a malfunction or asking how to use Spotify; they are complaining about a missing capability (Apple Watch support) and implicitly requesting Spotify add or change product functionality. That fits FEATURE_FEEDBACK."
+    },
+    {
+      "tweet_id": "343656",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer is reporting a malfunction: Spotify keeps crashing and search is failing. This is a technical product issue, not a feature request or billing/access problem."
+    },
+    {
+      "tweet_id": "199142",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer reports playback malfunction: the stream is cracking and making weird noises across LTE and WiFi on iOS. This is a technical issue with streaming/audio, not billing, access, or a feature request."
+    },
+    {
+      "tweet_id": "2215938",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.78,
+      "reasoning": "The message is a casual prompt about updating/adding new music, which reads as a suggestion or request for Spotify to change or add content behavior rather than a how-to question or a specific catalog availability issue. It best fits FEATURE_FEEDBACK."
+    },
+    {
+      "tweet_id": "1442524",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.93,
+      "reasoning": "The customer reports an error message saying the track is not available and notes it works on phone but not in the current context, which indicates a playback/content handling malfunction rather than a catalog absence or feature request."
+    },
+    {
+      "tweet_id": "1053967",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.98,
+      "reasoning": "The message is a conversational closure/acknowledgment ('Thanks!') followed by device/version details, with no actionable support request. This fits UNKNOWN_OTHER with conversational/closure context."
+    },
+    {
+      "tweet_id": "224859",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer reports an error message in the iPhone app and has already tried troubleshooting network changes with no success. This is a product malfunction/playback/app error issue, not billing, access, or feature feedback."
+    },
+    {
+      "tweet_id": "2757619",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.93,
+      "reasoning": "The customer is reporting that something started happening after a phone update and asks if there is a workaround. This reads as a malfunction/regression in an existing feature, not a request to change product behavior. The silent-phone detail suggests a technical issue with how the app behaves, so APP_TECH_ISSUE fits best."
+    },
+    {
+      "tweet_id": "1089999",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.86,
+      "reasoning": "The message provides device, OS, and app version details, which are typically supplied as context for troubleshooting a technical malfunction. Even though no explicit problem is stated, this looks like a context-dependent continuation of an app issue rather than a how-to, billing, or account request."
+    },
+    {
+      "tweet_id": "939996",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.95,
+      "reasoning": "The customer reports a playback problem specific to the desktop app: they cannot listen to Metallica songs there, while the same content works on web player and mobile. Since the content is available and the issue is a malfunction on one platform, this is an app technical issue rather than a catalog problem."
+    },
+    {
+      "tweet_id": "2317775",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer reports a playback malfunction: Spotify won’t resume after being paused by another app, and they must force close and reopen to recover. This is a technical issue with an existing feature, not a how-to, billing, or feature request."
+    },
+    {
+      "tweet_id": "2859008",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.96,
+      "reasoning": "The customer is closing the loop and saying they found the gifting link on the website after previously looking in the app. This is conversational/closure with no actionable new request, so it fits UNKNOWN_OTHER rather than a substantive support category."
+    },
+    {
+      "tweet_id": "1978628",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer reports a malfunction with downloaded content disappearing intermittently ('undownloads itself from time to time'). This is a technical issue with downloads/syncing, not a billing, access, or feature request."
+    },
+    {
+      "tweet_id": "1832902",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer reports an existing feature malfunction: the Spotify web player is not working and songs can be clicked but will not play. This is a playback/technical issue, not a billing, access, catalog, or feature request problem."
+    },
+    {
+      "tweet_id": "387711",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking why a playlist cannot start from the date added, which is a request about changing playlist behavior/sorting rather than a malfunction or how-to question. This is a product functionality change request, so FEATURE_FEEDBACK fits best."
+    },
+    {
+      "tweet_id": "1486684",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.97,
+      "reasoning": "The customer is praising the new search but explicitly requests a product change: adding a loading icon while search results are pending. This is feedback about UX/design, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "627564",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.97,
+      "reasoning": "The customer is complaining that Spotify is inserting suggested tracks instead of playing the chosen artist, and wants this behavior changed. This is a request to alter recommendation/playback behavior, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "859650",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.93,
+      "reasoning": "The message is too vague and context-free to determine a specific support need. \"where it at?\" could refer to many things, and there is no preceding context here to anchor it to billing, access, technical, catalog, feature, artist, or how-to intent."
+    },
+    {
+      "tweet_id": "1950858",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.96,
+      "reasoning": "The message indicates a subscription entitlement problem: the customer says it still shows a Free subscription only, implying they expected Premium or another paid status but are not receiving it. This is a billing/subscription status issue rather than login or a general how-to question."
+    },
+    {
+      "tweet_id": "2284053",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a product change/new feature: offering lossless music quality. This is a forward-looking feature request, not a malfunction, billing issue, or catalog problem."
+    },
+    {
+      "tweet_id": "2268730",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.96,
+      "reasoning": "The message is a polite request to check and reply to a direct message, but it does not specify any support issue or actionable Spotify problem. It is conversational/administrative rather than a clear request in one of the 8 support categories."
+    },
+    {
+      "tweet_id": "1959613",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.86,
+      "reasoning": "The customer is clarifying that they want an MP3 file, which is a how-to / availability question about obtaining content rather than reporting a malfunction, billing issue, or account access problem. There is no indication of a specific missing catalog item or a technical failure, so GENERAL_HOW_TO_INFO fits best."
+    },
+    {
+      "tweet_id": "2198089",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.86,
+      "reasoning": "The message criticizes Spotify’s customer communication and service approach, asking them to 'SPEAK with your customers.' This is a complaint about product/service behavior and support policy rather than a technical malfunction, billing issue, access problem, or how-to question."
+    },
+    {
+      "tweet_id": "1070389",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.93,
+      "reasoning": "The message is too vague to determine the specific support need. It only asks Spotify to check direct messages and says there is 'an issue with Spotify' without describing whether it is billing, access, technical, content, or another category. This fits UNKNOWN_OTHER as an uninterpretable/insufficiently specified request."
+    },
+    {
+      "tweet_id": "187562",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.99,
+      "reasoning": "The message is conversational closure/thanks only. It does not ask for any support action or describe a problem to classify, so UNKNOWN_OTHER with conversational/closure applies."
+    },
+    {
+      "tweet_id": "2006124",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.95,
+      "reasoning": "The customer is requesting a specific song version (a studio version of 'What About Us') be added/placed on Spotify, possibly as a Spotify Single. This is a catalog/content availability request, not a feature change or how-to question."
+    },
+    {
+      "tweet_id": "1850476",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting that specific music content (Lil Wayne’s mixtapes) be added/available on Spotify. This is a catalog availability request, not a how-to, feature change, or technical issue."
+    },
+    {
+      "tweet_id": "2239652",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking when a specific piece of content (#reputation) will be available on Spotify. This is a catalog availability question, not a how-to, billing, or technical issue."
+    },
+    {
+      "tweet_id": "2878323",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.95,
+      "reasoning": "The customer is asking a general compatibility/how-to question about whether Spotify works with Alexa. This is informational rather than a billing, access, technical malfunction, catalog, or feature request issue."
+    },
+    {
+      "tweet_id": "171135",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.93,
+      "reasoning": "The message is too vague and context-free to determine a specific support need. \"What's the best one?\" does not identify whether the customer is asking about a plan, song, feature, or something else, so it cannot be reliably mapped to a taxonomy category."
+    },
+    {
+      "tweet_id": "2049949",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking for a product/content presentation change: a Spotify profile photo that fits all 7 members. This is a request to add or adjust a feature/design behavior, not a login, billing, technical malfunction, catalog availability, or how-to question."
+    },
+    {
+      "tweet_id": "326809",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.96,
+      "reasoning": "This is sarcastic gratitude referencing a credited month for service disruption, which is a billing/credit issue rather than genuine closure. The substantive support need is about the credit/refund for the month the service was unusable."
+    },
+    {
+      "tweet_id": "2280200",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.94,
+      "reasoning": "The message is too vague to determine the actual support need. It only states that there is a customer support request, without describing any account, billing, technical, catalog, feature, artist, or how-to issue. This fits UNKNOWN_OTHER as an uninterpretable/insufficiently specified request."
+    },
+    {
+      "tweet_id": "1906064",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.74,
+      "reasoning": "The message describes an existing product behavior malfunctioning over time: data seems to be lost periodically. This is a technical/product issue rather than a billing, account access, content, or feature request."
+    },
+    {
+      "tweet_id": "1699326",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.95,
+      "reasoning": "The message refers to a prior technical problem that was reproducible across browsers ('same issue') and implies troubleshooting of a malfunctioning feature. Although the customer says it's working now, the substantive intent is a context-dependent tech issue rather than closure-only chatter."
+    },
+    {
+      "tweet_id": "2240443",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.86,
+      "reasoning": "The customer is commenting on a product behavior change ('starting up minimized') and says it is still not what they want, which indicates dissatisfaction with the app's design/behavior rather than a malfunction or how-to question. This is a request for Spotify to change the startup behavior, so FEATURE_FEEDBACK fits best."
+    },
+    {
+      "tweet_id": "2725157",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.86,
+      "reasoning": "The message describes a technical problem on a Windows 10 PC and says they've tried troubleshooting already. The mention of possibly ditching the subscription is frustration, not the primary issue. This is best classified as an app/desktop malfunction rather than billing or account access."
+    },
+    {
+      "tweet_id": "508845",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.97,
+      "reasoning": "The customer is requesting that a specific existing song be added to a specific existing Spotify playlist. Per the taxonomy, placement requests for already-available content on an editorial/curated playlist are CONTENT_CATALOG, not feature feedback."
+    },
+    {
+      "tweet_id": "2021155",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.93,
+      "reasoning": "The message is a brief, conversational statement expressing interest in being hired, not a support request about account access, billing, technical issues, content, features, artist support, or how-to information. It does not fit the taxonomy, so UNKNOWN_OTHER is appropriate."
+    },
+    {
+      "tweet_id": "1868960",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking for a specific artist's music to be brought back on Spotify, which is a catalog availability request. This is about missing/removed content, not a feature change or technical issue."
+    },
+    {
+      "tweet_id": "2616773",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.96,
+      "reasoning": "The customer is suggesting a new product/policy idea: a collaboration or bundled offering that includes songs and reading for one monthly price. This is a forward-looking feature/pricing request, not a dispute about an existing charge or a how-to question."
+    },
+    {
+      "tweet_id": "2614482",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a new product option to block artists from shuffle. This is a feature request/change to Spotify behavior, not a malfunction, billing issue, or how-to question."
+    },
+    {
+      "tweet_id": "199164",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking for a specific album to be added to Spotify's catalog ('put ... full Tracker album on please'), which is a content availability/request issue rather than a technical, billing, or how-to problem."
+    },
+    {
+      "tweet_id": "778555",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.96,
+      "reasoning": "The customer is suggesting Spotify change its product/design/aesthetic to match the 'mood booster playlist,' which is a feature/design request rather than a bug, catalog issue, or how-to question."
+    },
+    {
+      "tweet_id": "2210887",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a product change: adding a prompt/confirmation to the download button to prevent accidental taps. This is a feature/design request, not a malfunction or billing/access issue."
+    },
+    {
+      "tweet_id": "2492522",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "UNKNOWN_OTHER",
+      "confidence": 0.93,
+      "reasoning": "The message is conversational/chatter and does not make an actionable support request. It references Apple Music in a casual way and appears to be a remark rather than a Spotify issue, so it fits UNKNOWN_OTHER."
+    },
+    {
+      "tweet_id": "2052028",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting that Spotify restore an app/platform support feature on LG TVs ('bring back the spotify app'), which is a product functionality change rather than a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "2289771",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a product change: to bring back lyrics and incorporate them into the app. This is a feature restoration/redesign request, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "426789",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a new product function: the ability to block an artist from appearing in generated playlists and radios. This is a feature change request, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "339551",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting that a specific song be added to Spotify's catalog. This is a content availability/addition request, not a feature change or technical issue."
+    },
+    {
+      "tweet_id": "674465",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is suggesting Spotify add a new capability (music video support). This is a product feature request, not a how-to question, bug, catalog issue, or billing/access problem."
+    },
+    {
+      "tweet_id": "2841195",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.88,
+      "reasoning": "The primary issue is account identity/access control: Spotify is treating another family-plan listener as if the account is being used elsewhere, causing playback to pause with an account-use warning. The username change request is secondary. This is best classified as ACCOUNT_ACCESS rather than billing or a feature request."
+    },
+    {
+      "tweet_id": "1758258",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.97,
+      "reasoning": "The customer is asking an eligibility/how-it-works question about whether Spotify gift cards can be used for a family plan. There is no disputed charge, malfunction, or access problem, so this is general informational support."
+    },
+    {
+      "tweet_id": "1914366",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking how to obtain a presale code and whether being a subscriber/fan qualifies them. This is an informational eligibility/how-to question, not a billing dispute or technical problem."
+    },
+    {
+      "tweet_id": "1366571",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.98,
+      "reasoning": "The customer is disputing a payment status/charge: they clarify that the payment was deducted rather than pending. This is a billing issue about an actual charge, not access or a how-to question."
+    },
+    {
+      "tweet_id": "1900609",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.98,
+      "reasoning": "The message reports a specific charge for the annual subscription and says Premium does not work. The primary support need is to investigate the billing/subscription entitlement issue (charged but not receiving Premium), which falls under SUBSCRIPTION_BILLING."
+    },
+    {
+      "tweet_id": "1807209",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.98,
+      "reasoning": "The customer is disputing a specific charge for student Premium after saying their school was not available as an option. The primary support need is to investigate the unexpected $4.99 charge/refund entitlement, not to explain how student Premium works."
+    },
+    {
+      "tweet_id": "689585",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.97,
+      "reasoning": "The customer is disputing their current pricing/entitlement: they say they are paying the full amount each month and ask whether the student discount can be applied. This is a billing/discount entitlement issue, not a general eligibility question, because there is an existing paid subscription amount involved."
+    },
+    {
+      "tweet_id": "765647",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.97,
+      "reasoning": "The customer is trying to update payment/subscription details and is blocked by the student plan flow while wanting Premium. This is a subscription/entitlement issue, not a how-to question or general feature request."
+    },
+    {
+      "tweet_id": "560014",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.93,
+      "reasoning": "The customer is trying to join a Family Premium plan but is blocked because they forgot the exact address used. This is primarily an identity/access verification problem that Spotify would need to help resolve, not a general pricing question or a billing dispute."
+    },
+    {
+      "tweet_id": "1960584",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.74,
+      "reasoning": "The customer says their Spotify 'doesn't' work while another family plan member's does, and mentions this has happened before. There is no clear charge dispute, login/access recovery request, or feature request; the primary need appears to be troubleshooting a malfunction affecting their app/service access, so APP_TECH_ISSUE fits best."
+    },
+    {
+      "tweet_id": "2756263",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.86,
+      "reasoning": "The message asks about getting the student Premium plan and does not mention a specific disputed charge, refund, or billing error. This fits an informational/eligibility or enrollment question rather than SUBSCRIPTION_BILLING."
+    },
+    {
+      "tweet_id": "2125232",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.92,
+      "reasoning": "The customer is asking how to get a presale code and whether Premium membership is sufficient/what else is required. This is an eligibility/how-to question about an existing promotion or benefit, not a disputed charge or billing error."
+    },
+    {
+      "tweet_id": "2070027",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.98,
+      "reasoning": "The customer is disputing a specific promotion/discount entitlement and says they are being charged full price instead of the advertised 50% off. This is a billing/subscription issue, not a how-to or feature request."
+    },
+    {
+      "tweet_id": "172534",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking an informational eligibility/availability question about payment options by country (PayPal in the US vs Brazil), not disputing a charge or reporting a payment failure. This fits GENERAL_HOW_TO_INFO."
+    },
+    {
+      "tweet_id": "727009",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.99,
+      "reasoning": "The customer reports an unexpected charge for a yearly subscription after entering card details for a Premium trial and explicitly asks to cancel. The primary support need is to investigate and reverse/cancel the billing/subscription charge, not account access or a technical issue."
+    },
+    {
+      "tweet_id": "2310896",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.98,
+      "reasoning": "The primary issue is a paid entitlement/billing problem: the customer says they were charged for Premium Family but are not receiving it. The app update and logout/login attempts are troubleshooting context, but the main support need is to investigate the subscription status and missing Premium access after payment."
+    },
+    {
+      "tweet_id": "1875268",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.98,
+      "reasoning": "The primary issue is inability to log in/access the account. The message describes login failure and account identity/access problems, with no billing or feature request involved."
+    },
+    {
+      "tweet_id": "877450",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.96,
+      "reasoning": "The customer says their account is 'not an active one' and asks for help, which indicates an account status/access problem rather than billing or a how-to question. The primary support need is to restore or verify account access/identity."
+    },
+    {
+      "tweet_id": "1705041",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.93,
+      "reasoning": "The customer is unable to update account information because Spotify directs them to Facebook, and the linked Facebook info is already up to date. This is an account identity/access-management problem involving linked account settings, not billing or a general how-to question."
+    },
+    {
+      "tweet_id": "2420496",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.98,
+      "reasoning": "The customer reports that their account has been switched to Free despite paying through a mobile provider, which is a subscription/entitlement problem. The primary support need is to investigate the paid subscription status and restore the correct Premium entitlement, not account access."
+    },
+    {
+      "tweet_id": "2787996",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.98,
+      "reasoning": "The primary issue is inability to access the account and recover it. The mention of being abroad for 14 days is context for the access problem, but the requested support action is account recovery/access restoration."
+    },
+    {
+      "tweet_id": "339556",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.93,
+      "reasoning": "The customer is reporting that the password/email reset link content is malfunctioning by appearing in the wrong language (French) rather than asking how to use a feature or disputing account access itself. This is a technical/product issue with the reset flow or email content."
+    },
+    {
+      "tweet_id": "1898838",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "SUBSCRIPTION_BILLING",
+      "confidence": 0.86,
+      "reasoning": "The message is about updating payment details and appears to concern subscription/payment management rather than account access or a technical issue. The primary support need is billing-related."
+    },
+    {
+      "tweet_id": "2544113",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking how Facebook-based Spotify login works if the Facebook account is deleted, and whether the Spotify account would still function with the associated email. This is an informational how-to/account-setup question, not a request to restore access or recover a lost account."
+    },
+    {
+      "tweet_id": "1269717",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking how to upgrade to a multiple-device/family account, which is an informational/how-to request about an existing plan option rather than a disputed charge or a feature request."
+    },
+    {
+      "tweet_id": "2794551",
+      "gold_label": "ACCOUNT_ACCESS",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.99,
+      "reasoning": "The primary issue is inability to log in and regain access to the account, with password change and email access mentioned as part of the access problem. This is an authentication/account recovery request, so ACCOUNT_ACCESS applies."
+    },
+    {
+      "tweet_id": "1043550",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.86,
+      "reasoning": "The customer is asking how to get the student discount again and appears to be asking about eligibility/re-enrollment after the discount period ended. There is no explicit disputed charge or refund request, so this is general information about a promotion/discount rather than SUBSCRIPTION_BILLING."
+    },
+    {
+      "tweet_id": "1471765",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.97,
+      "reasoning": "The customer is asking Spotify to change shuffle behavior so it is 'simply random' instead of repeatedly favoring one artist. This is a request to alter product functionality/recommendation behavior, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "2653056",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.96,
+      "reasoning": "The customer is asking how to perform a normal account/device management action (unlinking an account from devices). This is an instructional how-to question, not a login/access problem, billing issue, or malfunction."
+    },
+    {
+      "tweet_id": "1264086",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.95,
+      "reasoning": "The customer is asking how to get a podcast on Spotify and what it costs, which is general informational/eligibility guidance rather than a disputed charge, missing content, or technical issue."
+    },
+    {
+      "tweet_id": "1160869",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.86,
+      "reasoning": "The customer is asking how to fix account/profile information after signing up for Premium Family. This is primarily a how-to question about changing the zip code, not a disputed charge, access problem, or technical malfunction."
+    },
+    {
+      "tweet_id": "563522",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking how to switch/apply an existing offer/promo and notes there is no link in the ad. This is an informational/how-to question about using a promotion, not a disputed charge or billing error."
+    },
+    {
+      "tweet_id": "1794735",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking how to perform a normal action ('how to do on Samsung S5') rather than reporting a malfunction or requesting a feature change. This is a how-to question about moving the app to an SD card."
+    },
+    {
+      "tweet_id": "2095103",
+      "gold_label": "ARTIST_SUPPORT",
+      "predicted_intent": "ARTIST_SUPPORT",
+      "confidence": 0.96,
+      "reasoning": "The customer is asking about creating a playlist as the artist rather than from a personal account, which is a creator/artist-side workflow question. This fits ARTIST_SUPPORT because it concerns artist identity/profile management rather than listener-facing usage."
+    },
+    {
+      "tweet_id": "492383",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking how to fix a language/locale issue with ads ('how do I fix this?'), which is a how-to/information request rather than a billing, access, or malfunction complaint. There is no specific broken feature or disputed charge described."
+    },
+    {
+      "tweet_id": "2080754",
+      "gold_label": "SUBSCRIPTION_BILLING",
+      "predicted_intent": "ACCOUNT_ACCESS",
+      "confidence": 0.93,
+      "reasoning": "The message mentions canceling Premium, but the primary obstacle is that the son has lost all account details and his phone, so Spotify would first need to help identify/recover the account before cancellation can be handled. This is an access/identity problem rather than a pure billing dispute."
+    },
+    {
+      "tweet_id": "1658868",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking for a new control/option to exclude songs in certain languages from Discover Weekly. This is a request to change Spotify's recommendation behavior, not a how-to question or a content/catalog issue."
+    },
+    {
+      "tweet_id": "2183058",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a product change: keep the current mix or add another Discover playlist for older/classic tracks. This is a feature/design suggestion, not a malfunction, catalog issue, billing issue, or how-to question."
+    },
+    {
+      "tweet_id": "2175409",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer is reporting that downloaded songs disappeared/uninstalled unexpectedly, which is a malfunction of an existing feature rather than a billing, account, or content availability issue."
+    },
+    {
+      "tweet_id": "1453978",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.97,
+      "reasoning": "The customer is requesting a new search/category behavior ('adding a search category for jazz standards') and criticizing how Spotify currently organizes results. This is a product functionality change request, not a catalog missing-content issue or a how-to question."
+    },
+    {
+      "tweet_id": "2139004",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.96,
+      "reasoning": "The customer is reporting a malfunction in playback behavior: the playlist restarts every time they exit and re-enter the car. This is a technical issue with playback/Connect behavior, not a request for a new feature or a catalog/billing/account problem."
+    },
+    {
+      "tweet_id": "1876063",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.95,
+      "reasoning": "The customer is criticizing Spotify's suggested song behavior and implying it should be changed so irrelevant thematic suggestions are not shown. This is a product behavior/design complaint, not a malfunction or catalog issue."
+    },
+    {
+      "tweet_id": "1250620",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.98,
+      "reasoning": "The customer is reporting playback malfunction: music cannot play at the moment, and when it does, it stops after one song. This is an existing feature failing, so the primary need is technical troubleshooting."
+    },
+    {
+      "tweet_id": "113822",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a new product feature: a button to randomly reorder playlist songs. This is a change/addition to Spotify functionality, not a malfunction or how-to question."
+    },
+    {
+      "tweet_id": "250748",
+      "gold_label": "GENERAL_HOW_TO_INFO",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.96,
+      "reasoning": "The customer is asking whether a normal Spotify feature ('Behind the Lyrics') works on a specific device. This is an informational/compatibility question, not a report that something is broken or a request to change the feature."
+    },
+    {
+      "tweet_id": "2059817",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.86,
+      "reasoning": "The customer is asking why track play counts are shown as '<1,000', which is an informational question about how Spotify displays or calculates a metric. There is no complaint about a charge, access issue, malfunction, missing content, or request to change the feature."
+    },
+    {
+      "tweet_id": "2747462",
+      "gold_label": "UNKNOWN_OTHER",
+      "predicted_intent": "GENERAL_HOW_TO_INFO",
+      "confidence": 0.93,
+      "reasoning": "The customer is asking for a recommendation/opinion about a song from an album, not reporting a malfunction, billing issue, missing catalog item, or account problem. This is a general informational/how-to style request about content discovery."
+    },
+    {
+      "tweet_id": "1865839",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.98,
+      "reasoning": "The customer is asking why a specific track is unavailable on Spotify, which is a catalog availability issue rather than a technical malfunction or how-to question."
+    },
+    {
+      "tweet_id": "830834",
+      "gold_label": "CONTENT_CATALOG",
+      "predicted_intent": "CONTENT_CATALOG",
+      "confidence": 0.98,
+      "reasoning": "The customer is requesting a specific album to be available on Spotify. This is a catalog availability request, not a how-to, billing, access, or technical issue."
+    },
+    {
+      "tweet_id": "1526258",
+      "gold_label": "FEATURE_FEEDBACK",
+      "predicted_intent": "FEATURE_FEEDBACK",
+      "confidence": 0.96,
+      "reasoning": "The customer is asking why the Songs section cannot match a different product behavior (allowing more than 10,000 songs like a normal playlist). This is a request to change product functionality/limits, not a malfunction, billing issue, or how-to question."
+    },
+    {
+      "tweet_id": "1942805",
+      "gold_label": "APP_TECH_ISSUE",
+      "predicted_intent": "APP_TECH_ISSUE",
+      "confidence": 0.97,
+      "reasoning": "The customer is reporting a malfunctioning playback behavior: random music suddenly blares at full volume every few minutes. This is an app/product technical issue, not a request for a new feature or content change."
+    }
+  ]
+}
