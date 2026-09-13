@@ -1,5 +1,22 @@
 # Project Context
 
+## Current State for New Agents (Claude Code Onboarding)
+Before making changes, read:
+1. `PROJECT_CONTEXT.md` (describes current project state)
+2. `DECISION_LOG.md` (explains why important choices were made)
+3. `discovery/TAXONOMY_REVIEW_GUIDE.md` (the authoritative annotation rulebook)
+4. `CHECKLIST.md` (describes completion state)
+5. `hiver_sde_takehome_strategy.md` (describes project philosophy/architecture/evaluation direction)
+6. Relevant implementation files (code is the source of truth for current implementation behavior)
+
+- **TAXONOMY_REVIEW_GUIDE.md** is authoritative for annotation. Primary support action is the classification principle. Model predictions must not determine gold labels.
+- The 8-label taxonomy is **FROZEN** (confirmed post-golden; see `DECISION_LOG.md` #22).
+- Discovery labels are historical evidence, not authoritative truth.
+- Pilot work validates annotation protocol, not the final model; it was never human-annotated (deliberately).
+- `UNKNOWN_OTHER` is a last resort.
+- Context must use only preceding messages. `created_at` is the chronology authority. Post-target responses/resolution cannot be used for annotation.
+- **The 200-example golden set is COMPLETE and its gold labels are IMMUTABLE.** `Human Final Label` in `golden_set/GOLDEN_ANNOTATION_200_labeled.xlsx` (cleanly exported to `golden_set/GOLDEN_200_FINAL.csv`) is the only authoritative gold source. Do not relabel it, do not resample it, do not use it for training/retrieval — it is evaluation-only.
+
 ## 1. Assignment Summary and Hard Requirements
 **Goal**: Build an AI customer support agent for one brand from the TWCS dataset. Prove it works.
 **Requirements**:
@@ -12,70 +29,84 @@
 - Citations.
 
 ## 2. Current Project Phase and Status
-- **CURRENT PHASE**: Pre-execution / Phase 1 (Data Preparation) pending run.
-- **COMPLETED**: Architecture design (v3 approved), project config (`config.py`), and Phase 1 scripts (`data/prepare.py`, `data/split.py`).
-- **CURRENT BLOCKERS**: None, waiting for permission to execute Phase 1.
+- **CURRENT PHASE**: Golden set complete; about to start the baseline/classifier milestone.
+- **COMPLETED**: Dataset exploration, Spotify brand selection, thread reconstruction, split creation, leakage checks, taxonomy discovery, 300-example discovery review, annotation-guide refinement, taxonomy freeze, chronology bug discovery/fix, pilot preparation/protocol work (100-example workbook built, never human-annotated — deliberately deferred, see `DECISION_LOG.md` #24), golden-set candidate sampling (200 from TEST), full manual QA pass over all 200 candidates, blind annotation workbook, AI-assisted prelabeling pass, **human gold annotation of all 200 examples (complete)**, AI-vs-human agreement analysis, post-golden taxonomy review (taxonomy kept at exactly 8 intents), 7 approved guide wording clarifications applied to the frozen guide.
+- **IMMEDIATE NEXT STEP**: Baseline implementation (majority-class + TF-IDF/Logistic Regression) and evaluation harness against the final 200 golden labels. **Not started yet** — this documentation/reproducibility checkpoint is a deliberate pause before that milestone.
+- **Final golden artifacts**: `golden_set/CANDIDATE_MANIFEST_200.csv` (sampling manifest, provisional labels — NOT gold), `golden_set/GOLDEN_ANNOTATION_200_labeled.xlsx` (completed annotation workbook — source of truth for gold), `golden_set/GOLDEN_200_FINAL.csv` (clean gold export: candidate_id, tweet_id, thread_id, customer_id, target_message, human_gold_label, human_notes), `golden_set/GOLDEN_200_ANALYSIS.md` (validation + AI-agreement analysis), `golden_set/PROPOSED_GUIDE_CLARIFICATIONS.md` and `golden_set/GUIDE_CHANGELOG_AFTER_GOLD.md` (post-golden guide review and changelog).
 
 ## 3. Dataset Facts
-- **CONFIRMED FACT**: Dataset is Kaggle Customer Support on Twitter (~3M tweets).
-- **CONFIRMED FACT**: SpotifyCares chosen as the brand (has ~43k outbound messages, 31.8% DM redirect rate, 77.2% unique responses).
-- **DECISION**: No "resolved" labels exist in the dataset; corpus will be based purely on observed pairs.
+- **Brand**: SpotifyCares
+- **Dataset**: Customer Support on Twitter / `twcs.csv`
+- **Current split**: DEVELOPMENT / RETRIEVAL / TEST separation already established.
+- **DEVELOPMENT size**: 6,481 customer->brand pairs.
+- **Historical Retrieval Terminology**: The actual historical data consists of customer-support interactions and SpotifyCares responses, with resolution evidence where observable. We do NOT broadly describe the RAG corpus as "resolved cases."
 
 ## 4. Current Architecture
-- **DECISION**: Single LLM pipeline for intent classification & generation + TF-IDF/LogReg and Majority baselines.
-- **DECISION**: Embeddings via `all-MiniLM-L6-v2` + cosine similarity for historical retrieval.
+The intended system is deliberately simple:
+```text
+Customer message
+    ↓
+Intent classification
+    ↓
+Deterministic triage / escalation decision
+    ↓
+Historical interaction retrieval
+    ↓
+Evidence sufficiency check
+    ↓
+AUTO-HANDLE → grounded response
+        OR
+HUMAN ESCALATION → reason
+```
+*Note: Sentiment and information extraction are NOT mandatory independent subsystems unless the actual implementation later demonstrates a concrete need for them. Do not describe an unnecessarily complex multi-agent architecture.*
 
-## 5. Data Boundaries
-- **DECISION**: Strict 3-way thread-level split to prevent leakage.
-  - **DEVELOPMENT (~15%)**: Taxonomy discovery, pilot labeling, TF-IDF training.
-  - **RETRIEVAL (~65%)**: Historical retrieval index.
-  - **TEST (~20%)**: Golden evaluation set (sealed).
+## 5. Data Boundaries & Golden-Set Isolation
+- **DEVELOPMENT (4,242 threads / 6,481 pairs)**: Taxonomy discovery, pilot labeling. (Not yet used for TF-IDF training — that's part of the upcoming baseline milestone.)
+- **RETRIEVAL (18,382 threads / 27,903 pairs)**: Historical retrieval index. Retrieval evidence for response generation must come ONLY from this pool — never from TEST/golden (see `DECISION_LOG.md` #18).
+- **TEST (5,656 threads / 8,708 pairs)**: Sealed source pool for the golden evaluation set.
+- **Golden Set**: 200 examples (within the required 150-250), sampled entirely from TEST. Representative base, deliberate boundary coverage, rare-intent coverage, genuine UNKNOWN coverage, not dominated by hard cases, not simply random, not artificially balanced across all intents, isolated from retrieval/development leakage (verified programmatically) and from retrieval-pool text duplication (verified via exact + normalized-text checks).
+- **Golden Set Status: COMPLETE AND FINAL.** All 200 examples have a human gold label (`Human Final Label` in `golden_set/GOLDEN_ANNOTATION_200_labeled.xlsx`, exported cleanly to `golden_set/GOLDEN_200_FINAL.csv`). **These 200 labels are immutable and evaluation-only** — see `DECISION_LOG.md` #17. Do not relabel them, do not use them for training/few-shot selection, and do not insert them into the RAG/retrieval corpus.
+- **Development labels vs. final gold**: The 300-example discovery review (`discovery/HUMAN_REVIEW_labeled.md`) and the AI Suggested Label column in the golden workbook are **not** authoritative — they informed taxonomy design and accelerated review, but only `Human Final Label` in the completed golden workbook is gold.
 
 ## 6. Intent Taxonomy
-- **STATUS**: Not started.
-- **HYPOTHESIS**: Initial estimate 6-8 intents, to be discovered bottom-up from 300 DEVELOPMENT messages.
+- **STATUS**: The 8-label taxonomy is FROZEN — confirmed to remain exactly 8 intents even after a post-golden review of all 17 AI/human disagreements on the completed golden set (see `DECISION_LOG.md` #22). No intent has been added, removed, merged, or split at any point.
+- **TAXONOMY**: 
+  1. ACCOUNT_ACCESS
+  2. SUBSCRIPTION_BILLING
+  3. APP_TECH_ISSUE
+  4. CONTENT_CATALOG
+  5. FEATURE_FEEDBACK
+  6. ARTIST_SUPPORT
+  7. GENERAL_HOW_TO_INFO
+  8. UNKNOWN_OTHER
+- **Post-golden guide clarifications**: 7 wording/example clarifications were applied to `discovery/TAXONOMY_REVIEW_GUIDE.md` after golden annotation, each tagged inline `(post-golden clarification)` and each motivated by a specific golden-set disagreement. 3 proposed clarifications were deliberately left unresolved (internally inconsistent or single-case evidence) rather than force-resolved. Full detail: `golden_set/GUIDE_CHANGELOG_AFTER_GOLD.md`.
 
-## 7. Golden-Set Status
-- **STATUS**: Not started. Will be sampled from TEST pool.
+## 7. Discovery & Pilot & Golden Phase State
+- **DISCOVERY PHASE (complete)**: The 300-example human review was a DISCOVERY / TAXONOMY REFINEMENT exercise to discover recurring intents, boundary cases, refine rules. It is NOT the final golden benchmark. Some historical discovery labels may be inconsistent with the latest frozen guide and therefore must not be blindly reused as gold.
+- **PILOT PHASE (deferred, not completed)**: The 100-example pilot workbook (`discovery/PILOT_ANNOTATION_100*.xlsx`) tested whether the annotation rules, context presentation, and interface were usable. It was NEVER human-annotated — deliberately deferred once the golden-set pipeline itself validated the same things directly (see `DECISION_LOG.md` #24). It is NOT model training, final evaluation, or a source of gold labels.
+- **GOLDEN PHASE (complete)**: All 200 golden examples have been sampled from TEST, QA'd, blind-annotated, AI-prelabeled for review acceleration, and human-labeled. `Human Final Label` in `golden_set/GOLDEN_ANNOTATION_200_labeled.xlsx` is the sole gold reference (see `DECISION_LOG.md` #21 for why gold lives in that column and not the originally-planned `Human Gold Label` column). The 200 labels are locked — no further relabeling (`DECISION_LOG.md` #17).
+- **Chronology**: `created_at` timestamps are the authority for strict chronology, NOT numeric `tweet_id`. Centralized in `discovery/chronology.py`, regression-tested in `discovery/test_chronology.py`, used consistently across the pilot workbook and the golden-set `THREAD_VIEW` sheet.
 
-## 8. Baseline Status/Results
-- **STATUS**: Not started.
+## 8. Evaluation Plan State
+Evaluation is a first-class project concern. The intended evaluation includes:
+- **A. Intent classification**: Accuracy, Macro F1, Per-intent precision, Per-intent recall, Confusion matrix.
+- **B. Escalation / auto-handle**: escalation precision, escalation recall, false auto-handle rate, false escalation rate.
+- **C. Response quality**: LLM judge using a defined rubric.
+- **D. Judge validation**: compare LLM judge scores against human judgments (approx 40 human-graded examples).
+- **E. Baselines**: majority-class baseline, TF-IDF + Logistic Regression.
 
-## 9. Experiment Status/Results
-- **STATUS**: Not started.
-
-## 10. Retrieval Ablation Results
-- **STATUS**: Not started. (Plan: compare k=0, 1, 3, 5).
-
-## 11. Judge Calibration Results
-- **STATUS**: Not started.
-
-## 12. Triage Policy
-- **DECISION**: Three tiers.
-  - Tier 1: Hard safety rules (UNKNOWN intent -> escalate, Security -> escalate, Legal -> escalate).
-  - Tier 2: Dataset-supported (to be determined by experiments).
-  - Tier 3: Experimental assumptions (e.g., anger keywords -> escalate).
-
-## 13. Important Design Decisions
-- See `DECISION_LOG.md` (to be populated as we build).
-
-## 14. Known Issues and Limitations
-- The project is not yet a git repository.
-- Windows encoding issues required forcing UTF-8 in `sys.stdout` for earlier exploratory scripts.
-
-## 15. Open Questions
-- None currently. Waiting to execute Phase 1.
-
-## 16. Important Repository Files
-- `config.py`: Centralized configuration.
+## 9. Important Repository Files
+- `config.py`: Centralized configuration (paths, seeds, brand, model names).
 - `data/prepare.py`: Filters SpotifyCares, reconstructs threads.
 - `data/split.py`: Performs 3-way split.
-- `implementation_plan.md`: The approved v3 design and ordered plan.
+- `discovery/chronology.py`: Shared `created_at`-based chronology utility (see `DECISION_LOG.md` #8).
+- `discovery/TAXONOMY_REVIEW_GUIDE.md`: The authoritative, frozen annotation rulebook (now includes 7 post-golden clarifications).
+- `golden_set/GOLDEN_200_FINAL.csv`: The clean final gold export — candidate_id, tweet_id, thread_id, customer_id, target_message, human_gold_label, human_notes. **This is the file to load for evaluation.**
+- `golden_set/GOLDEN_ANNOTATION_200_labeled.xlsx`: The completed annotation workbook (source of truth `Human Final Label` was exported from).
+- `golden_set/GOLDEN_200_ANALYSIS.md`: Validation results, gold-label distribution, AI-prelabel-vs-gold agreement analysis, disagreement patterns.
+- `golden_set/GUIDE_CHANGELOG_AFTER_GOLD.md`: What changed in the guide after golden annotation, and why.
+- `hiver_sde_takehome_strategy.md`: Strategic North Star.
+- `DECISION_LOG.md`: Full decision trail with human/AI attribution — read this for "why," not just "what."
 
-## 17. Environment/Setup Requirements
-- `OPENAI_API_KEY` must be set in the environment.
-- Python dependencies (pandas, scikit-learn, sentence-transformers) will be required.
-
-## 18. Exact Next Action
-- Run `git init`.
-- Run `python data/prepare.py` followed by `python data/split.py` to complete Phase 1.
+### Known reproducibility gap (honest, not yet fixed)
+The scripts used to sample the 200 golden candidates, run the manifest QA pass, build the annotation workbook, and generate the AI prelabels were written and executed interactively during this project's working sessions but are **not currently checked into this repository** — only their outputs are (`golden_set/CANDIDATE_MANIFEST_200.csv`, `golden_set/GOLDEN_ANNOTATION_200.xlsx`, `golden_set/ai_prelabels.csv`). The methodology is fully documented (this file, `DECISION_LOG.md`, `golden_set/GOLDEN_200_ANALYSIS.md`), and the outputs are reproducible in principle from `data/generated/test_pairs.jsonl` + `GOLDEN_SAMPLE_SEED=456` + `discovery/TAXONOMY_REVIEW_GUIDE.md`, but re-running the exact original scripts is not currently possible from a fresh clone. This does not affect the validity of the golden set itself (which is now a fixed, committed artifact), only the ability to regenerate it from scratch. Worth fixing before claiming full 15-minute reproducibility in the final README.

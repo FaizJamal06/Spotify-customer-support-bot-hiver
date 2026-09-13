@@ -1,0 +1,228 @@
+﻿candidate_id,tweet_id,thread_id,customer_id,target_message,human_gold_label,human_notes
+CAND_0001,1855971,1855971,555149,"@SpotifyCares Hey, a song of mine was recently released on a label and it created a duplicate artist page. How can I get it on my main?",ARTIST_SUPPORT,
+CAND_0002,2669338,2669338,751817,"@125633 I have been trying to gain control of my artist Lola spikes profile on Spotify since March to change the profile picture from album to her selfie pic, Can you help?",ARTIST_SUPPORT,
+CAND_0003,1398598,1398598,445238,@SpotifyCares please merge the GORD DOWNIE and GORDON GOWNIE artist profiles,ARTIST_SUPPORT,
+CAND_0004,1993429,1993429,589946,@125633 guys my artist page is locking me out and i can't get in!! Also releases aren't showing up!!!!,ARTIST_SUPPORT,
+CAND_0005,800191,800191,198507,Why tf is my single under another artist page -__- Wtf @115888,ARTIST_SUPPORT,
+CAND_0006,1161814,1161814,393336,@SpotifyCares i have a verified artist page that i have no access to at all... how can i get into this?,ARTIST_SUPPORT,
+CAND_0007,672187,672187,280368,@SpotifyCares I've emailed regarding adding a pic to my artist page! I've had no response,ARTIST_SUPPORT,
+CAND_0008,2246055,2246055,654609,@115888 as an artist who do we contact at spotify to get them to separate an artist profile/identity from another artists w/the same name?,ARTIST_SUPPORT,is artist support but user is also asking how to type question
+CAND_0009,1988904,1988904,588654,"@SpotifyCares one of my albums I'd accidentally listed under ""singles"" on my artist page. How can I fix that?",ARTIST_SUPPORT,
+CAND_0010,1466241,1466241,460329,@SpotifyCares i've been trying to contact Spotify for weeks about an album that is incorrectly attributed to my artist page please help ASAP,ARTIST_SUPPORT,
+CAND_0011,770810,770810,304080,"@115888 Ive sent an artist separation request 2 weeks ago,Please move my track to my artist profile so I can share my music #SpotifySingles",ARTIST_SUPPORT,
+CAND_0012,776162,776163,305457,"@SpotifyCares Used CDBaby to distribute with you.They say it's been delivered to you, but it's not up on our artist page yet. Any ideas? Release date 2day",ARTIST_SUPPORT,
+CAND_0013,539176,539176,245020,"@SpotifyCares Is it at all possible to get ""Satie: Vexations (840 Times)"" to be removed from Erik Satie's Artist page? It's a joke, I know, but it's really annoying to have to scroll so far to get to any of his other music. It's the same song literally 840 times.",FEATURE_FEEDBACK,"this might be confusing at first if it’s artist support question but the user is suggesting changes, might also confusewith app_tech"
+CAND_0014,2052421,2052421,606978,"@SpotifyCares  Report Albums 
+
+On the Heathen artist page: https://t.co/aFV6iSa3yJ there is a mistplaced album.",CONTENT_CATALOG,
+CAND_0015,622817,622817,267829,May I ask why Dan Black has two different artist profiles? @115888 @SpotifyCares,CONTENT_CATALOG,
+CAND_0016,1620802,1620804,496717,"@125633 having trouble with that, every time I make a playlist and try to find it to showcase on my artist page.. I can’t find it when searching",APP_TECH_ISSUE,
+CAND_0017,2883054,2883055,799854,"@SpotifyCares I see that in Android mobile and Windows PC.
+When see Strauss autor can see Tchaikovsky song as most played, and song of a band named Strauss.",APP_TECH_ISSUE,"because based on the previous messages the user has reported a button issue Initially , then asks about song and band name  "
+CAND_0018,2623509,2623509,741148,@SpotifyCares My account has been hacked and I'm locked out of both resetting my password and changing my email address. Any help you can offer?,ACCOUNT_ACCESS,
+CAND_0019,1840067,1840067,551457,@SpotifyCares There is an hacker on my account and I can not make him stop using my account. I have triede to resign alle my devices.,ACCOUNT_ACCESS,
+CAND_0020,1579279,1579279,486323,@SpotifyCares Hi! I just discovered my account was hacked and someone changed my e-mail/password. Can you guys help me?,ACCOUNT_ACCESS,
+CAND_0021,2929248,2929248,810358,"Help @115888, our account has been hacked. The email has been replaced by an unknown person's and we can't log in. What do we do?",ACCOUNT_ACCESS,
+CAND_0022,2690961,2690961,120817,@SpotifyCares HELP! My account has just been hacked and now I can no longer login to my account - the email address has been changed without my consent!,ACCOUNT_ACCESS,
+CAND_0023,2713292,2713292,235204,"@SpotifyCares Please cancel my account immediately. I am unable to do so because my account has been hacked on my (oem) android and the email and password have changed.
+
+Dm has been sent with no reply yet.
+
+Thanks.",SUBSCRIPTION_BILLING,but after the cancelation follow up on recovery of account
+CAND_0024,1659831,1659831,506379,@115888 someone’s hacked my account and apparently there’s no way for me to change my password! #crock #fixthis #givememumoneyback,ACCOUNT_ACCESS,helping them recover their account works betterin this situation security > billing
+CAND_0025,2641113,2641113,745337,@115888 your security is BS some French guy hacked my account and changed my plan to add his own. I’m seeing this a lot...,ACCOUNT_ACCESS,account recovery is more import and to stop the hacker is main priority
+CAND_0026,2826952,2826952,718603,Help @115888 @SpotifyCares! My account was hacked and the hacker changed my email so I can't reset my password. My credit card is saved in the system and I'm being charged :'(,ACCOUNT_ACCESS,
+CAND_0027,2364820,2364820,682736,@SpotifyCares My account was hacked - why don't you have a customer support phone number?  I need to talk to someone about this ASAP,ACCOUNT_ACCESS,
+CAND_0028,2909841,2909841,805593,@SpotifyCares For some reason I am being charged $9.99 a month even though I've had the student discount this whole year.  I renewed the student discount a few months ago because I am still enrolled at UF.  Can i be refunded the $9.99 charge so I am only charged $4.99 instead?,SUBSCRIPTION_BILLING,
+CAND_0029,822342,822342,315872,@115888 doesnt allow student discount if you're using a discoung on another streaming service. I was wondering why my bill increased.,SUBSCRIPTION_BILLING,
+CAND_0030,1342991,1342991,433219,@SpotifyCares Hey i suscribed to Spotify Premium with the Student discount but i still don't have SpotifyPremium activated on my account,SUBSCRIPTION_BILLING,
+CAND_0031,551330,551330,248478,"@SpotifyCares What are the requirements for the student discount? Do I have to be at least half time in a degree seeking program, &amp; what schools are eligible?",GENERAL_HOW_TO_INFO,
+CAND_0032,566358,566358,252775,@115888 Do you offer a discount for people who work at educational institutions?,GENERAL_HOW_TO_INFO,general question abt a plan or subscription
+CAND_0033,1609289,1609289,494091,"@115888 my student discount runs out this month for premium membership. but i am still a student, how do i still get student discount?",GENERAL_HOW_TO_INFO,general question abt a plan or subscription
+CAND_0034,2139010,2139010,629100,"@SpotifyCares trying to extend my student discount for another year but when I log into unidays, the pop-up to log in comes back. What should I do?",APP_TECH_ISSUE,collides with the general how to 
+CAND_0035,2407029,2407029,692220,"@SpotifyCares Hi, my email isn't working for student discount, keeps saying it's already in use when it isnt.",APP_TECH_ISSUE,
+CAND_0036,2407006,2407010,338880,@SpotifyCares I don’t want discounted rates. I want fairness for ALL your customers and not to subsidise students by paying more.,FEATURE_FEEDBACK,confusion with the subscription thing
+CAND_0037,2154957,2154957,633118,@115888 @117168 @SpotifyCares why do you guys offer a 50% discount to “students” but nothing to Veterans or Active duty? @233796 offers discounts ... #jussayin #whatsyourexcuse,FEATURE_FEEDBACK,
+CAND_0038,2360601,2360604,681685,"@115888 Also I still wish they would bring back the ability to shuffle all the songs in a folder, across multiple playlists.",FEATURE_FEEDBACK,
+CAND_0039,2647449,2647449,746946,"@115888 when are you going to bring back the drag and drop for playlist making? This new system of queuing songs is painfully slow, I have to now drag songs all the way up the queued songs if I want to play it right away.",FEATURE_FEEDBACK,
+CAND_0040,2422810,2422810,695849,@SpotifyCares really need to bring back the ability to see all the songs by an artist in a list. sometimes you can't remember the album the song is on or the exact name to search with. would be nice to be able to search,FEATURE_FEEDBACK,
+CAND_0041,1900422,1900422,325321,@SpotifyCares Are you ever going to bring back lyrics to the desktop version?,FEATURE_FEEDBACK,
+CAND_0042,2891301,2891301,314219,"Ugh. Why has @115888 removed the ability to share a track directly with other users? Not everyone uses other social network/wants to integrate it, @SpotifyCares! And what happened all the tracks friends sent me in my now-vanished Inbox? Significant degradation of the service 😠 https://t.co/xQfztqTWvU",FEATURE_FEEDBACK,
+CAND_0043,2162619,2162619,634999,@115888 @116130 @SpotifyCares please please please bring back your year in music for 2017!!!,FEATURE_FEEDBACK,
+CAND_0044,1990506,1990506,145481,This is my 3rd unsuccessful attempt to sign up for Spotify premium. YOUR SITE IS BAD AND YOU SHOULD FEEL BAD. @SpotifyCares,APP_TECH_ISSUE,
+CAND_0045,1063177,1063176,371043,@SpotifyCares I've removed the old version and reinstalled the Spotify Windows app but it still won't actually play any songs :-/,APP_TECH_ISSUE,
+CAND_0046,2917808,2917808,807618,WHY IS SPOTIFY NOT LETTING ME SEARCH FOR MUSIC ?!?!?! @115888 @191335 @SpotifyCares,APP_TECH_ISSUE,
+CAND_0047,265447,265447,179241,@SpotifyCares why can’t I control my Spotify on my control centre anymore? 😢 https://t.co/m3mk0pxU7y,APP_TECH_ISSUE,
+CAND_0048,1158629,1158629,392556,"@SpotifyCares searched for Tom Petty on the app for andriod and only 3 albums are available, but full discography is available on ps3.",APP_TECH_ISSUE,
+CAND_0049,786634,786634,307652,"@117153 I still have some issues with Spotify, I can't listen to some people anymore like Katy Perry and Jason Derulo.",APP_TECH_ISSUE,
+CAND_0050,1835542,1835542,550460,@SpotifyCares Songs by Prince and Robin Thicke won't play on my @261409 Blade Z Max.,APP_TECH_ISSUE,
+CAND_0051,2886999,2886999,800620,"@115888 Why are there random audio book chapters in my ""Release Radar"" playlist? https://t.co/reGBQ3Zd5P",FEATURE_FEEDBACK,
+CAND_0052,2606362,2606362,737369,I really wish there was a way to view your previous @115888 Discover Weekly playlists. I always forget to save songs before monday rolls in,FEATURE_FEEDBACK,
+CAND_0053,2627896,2627897,380476,@SpotifyCares Ahh ok maybe add a filter or a way to remove it then makes sense a recommender system :),FEATURE_FEEDBACK,
+CAND_0054,1854203,1854203,554781,"PSA: @115888 's shuffle algorithm suxx 😒😴
+i have 500+ songs in a playlist and the same ones play every time. wtf??",FEATURE_FEEDBACK,
+CAND_0055,2944,2944,116391,"Dear @115888 how do i get my discovery playlist to stop suggesting Dutch music to me, it's been a year",FEATURE_FEEDBACK,
+CAND_0056,544585,544585,246539,"Hey @115888 can the suggested songs not overkill the album i am actually keen on pkaying. 
+Went:
+Track want to hear
+Suggested song
+Suggested song 
+Album track
+Suggested song
+Album track
+Ad
+Suggested song
+Suggested song
+Like really... not to mention the ad song ad crap ive had.",FEATURE_FEEDBACK,
+CAND_0057,2917831,2917833,807626,"@SpotifyCares @807627 How do I unlink a deleted Facebook account, it just keeps showing up...",GENERAL_HOW_TO_INFO,
+CAND_0058,2368021,2368021,607403,@spotifycares How can I unlink my spotify account from Facebook?,GENERAL_HOW_TO_INFO,
+CAND_0059,2622906,2622906,741007,"@115888 serious question, I need to cancel a prime account but I can’t login at all because my Facebook associated with it is gone. How can I cancel if I can’t even log in to the setting or account page?",SUBSCRIPTION_BILLING,Primary request is to cancel the Premium/Prime subscription; inability to log in is the obstacle preventing cancellation.
+CAND_0060,540363,540363,245360,@SpotifyCares need to cancel my account. Problem is no idea what email was used. Tried them all. How can I cancel. Need help. Thanks,ACCOUNT_ACCESS,
+CAND_0061,2136539,2136539,628507,https://t.co/aFsDoDBU0z how can i cancel monthly spotify on ex girlfriends phone ..she has not canceled it and im paying for it on my debit card,SUBSCRIPTION_BILLING,
+CAND_0062,540359,540359,245358,Hey @115888 how can I know which adress is set up in my account? I have signed up in a family plan but some of the members can not sign in.  Not sure if they are writing it incorrectly,GENERAL_HOW_TO_INFO,
+CAND_0063,1845703,1845703,196235,"@SpotifyCares Hello, how do I change my postcode in my account. My gf and I have recently moved in together and would like Spotify family😁",GENERAL_HOW_TO_INFO,
+CAND_0064,174967,174975,157052,@AppleSupport Still does it after reinstall. @SpotifyCares any help on this?,GENERAL_HOW_TO_INFO,
+CAND_0065,1835534,1835542,550460,@SpotifyCares https://t.co/pPseUUQ00P for instance and I'm in the USA.,APP_TECH_ISSUE,
+CAND_0066,263524,263528,178803,@SpotifyCares @SpotifyCares What could i do?,CONTENT_CATALOG,
+CAND_0067,790316,790319,308462,"@SpotifyCares Ah, so rather than being a testing ground, it's actually just specifically for Time Capsule?",FEATURE_FEEDBACK,
+CAND_0068,2624563,2624563,741398,@SpotifyCares   Is there a phone number I can call someone at,GENERAL_HOW_TO_INFO,
+CAND_0069,1048606,1048607,367817,"@SpotifyCares No worries, thank you very much!",UNKNOWN_OTHER,
+CAND_0070,526274,526275,241770,@SpotifyCares Nevermind i fixed it,UNKNOWN_OTHER,the user asked for account relted query but laterresolved himself 
+CAND_0071,2623503,2623503,721196,"I'm stupid and I just needed to restart my phone, spotify is working fine now.",UNKNOWN_OTHER,
+CAND_0072,2917914,2917912,807657,"@SpotifyCares Haha, thank you for being here for your users!",UNKNOWN_OTHER,
+CAND_0073,265449,265447,179241,@SpotifyCares Yesss you fixed it! 😍 https://t.co/HvS9R5uQcV,UNKNOWN_OTHER,
+CAND_0074,1417612,1417606,449502,"@SpotifyCares No need, when I search for it now it shows 14 tracks instead of the 12 shown before 😀. Thank you!",UNKNOWN_OTHER,
+CAND_0075,265069,265069,179148,@115888 really means it when they say they care! @SpotifyCares Thank you so much for helping me today!,UNKNOWN_OTHER,
+CAND_0076,1840697,1840697,551638,https://t.co/EC4KeFFcrZ,UNKNOWN_OTHER,
+CAND_0077,1730303,1730303,287348,@SpotifyCares I'M CONSIDERING SELLING MY STORY TO YOUR COMPETITORS FOR AN ADVERTISEMENT,UNKNOWN_OTHER,
+CAND_0078,1100179,1100179,379579,".@115888 Do you spot it? Never seen a typo on your platform! I guess even YOU can't be perfect..(But you still are to me.) ""Big White Gate"" https://t.co/pYV5pJXmvT",CONTENT_CATALOG,“content metadata is wrong (lyrics/tracklist/artwork/cover)” → CONTENT_CATALOG
+CAND_0079,2384908,2384908,559405,Heya @SpotifyCares can you recommend me a Friday playlist?,UNKNOWN_OTHER,
+CAND_0080,263526,263528,178803,@SpotifyCares Germany i guess,UNKNOWN_OTHER,the whole conversation is content catalog issue but the target msg is unknown error
+CAND_0081,67724,67684,821792,"@SpotifyCares Dear Mr/Ms, already 2 day i'm try to register a new account but can't, why? please help me and thank you.",ACCOUNT_ACCESS,
+CAND_0082,2440986,2440986,700059,@117153 paguei Premium e a minha conta está Free.,SUBSCRIPTION_BILLING,
+CAND_0083,211091,211091,165998,Tidak bisa save spotify ke SD padahal memory masih available. @118266 @SpotifyCares,APP_TECH_ISSUE,
+CAND_0084,1067218,1067218,371847,@191335 merhaba internete bağlı olmama rağmen bu çıkıyor sitenizde uygulamayı silip yükleyin demişsiniz 3 kez yaptım düzelmedi https://t.co/mfnBMDyjqL,APP_TECH_ISSUE,
+CAND_0085,2385606,2385606,687555,@118266 tadi dapet promo 3 bulan 4.000 kok mau di bayar jadi 49.999 ribuan gimana ini min,SUBSCRIPTION_BILLING,
+CAND_0086,44426,44426,125858,"@118266 haiii Spotify.. please help. Akun saya tidak bisa diakses, padahal akun tsb sudah saya daftarkan ke premium. Saya sudah masukkan username dan password yg benar tapi ditolak, saat akan reset password, email saya terdaftar di username lain. Gmn ya? #sedih",ACCOUNT_ACCESS,
+CAND_0087,44402,44402,125852,"Hai @118266, kok gagal terus yaa? Dibilangnya pulsa tidak mencukupi, padahal pulsa lebih dari cukup https://t.co/PnP3gHQRCJ",SUBSCRIPTION_BILLING,
+CAND_0088,1160844,1160842,393113,@SpotifyCares Thanks! Windows 10 Pro version 1703. Spotify 1.0.66.478.g1296534d,APP_TECH_ISSUE,
+CAND_0089,207208,207212,165017,@SpotifyCares It’s was after an iOS update,APP_TECH_ISSUE,
+CAND_0090,1517179,1517181,472002,"@SpotifyCares iPhone 6s+, 8.4.20.535",APP_TECH_ISSUE,
+CAND_0091,566276,566277,252746,@SpotifyCares macOS High Sierra 10.13.2 Public Beta (Build 17C79a). Spotify 1.0.68.407.g6864aaaf.,APP_TECH_ISSUE,
+CAND_0092,1986649,1986649,588070,"Welp I hit the 3,333 offline cap on @115888 today. I have plenty of space left too. Please increase the cap or completely remove it Spotify",FEATURE_FEEDBACK,
+CAND_0093,877460,877465,328302,@SpotifyCares Even gives this message for songs that I have downloaded as a local file. Music from other artists plays fine https://t.co/mLrOxl8B5A,APP_TECH_ISSUE,
+CAND_0094,2319364,2319364,672273,"If you’re a big company that is serious about your apps and still haven’t shipped a version that supports the bigger iPhone X display then you are definitely doing something wrong. Ping @115888, @1511, @33740, @117634, @91052 etc",FEATURE_FEEDBACK,
+CAND_0095,1336200,1336201,431699,@SpotifyCares Another questions:if I download an album w/ 12 songs does it count as 13 because of the album?I think I read that somewhere but I’m not sure,GENERAL_HOW_TO_INFO,
+CAND_0096,1928395,1928395,573883,"@117153 
+When will your desktop application support IPv6?",FEATURE_FEEDBACK,
+CAND_0097,2397299,2397299,689952,@SpotifyCares Any ideas why I can’t listen to Spotify through the Bluetooth in my car after the update?,APP_TECH_ISSUE,
+CAND_0098,2913925,2913925,806638,@115888 can’t play anything that isn’t downloaded 😤😤😤😤😤 iPhone 7 with the latest app update,FEATURE_FEEDBACK,
+CAND_0099,1036658,1036658,365225,@115888 I think Spotify is great and app is better than Apple Music. I have to move to Apple due lack of Apple Watch support. Help? :(,FEATURE_FEEDBACK,
+CAND_0100,343656,343656,197794,What is matter with Spotify?? Keep crashing.. searching.. @SpotifyCares,APP_TECH_ISSUE,
+CAND_0101,199142,199142,162928,"@SpotifyCares Hei S! For like the first time ever in years, the stream is cracking and producing weird noises. Both on LTE and WiFi. Any idea? iOS 11.1 on 6s.",APP_TECH_ISSUE,
+CAND_0102,2215938,2215938,647447,@115888 hey wanna update your new music?,UNKNOWN_OTHER,
+CAND_0103,1442524,1442524,454712,@SpotifyCares 2/2 error message: dit nummer is niet beschikbaar. Als het op je computer staat kun je het importeren. - FYI: OK on phone - tx,APP_TECH_ISSUE,
+CAND_0104,1053967,1053969,369025,"@SpotifyCares Thanks!
+
+LG G6 - Android 7.0
+Spotify version: 8.4.24.871 arm V7",APP_TECH_ISSUE,
+CAND_0105,224859,224857,169721,"@SpotifyCares USA.  The iPhone app says ""an unknown error has occurred.""  I also tried switching phone and laptop from wifi to a phone network.  No change",APP_TECH_ISSUE,
+CAND_0106,2757619,2757617,771729,@SpotifyCares So this didn't happen before I updated my phone yesterday. Is there any way around this? If my phone is on silent surely this shouldn't happen?,FEATURE_FEEDBACK,"issue faced after update ,So this is not primarily reporting an unexpected technical malfunction anymore. The customer is objecting to the design/behavior and asking whether it can be changed/avoided."
+CAND_0107,1089999,1090000,377164,"@SpotifyCares iPhone 6s Plus , iOS 11.0.2, and Spotify version 8.4.20.535",APP_TECH_ISSUE,
+CAND_0108,939996,939996,342831,"@SpotifyCares Hey guys, i cant listen to any Metallica songs on the desktop App, but its available on webplayer / mobile App, can you help?",APP_TECH_ISSUE,
+CAND_0109,2317775,2317775,671960,"@SpotifyCares iOS 11.2 b2, playback won’t resume after being paused by call or video in other app. Have to force close Spotify and reopen",APP_TECH_ISSUE,
+CAND_0110,2859008,2859009,176103,@115888 @SpotifyCares Disregard. Found the link on your website for gifting. I was seeking it via the app previously.,UNKNOWN_OTHER,
+CAND_0111,1978628,1978628,524429,"@115888 any idea why my downloaded playlist just undownloads itself from time to time? Fine driving to work, gone tonight",APP_TECH_ISSUE,
+CAND_0112,1832902,1832902,549912,My Spotify web player isn't working and it's stuck on this add it lets me click songs and everything but it won't play it.@SpotifyCares,APP_TECH_ISSUE,
+CAND_0113,387711,387711,207769,@115888 why can't my starred playlist on my iPhone start from the date added?,FEATURE_FEEDBACK,
+CAND_0114,1486684,1486684,465259,"@SpotifyCares New search is gr8, but when results are pending due to slow internet, a loading icon would be appreciated! Very frustrating UX",FEATURE_FEEDBACK,
+CAND_0115,627564,627564,268632,Can @115888 please actually play the artist I chose to play and not 5 million other suggested tracks that I have to waste my skips on,FEATURE_FEEDBACK,
+CAND_0116,859650,859650,324106,@115888 where it at?,UNKNOWN_OTHER,not enogh context
+CAND_0117,1950858,1950859,579404,@SpotifyCares Still the same. Shows Free sub only ??,SUBSCRIPTION_BILLING,
+CAND_0118,2284053,2284053,663752,You know what would be great? If @115888 would finally offer lossless music quality. 320 kbit/s just aren’t enough... https://t.co/NEB6mtJlI0,FEATURE_FEEDBACK,
+CAND_0119,2268730,2268730,660212,"hello @SpotifyCares , would mind to check and reply my DM please thank you",UNKNOWN_OTHER,
+CAND_0120,1959613,1959614,581289,@SpotifyCares That's not what i asked ^^ I'm looking for the mp3 file.,GENERAL_HOW_TO_INFO,
+CAND_0121,2198089,2198091,473996,@SpotifyCares tbf you have given only platitudes.  Yet more time wasted and no service.  You need to SPEAK with your customers.,UNKNOWN_OTHER,
+CAND_0122,1070389,1070389,372579,@SpotifyCares please check your direct messages ASAP. I have an issue with Spotify.,UNKNOWN_OTHER,
+CAND_0123,187562,187565,160022,"@SpotifyCares Oh gee I didn't expect y'all to reply 💀💀
+But I appreciate it! ❤️😂",UNKNOWN_OTHER,
+CAND_0124,2006124,2006124,481621,"I hope we get a Studio Version of ""What about us"". Maybe make it Spotify Single? @234 @115888",CONTENT_CATALOG,
+CAND_0125,1850476,1850476,529772,"Hey @115888, can we get all of Lil Wayne’s mixtapes?",CONTENT_CATALOG,
+CAND_0126,2239652,2239652,653027,when is #reputation coming to @148611 ?,CONTENT_CATALOG,
+CAND_0127,2878323,2878324,798922,"@115888 You work with Alexa, right??",GENERAL_HOW_TO_INFO,
+CAND_0128,171135,171131,155923,@SpotifyCares What's the best one?,UNKNOWN_OTHER,
+CAND_0129,2049949,2049949,606203,hi~ can i ask if we can get a photo of @133324 that fits all the 7 members in the Spotify profile? @115888 @SpotifyCares,ARTIST_SUPPORT,
+CAND_0130,326809,326809,193874,Would like to thank @SpotifyCares for being nice enough to credit the month we weren't able to use the service due to #HurricaneMaria.,SUBSCRIPTION_BILLING,"Customer sarcastically refers to receiving a credit for a month they were unable to use the service, implying a billing/subscription charge for unavailable service."
+CAND_0131,2280200,2280200,662869,@115888 I have a customer support request,UNKNOWN_OTHER,
+CAND_0132,1906064,1906065,417032,@115888 It feels like they lose data every certain period.,APP_TECH_ISSUE,
+CAND_0133,1699326,1699327,515333,"@SpotifyCares It's working now, nvm. I tried a different browser and it was the same issue.",GENERAL_HOW_TO_INFO,
+CAND_0134,2240443,2240449,125417,@SpotifyCares Now it's starting up minimized. at least a little bit better but still not what I want.,FEATURE_FEEDBACK,
+CAND_0135,2725157,2725159,764290,"@SpotifyCares Its a Window10 PC, I've tried everything, forums, the lot, now considering ditching my subscription",APP_TECH_ISSUE,
+CAND_0136,508845,508845,236870,Hi @SpotifyCares I think that N.E.R.D &amp; Rihanna’s ‘Lemon’ would be perfect on the “Today’s Top Hits” Playlist. Please can you add it on behalf of all the navy?,CONTENT_CATALOG,more of a recommendation rather than a feedback or issue and it’s a personal request to add a song into a playlist
+CAND_0137,2021155,2021156,597736,i would love that @115888 hire me,UNKNOWN_OTHER,
+CAND_0138,1868960,1868960,558248,@115888 please bring back Julion Alvarez's music. I want to cry to his playlists on my way to work. 😭,CONTENT_CATALOG,
+CAND_0139,2616773,2616773,739606,Thinking it would be great if @115888 and @1016 collaborated to include songs and reading at 1 monthly price👌,FEATURE_FEEDBACK,
+CAND_0140,2614482,2614482,739084,"Why isn't there an option to block artists if you don't want them on shuffle its annoying 
+@115888 please add an option to block",FEATURE_FEEDBACK,
+CAND_0141,199164,199164,162934,@115888 When are you going to put @12583 's full Tracker album on please?,CONTENT_CATALOG,
+CAND_0142,778555,778555,305916,Hey @115888 you should make your entire aesthetic like the mood booster playlist. 👇👇👇👇 https://t.co/5chsOhRpDJ,FEATURE_FEEDBACK,
+CAND_0143,2210887,2210887,646208,@SpotifyCares Can you add a prompt to the download button? Way too easy to hit it and lose all your music.,FEATURE_FEEDBACK,
+CAND_0144,2492522,2487416,710434,@711569 @115888 Haha. I've seen. You should see the map for Apple Music.,UNKNOWN_OTHER,
+CAND_0145,2052028,2052028,606863,@115888 do me a solid and bring back the spotify app on LG TVs,FEATURE_FEEDBACK,
+CAND_0146,2289771,2289771,449034,@115888 @117168 Needs to bring back lyrics! &amp; should also incorporate hem to the app!,FEATURE_FEEDBACK,
+CAND_0147,426789,426789,216507,i wish there was a function to block an artist in @115888 so you avoid them popping up in your generated playlists and radios ..,CONTENT_CATALOG,
+CAND_0148,339551,339552,197083,@SpotifyCares if you care please add Expensive Girl by Kim Namjoon onto Spotify,CONTENT_CATALOG,
+CAND_0149,674465,674466,280852,@SpotifyCares You should also do music video support. Spotify would be a even bigger power house. 😎👌🏾,FEATURE_FEEDBACK,
+CAND_0150,2841195,2841195,790578,@SpotifyCares I have a family plan but when another registered user wants to listen my account pauses and said someone is using my account somewhere else. I also would love to change my account username to something other than a bunch of numbers,APP_TECH_ISSUE,
+CAND_0151,1758258,1758258,529318,"@SpotifyCares If i buy spotify gift cards, does it work for the family plan?",GENERAL_HOW_TO_INFO,
+CAND_0152,1914366,1914366,570231,Curious how one gets the @25186 @115888 presale code... I’m a subscriber and a fan 😔,GENERAL_HOW_TO_INFO,
+CAND_0153,1366571,1366572,438117,"@SpotifyCares nah the payment is not pending, its been deducted",SUBSCRIPTION_BILLING,
+CAND_0154,1900609,1900609,566392,"@117153  
+
+I was charged the annual subscription but the premin does not work for me",SUBSCRIPTION_BILLING,
+CAND_0155,1807209,1807209,542932,Thanks @115888 you guys didn't have my school as an option for the student premium but you still charged me $4.99. Tnx,SUBSCRIPTION_BILLING,
+CAND_0156,689585,689585,284784,"@115888 I am paying the full amount each month but I am a student with a NUS card, am I able to have this applied please? #student#music",GENERAL_HOW_TO_INFO,
+CAND_0157,765647,765647,302987,"@115888 I’m trying to update my payment method, but it keeps bringing me the student thing.. but I want premium. And am not a student",APP_TECH_ISSUE,
+CAND_0158,560014,560014,250964,"@SpotifyCares please help me, i have a trouble joining the premium for family member. i forgot the exact address used, what should i do?",ACCOUNT_ACCESS,
+CAND_0159,1960584,1960584,581508,"@SpotifyCares my bfs Spotify works but mine doesn't and we are on a family plan , this is the second time this happened and you have no #",APP_TECH_ISSUE,
+CAND_0160,2756263,2756263,748209,@SpotifyCares I'm having issues  getting premium for students,SUBSCRIPTION_BILLING,
+CAND_0161,2125232,2125232,625875,@115888 what do I gotta do to get the DVSN presale code? Outside of already paying a premium monthly service?,GENERAL_HOW_TO_INFO,Asking how to obtain a presale code/benefit associated with Premium; no billing dispute. Medium confidence because the guide does not explicitly cover concert presale-code requests.
+CAND_0162,2070027,2070027,612177,@SpotifyCares Yo didn't I see a commercial saying premium is 50% off w/  Capital One QuikSilver card? You're charging me full price.,SUBSCRIPTION_BILLING,
+CAND_0163,172534,172534,156324,@115888 @2069 Why do you have paypal as option to pay in US and not in Brazil?,GENERAL_HOW_TO_INFO,
+CAND_0164,727009,727009,294147,@SpotifyCares I put my card details in to upgrade to Premium for a trial. I have now been charged for a years subscription! Please cancel.,SUBSCRIPTION_BILLING,
+CAND_0165,2310896,2310896,670204,@117153 I've been charged for premium family but am not getting it on my app; already tried updating app and logging out/ back in,SUBSCRIPTION_BILLING,
+CAND_0166,1875268,1875268,559821,@115888 I can’t log into my account. I am sure of my username etc yet it is telling my I am no associated with Spotify. What is going on?,ACCOUNT_ACCESS,
+CAND_0167,877450,877450,328298,@115888 for some reason it's saying my account isn't an active one 🤔 please help :-),ACCOUNT_ACCESS,
+CAND_0168,1705041,1705041,516800,@SpotifyCares I'm trying to update my account info. It refers me to make the change on Facebook but that info is up to date.,ACCOUNT_ACCESS,
+CAND_0169,2420496,2420496,483898,"@115888 Good morning, this morning my account is now set as free when I pay my Mobile Provider for the account (Fido.ca) What's wrong?",SUBSCRIPTION_BILLING,
+CAND_0170,2787996,2787996,778297,@SpotifyCares Hi guys! I am unable to access into my account and the screen says that I've been abroad for 14 days. What can I do to recover my account? Thanks.,ACCOUNT_ACCESS,
+CAND_0171,339556,339556,196548,"Hey @SpotifyCares , your email reset link that's sent in emails is FRENCH.",ACCOUNT_ACCESS,
+CAND_0172,1898838,1898839,565914,"@SpotifyCares Account, so you may need to update your payment details"" Then there's a button link to update my payment details?",SUBSCRIPTION_BILLING,
+CAND_0173,2544113,2544113,723219,"@SpotifyCares if we use fb as spotify login acct, what happened if that fb acct is deleted? Would the acct still work well with the email that use for the fb acct? Thanks",GENERAL_HOW_TO_INFO,
+CAND_0174,1269717,1269717,417283,@115888 Hey! Please can someone help me upgrade to a multiple device account? #familyfightingoverspotify 😂,GENERAL_HOW_TO_INFO,"They're asking how to change/upgrade their plan. There is no charge dispute, billing error, or claim that a payment/entitlement is wrong."
+CAND_0175,2794551,2794551,779857,@SpotifyCares account won’t log in. Can’t access emails and change password. Please help,ACCOUNT_ACCESS,
+CAND_0176,1043550,1043550,366773,@SpotifyCares so my student discount has run for a year yet I’ve only just been found that out and I had no email I say it would go to £9.99 after that! and I’m in education for another 3 years so how can I get it again?,GENERAL_HOW_TO_INFO,
+CAND_0177,1471765,1471766,461628,@SpotifyCares It will take all of one artist and not start it until toward the end of the shuffle every time. Is there a way to make it simply random?,FEATURE_FEEDBACK,
+CAND_0178,2653056,2653056,358962,How do I unlink my @115888 account from devices I don’t use?,GENERAL_HOW_TO_INFO,
+CAND_0179,1264086,1264086,297245,How to get your podcast on @115888 and how much does it cost? #podcasts,GENERAL_HOW_TO_INFO,
+CAND_0180,1160869,1160869,393118,"@SpotifyCares I just signed up for Premium Family, entered the wrong Zip code. Changed in FB, but did change in Spotify. How do I fix this?",GENERAL_HOW_TO_INFO,
+CAND_0181,563522,563522,251954,@SpotifyCares I see this great offer but how do I switch my account to it? No link in the add promo. https://t.co/FxLVuTyqUA,GENERAL_HOW_TO_INFO,
+CAND_0182,1794735,1794735,539309,@SpotifyCares Trouble moving Spot App to SD card... how to do on Samsung S5,GENERAL_HOW_TO_INFO,
+CAND_0183,2095103,2095103,127469,@125633 I know how to add a playlist to my profile but is it possible to create it as the artist and not as my personal account?,ARTIST_SUPPORT,
+CAND_0184,492383,492383,232358,@3493 all my ads are in German how do I fix this?,APP_TECH_ISSUE,
+CAND_0185,2080754,2080754,615319,@115888 - my son has lost all account details &amp; his phone.  How do I cancel Premium plse as he's also broken his phone &amp; I'm paying for it!,SUBSCRIPTION_BILLING,
+CAND_0186,1658868,1658868,506118,"@SpotifyCares Hi, is there a way to exclude songs in some certain languages from getting into my Discover weekly playlist?",GENERAL_HOW_TO_INFO,
+CAND_0187,2183058,2183063,639474,"@SpotifyCares I get that it’s a great showcase for new music and labels want their tracks on it, however, it would be great to still keep the mix of old, or give us another discover playlist for older/classic (not brand new) tracks. Happy with either option",FEATURE_FEEDBACK,
+CAND_0188,2175409,2175409,637765,@SpotifyCares why did 397 of my songs just decide to uninstall?,APP_TECH_ISSUE,
+CAND_0189,1453978,1453978,387828,Hey @115888 do jazz musicians a favour by adding a search category for jazz standards instead of dumping recordings of a tune in 'songs',FEATURE_FEEDBACK,
+CAND_0190,2139004,2139004,629098,"@115888 why does my playlist start over every time I get out of my car , then leave again? #aggrivated",APP_TECH_ISSUE,
+CAND_0191,1876063,1876063,560061,"Hey @115888 , if I make a playlist of Blade Runner 2049 songs ""All About That Bass"" is not a thematically appropriate suggested song.",FEATURE_FEEDBACK,
+CAND_0192,1250620,1250622,413413,@SpotifyCares Well when I try to play music it says it can't play at the moment And when it does play it plays 1 song then it stops after the song is over,APP_TECH_ISSUE,
+CAND_0193,113822,113815,141280,@SpotifyCares I want A Button you press and then all the songs on your playlist change places randomly.,FEATURE_FEEDBACK,
+CAND_0194,250748,250748,175595,@SpotifyCares got a question. Does behind the lyrics work on samsung galaxy s5 ?,GENERAL_HOW_TO_INFO,
+CAND_0195,2059817,2059817,536056,"Anyone or @115888 know why the plays on some tracks are ""&lt;1,000"" #ThingsThatMakeYouGoHmmm #spotify",CONTENT_CATALOG,
+CAND_0196,2747462,2747463,769323,Like what's the best song from The Cure - Bloodflowers @115888? Tell me.,UNKNOWN_OTHER,
+CAND_0197,1865839,1865839,557431,".@115888 Any idea why @38290's Track ""When You Come Back Down"" is unavailable?",CONTENT_CATALOG,
+CAND_0198,830834,830834,317844,@115888 I need the new st vincent album right nOW,CONTENT_CATALOG,
+CAND_0199,1526258,1526257,473999,"@SpotifyCares But still, if a normal playlist can have over 10,000 songs, why can’t the Songs section do the same?",FEATURE_FEEDBACK,
+CAND_0200,1942805,1942807,577674,"@SpotifyCares It’s usually okay, but now every 5 minutes or so random music blares out (on full volume) - for headphone users like me, it’s horrible.",APP_TECH_ISSUE,

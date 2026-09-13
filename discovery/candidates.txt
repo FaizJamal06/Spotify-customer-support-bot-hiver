@@ -1,0 +1,41 @@
+\n--- ACCOUNT_ACCESS (Freq: 46/300, 15.3%) ---
+ID 2565911: @115888 is sneakily trying to get all their customers off Spotify-through-Apple subscriptions by offering Family at just 3 dollars more per month than Premium... but you can’t just upgrade from Premium to Family. Have to cancel account first.
+ID 2912378: @115888 @SpotifyCares when are the presale emails being sent out for billie eilish lol
+ID 2364839: @SpotifyCares Hi, I have subscribed to premium and my account was debited £9.99 on 4 Nov but in the app I can only use free. I've tried logging in &amp; out. It's very annoying. Can you help please. Thanks
+ID 1634011: @115888 why have you taken unauthorised money from my account,tried to message on Facebook your settings won't let me type
+ID 1269745: @115888 #HackedAgain Someone that I don't know has added new music and controlling music playing on my device. Seriously second time hacked
+\n--- SUBSCRIPTION_BILLING (Freq: 42/300, 14.0%) ---
+ID 1815772: @SpotifyCares I have been trying to update my payment information and I keep getting an error and I have tried muitlpe cards. Can you help?
+ID 2518439: @115888 please don’t charge me for premium service and then only give me the free subscription #isthereaphonenumber #whyisitsohardtocontactyou #ijustwanttolistentomusic
+ID 2009942: @SpotifyCares you guys are really tempting me to switch to Apple Music. The removal of songs and cap on downloads is annoying.
+ID 2136520: @SpotifyCares I'm using an LG Stylo(Android). I made a playlist with Wake Me Up by Remy Ma &amp; Lil Kim and also tried to play Took Us a Break by Lil Kim and it's the same thing. Do I have to buy Premium to hear these songs?
+ID 653091: @117153 Why can't I join the a Premium-family-group when everything is in order? The form that I have to fill out just says "3 - Ops, something went wrong. Try again". And ive tried alot of times :/
+\n--- APP_BUG_CRASH (Freq: 63/300, 21.0%) ---
+ID 2338873: @SpotifyCares is there any update on the DNCE song Jinx? I badly want it on my playlist. 😭
+ID 2028406: @SpotifyCares Since the last iOS update, I can’t stream to my car via Bluetooth (R-link). Reset, paired again, no joy. Works w/o bluetooth!
+ID 2891287: What is happening? @115888 https://t.co/LF6wKpH2rY
+ID 793790: @SpotifyCares you’ve ruined everything removing preview. So disappointed. We are mere numbers, not customers. Nobody wanted this gone.
+ID 845929: @SpotifyCares sharing function from iOS 10 to android on whatsapp not working. Showing as not found on android e.g. https://t.co/3L0nrV2qVF
+\n--- CONTENT_PLAYBACK (Freq: 36/300, 12.0%) ---
+ID 1860898: @125633 Hey guys! Can you please fix the problem I mentioned to you by e-mail? This blocks the release of one of my artists...
+ID 249056: @SpotifyCares did you remove the functionality to put one song on repeat?
+ID 1277332: @115888 Can you please allow me to listen to music in Private mode and not jeopardize my custom playlists (Read: Discover Weekly, Release Radar, etc.) T'would be a HUGE plus.
+ID 303156: @SpotifyCares songs that aren’t mine keep getting posted to my artist page every other week. Can you please review songs before you post them freely?
+ID 1824565: Spotify won't play songs in my Chrome browser @spotifycares pls help
+\n--- SERVICE_OUTAGE (Freq: 7/300, 2.3%) ---
+ID 584173: @SpotifyCares your ad's are very broken
+ID 822275: Now that I'm down a Cash Money rabbit hole, someone tell @115888 their The Heart Of Tha Streetz tracklist is off.
+ID 42722: @SpotifyCares It sometimes takes forever to scroll ALL the way down to get to the singles. Just make an option to go straight to singles.
+ID 2912388: @117153 fix ya servers
+ID 2507517: @SpotifyCares I spent like an hour searching on the community section but nothing seems to be working. Thank you though
+\n--- FEATURE_FEEDBACK (Freq: 4/300, 1.3%) ---
+ID 2448604: @115888 bring back the hold to preview feature please god
+ID 2011791: hey @115888 please bring back cmd+f search within a view. it was handy
+ID 954619: @SpotifyCares Aw man I used to love that feature 😔 thanks tho
+ID 1798156: @SpotifyCares you guys should add Wiz's kush and OJ and all of the cabinfevers to your library
+\n--- UNKNOWN_OR_OTHER (Freq: 102/300, 34.0%) ---
+ID 1816155: @SpotifyCares I don't know how to operate on this page. https://t.co/dUmGv2EUNk
+ID 1914386: @115888 October 26th, 60 degrees, partly cloudy; listen to Iron and Wine's Around The Well
+ID 1159704: @SpotifyCares Yep, seems to have fixed it. Ta!
+ID 1084530: @SpotifyCares Not on my phone, just my computer! Rebooting does nothing - I might try uninstall and reinstall Spotify
+ID 1485930: @SpotifyCares I use Windows 7 on my laptop and Spotify's been freesing up on me for the past several days &amp; I NEED it for NaNoWriMo.

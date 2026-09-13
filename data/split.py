@@ -8,6 +8,8 @@ Usage:
     python data/split.py
 """
 import sys
+import io
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 import json
 import random
 from pathlib import Path
@@ -158,7 +160,7 @@ def compute_stats(threads, dev_ids, ret_ids, test_ids,
     for pool_name, ps in stats["pools"].items():
         print(f"\n  {pool_name.upper()}:")
         print(f"    Threads: {ps['num_threads']:,}")
-        print(f"    Customer→Brand pairs: {ps['num_pairs']:,}")
+        print(f"    Customer->Brand pairs: {ps['num_pairs']:,}")
         print(f"    Total messages: {ps['total_messages']:,}")
         print(f"    Unique customers: {ps['unique_customers']:,}")
         print(f"    Thread length: mean={ps['thread_length_mean']}, "
