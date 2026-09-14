@@ -82,9 +82,14 @@ FEWSHOT_MIN_PER_INTENT = 3
 FEWSHOT_MAX_PER_INTENT = 5
 
 # === Retrieval ===
-EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+EMBEDDING_MODEL = "text-embedding-3-small"  # verified against official OpenAI docs (see evaluation/embeddings.py); OpenAI API, not a local/sentence-transformers model
 NEAR_DUPLICATE_THRESHOLD = 0.95
 MIN_CUSTOMER_MSG_LENGTH = 10  # chars; exclude very short messages from index
+
+# === Retrieval index (added; additive only, does not change any constant above) ===
+RETRIEVAL_SAMPLE_SIZE = 3000  # simple random sample of the deduplicated RETRIEVAL pairs
+RETRIEVAL_SAMPLE_SEED = 42    # reuses the project's established seed=42 convention
+RETRIEVAL_INDEX_DIR = CACHE_DIR / "retrieval_index"  # gitignored (under cache/); embeddings.npy + metadata.jsonl + manifest.json
 
 # === Ensure directories exist ===
 def ensure_dirs():
