@@ -13,7 +13,7 @@ All SpotifyCares threads (~27K conversations)
   ├── DEVELOPMENT POOL  (~15%, ~4K threads)
   │     Used for: taxonomy discovery (later reused as baseline training data --
   │               see §1 "Named data subsets" below), few-shot example
-  │               selection (OPEN DECISION, see §6), TF-IDF training
+  │               selection (resolved -- see §1 "Named data subsets" below and §6), TF-IDF training
   │     Never used for: evaluation, retrieval index
   │
   ├── RETRIEVAL POOL    (~65%, ~18K threads)
@@ -33,7 +33,7 @@ All SpotifyCares threads (~27K conversations)
 |---|---|---|---|
 | **Discovery sample** | DEVELOPMENT | 300 customer messages | Manual inspection for taxonomy development |
 | **Discovery-296 training set** | DEVELOPMENT | 296 parseable examples from the 300-example DEVELOPMENT discovery review, with Ex 70, 78, 164, and 265 excluded because the source human label is unparseable | Labeled with frozen taxonomy; used to train the majority-class and TF-IDF+LogReg baselines. (The originally-planned separate 100-example pilot-labeling pass was never performed -- see §4 Step 5.) |
-| **Few-shot examples** | OPEN DECISION / TBD | 3-5 per intent (~25-40 total), planned | **OPEN DECISION / TBD**: few-shot example source for the LLM classifier is not yet decided. The originally-planned 100 pilot-labeled examples were never collected. This must be resolved before Phase 2 begins -- do not assume the 296-example discovery substitution used for the baselines automatically extends to few-shot selection without an explicit decision. |
+| **Few-shot examples** | Discovery-296 training set, status == MATCH only | 39 total (up to 5, min 3, per intent; ARTIST_SUPPORT capped at 4 available) | **Resolved** (Phase 2, commit 0762e75): drawn from the 296-example DEVELOPMENT discovery substitution, restricted to audit-confirmed MATCH-status rows, selected deterministically (sorted by example_id ascending, no randomness). Fixed for the whole evaluation run -- never varied per query, never touches golden-200. See `evaluation/fewshot_selection.py` and `evaluation/LLM_CLASSIFIER_RESULTS.md`. |
 | **Retrieval index** | RETRIEVAL | All (customer_msg, brand_reply) pairs from retrieval-pool threads | Embedding index for historical retrieval |
 | **Golden evaluation set** | TEST | 200 annotated examples | Final evaluation; no data from this set influences any design decision |
 | **Judge calibration subset** | Golden evaluation set (TEST) | 40 examples (subset of golden 200) | Human-graded for judge-human agreement analysis |
@@ -139,12 +139,12 @@ With a two-pool split (retrieval + test), taxonomy discovery would have to use e
 >   and 265 excluded because the source human label is unparseable** (i.e.
 >   the same discovery-sample box two levels up, reused directly -- not a
 >   separate pilot-labeled set).
-> - The **"Few-shot examples"** box is an **OPEN DECISION / TBD**: few-shot
->   example source for the LLM classifier is not yet decided. The
->   originally-planned 100 pilot-labeled examples were never collected. This
->   must be resolved before Phase 2 begins -- do not assume the 296-example
->   discovery substitution used for the baselines automatically extends to
->   few-shot selection without an explicit decision.
+> - The **"Few-shot examples"** box is fed by a **MATCH-status-only subset of
+>   the same 296-example discovery substitution** above (not the never-collected
+>   100 pilot-labeled examples, and not the full 296 -- only the audit-confirmed
+>   MATCH rows, 39 examples total, up to 5 per intent). This was an open decision
+>   as of the baseline-milestone checkpoint; it was resolved in the Phase 2 LLM
+>   classifier milestone (commit 0762e75). See `evaluation/fewshot_selection.py`.
 
 ### Arrows that do NOT exist (prohibited data flows)
 
@@ -167,7 +167,7 @@ With a two-pool split (retrieval + test), taxonomy discovery would have to use e
 |---|---|---|
 | Majority baseline | 296 parseable examples from the 300-example DEVELOPMENT discovery review, with Ex 70, 78, 164, and 265 excluded because the source human label is unparseable (for majority class count) | Golden 200 labels |
 | TF-IDF + LogReg | 296 parseable examples from the 300-example DEVELOPMENT discovery review, with Ex 70, 78, 164, and 265 excluded because the source human label is unparseable (texts + labels for training); TF-IDF fit on these 296 texts only | Golden 200 texts/labels; retrieval pool; test pool |
-| LLM few-shot | Few-shot examples (source: **OPEN DECISION / TBD** -- see §6 "LLM Few-Shot"); intent definitions (from taxonomy) | Golden 200 texts/labels; discovery-296 label distribution |
+| LLM few-shot | Few-shot examples (39, MATCH-status discovery-296 subset -- see §6 "LLM Few-Shot", resolved); intent definitions (from taxonomy) | Golden 200 texts/labels; discovery-296 label distribution |
 
 **Evaluated on**: Golden 200 (test pool). Gold labels compared to predictions.
 
@@ -236,8 +236,10 @@ DEVELOPMENT discovery review** (the same 300 examples sampled and labeled in
 Steps 1-3 above), **with Ex 70, 78, 164, and 265 excluded because the source
 human label is unparseable**. These 296 serve as:
 - Training data for the TF-IDF + LogReg baseline (and the majority-class count)
-- Source of few-shot examples for the LLM classifier: **OPEN DECISION / TBD**
-  -- see §6 "LLM Few-Shot". Do not assume this defaults to the same 296.
+- Source of few-shot examples for the LLM classifier: **resolved** -- a
+  MATCH-status-only subset of these same 296 (39 examples; see §6 "LLM
+  Few-Shot"). This was an open decision at the time this step was
+  originally written; it is no longer open.
 
 Validation that the taxonomy is applicable in practice was instead provided by
 the golden-200 annotation process (§5) -- all 200 TEST-pool examples were
@@ -291,6 +293,18 @@ Each example is annotated using the frozen taxonomy from Step 6 of §4.
 | `escalation_reason` | string or null | If ESCALATE, why (using tiered framework from §8) |
 | `difficulty` | EASY / MEDIUM / HARD | Annotator confidence |
 | `notes` | string | Free-text |
+
+> **⚠ CORRECTION (documentation sync): this table is the originally-planned
+> schema, not what was actually produced.** The real, frozen
+> `golden_set/GOLDEN_200_FINAL.csv` has only these columns: `candidate_id,
+> tweet_id, thread_id, customer_id, target_message, human_gold_label,
+> human_notes`. **`gold_triage` and `escalation_reason` do NOT exist
+> anywhere in the golden 200 annotation** -- triage ground truth was never
+> collected as part of that process. Triage ground truth is instead being
+> added via a SEPARATE, additive 40-example annotation
+> (`golden_set/TRIAGE_ANNOTATION_40.csv`), which is NOT part of the frozen
+> intent gold and does not modify `golden_set/GOLDEN_200_FINAL.csv` or any
+> `human_gold_label` value. See `golden_set/TRIAGE_ANNOTATION_PROTOCOL.md`.
 
 **What the annotator does NOT see during annotation**:
 - The coverage-group keyword that caused sampling
@@ -349,13 +363,13 @@ Purpose: tests whether a classical ML pipeline is competitive.
 
 ### LLM Few-Shot
 
-Few-shot examples: 3-5 per intent. **OPEN DECISION / TBD: few-shot example
-source for the LLM classifier is not yet decided. The originally-planned 100
-pilot-labeled examples were never collected. This must be resolved before
-Phase 2 begins -- do not assume the 296-example discovery substitution used
-for the baselines automatically extends to few-shot selection without an
-explicit decision.**
-Model: configurable (initially gpt-4o-mini).
+Few-shot examples: 3-5 per intent (39 total). **Resolved** (Phase 2, commit
+0762e75): drawn from the 296-example discovery substitution, restricted to
+audit-confirmed MATCH-status rows only, selected deterministically (sorted
+by example_id ascending, no randomness), fixed for the entire evaluation
+run. See `evaluation/fewshot_selection.py` and `evaluation/LLM_CLASSIFIER_RESULTS.md`.
+Model: gpt-5.4-mini (config.CLASSIFY_MODEL; gpt-4o-mini was the original
+placeholder, superseded).
 Temperature: 0 for reproducibility.
 Output: `{intent, confidence, reasoning}` with UNKNOWN as valid intent.
 
@@ -719,7 +733,7 @@ hiver-spotify-support-agent/
 | Question | Answer |
 |---|---|
 | Can taxonomy decisions leak into the golden set? | No. Taxonomy is built from DEVELOPMENT pool. Golden set is from TEST pool. |
-| Can few-shot examples leak? | **OPEN DECISION / TBD** -- few-shot example source for the LLM classifier is not yet decided (see §6 "LLM Few-Shot"). The originally-planned 100 pilot-labeled examples were never collected. Leakage risk cannot be assessed until a source is chosen; must be resolved before Phase 2 begins. |
+| Can few-shot examples leak? | No. Few-shot examples are the MATCH-status subset of the 296-example discovery substitution (DEVELOPMENT pool). Golden set is from TEST pool. Verified via an explicit leakage assertion in `evaluation/fewshot_selection.py` (zero tweet_id/thread_id overlap with golden-200). |
 | Can retrieval leak? | No. Retrieval index is from RETRIEVAL pool. Golden set is from TEST. |
 | Can TF-IDF vocabulary leak? | No. TF-IDF is fit on the 296 parseable discovery-review texts (DEVELOPMENT only, Ex 70/78/164/265 excluded) -- see human decision on baseline training data (§4 Step 5). |
 | Is every threshold empirically determined? | Yes. Confidence threshold from Experiment 2. Retrieval k from Experiment 3. Triage Tier 2 rules from Experiment 5 analysis. |

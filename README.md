@@ -5,11 +5,12 @@ An AI customer-support agent built on the [Customer Support on Twitter](https://
 messages into an 8-intent taxonomy, will draft grounded replies from
 historical resolutions, and will decide auto-handle vs. escalate.
 
-**Status: golden evaluation set complete; majority-class and TF-IDF+LogReg
-baselines complete (trained on the 296-example DEVELOPMENT discovery
-substitution, evaluated on the 200 golden TEST examples); LLM classifier and
-later milestones not yet started.** See [CHECKLIST.md](CHECKLIST.md) for the
-full status table.
+**Status: golden evaluation set complete; all three intent classifiers
+complete** (majority-class, TF-IDF+LogReg, and an LLM few-shot classifier
+on gpt-5.4-mini — trained/demonstrated on the 296-example DEVELOPMENT
+discovery substitution, evaluated on the 200 golden TEST examples); later
+milestones (retrieval, response generation, triage, judge) not yet started.
+See [CHECKLIST.md](CHECKLIST.md) for the full status table.
 
 ## Start here
 
@@ -29,10 +30,11 @@ full status table.
 - **200-example golden evaluation set complete**: sampled from the sealed TEST pool only, individually QA'd, blindly annotated, AI-prelabeled to speed review, and fully human-labeled. Gold export: [`golden_set/GOLDEN_200_FINAL.csv`](golden_set/GOLDEN_200_FINAL.csv). **These labels are final and immutable** (`DECISION_LOG.md` #17) — not used for training, not inserted into retrieval.
 - Post-golden review: an AI-prelabel-vs-human-gold agreement analysis (91.5% exact agreement) was run as a validity check, and the taxonomy was re-confirmed to need exactly 8 intents (no new intent). 7 small guide wording clarifications were approved and applied; 3 were deliberately left open rather than force-resolved on weak evidence. Full detail in `golden_set/GOLDEN_200_ANALYSIS.md` and `golden_set/GUIDE_CHANGELOG_AFTER_GOLD.md`.
 - **Intent-classification baselines complete**: majority-class and TF-IDF + Logistic Regression, trained on 296 of the 300 DEVELOPMENT-pool discovery examples (4 excluded as unparseable — Ex 70, 78, 164, 265; see `DECISION_LOG.md` #24), evaluated on the 200 golden TEST examples. Full metrics: [`evaluation/BASELINE_RESULTS.md`](evaluation/BASELINE_RESULTS.md) and `evaluation/results/baseline_results.json`.
+- **LLM few-shot intent classifier complete**: gpt-5.4-mini, few-shot demonstrations drawn from a MATCH-status-only subset of the same 296-example discovery substitution (39 examples, deterministic selection, never touches golden-200), evaluated on the 200 golden TEST examples. Full metrics and the three-way comparison against both baselines: [`evaluation/LLM_CLASSIFIER_RESULTS.md`](evaluation/LLM_CLASSIFIER_RESULTS.md) and `evaluation/results/llm_classifier_results.json`.
 
 ## What's NOT done yet (by design, not oversight)
 
-- LLM-based intent classifier, retrieval index, response generation, triage/escalation logic.
+- Retrieval index, response generation, triage/escalation logic.
 - Evaluation harness and LLM-as-judge rubric.
 - The final report (problem framing, baseline comparison, failure analysis, "misleading headline number," next steps).
 

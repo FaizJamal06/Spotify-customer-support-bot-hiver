@@ -24,8 +24,8 @@
 | Documentation / reproducibility checkpoint | COMPLETED | This checkpoint — `DECISION_LOG.md`, `PROJECT_CONTEXT.md`, `REPOSITORY_STRUCTURE.md`, `README.md` brought in sync with current state; git status inspected; commit pushed. |
 | Trivial baseline (majority-class) | COMPLETED | Trained on the 296-example discovery substitution (296 of 300 DEVELOPMENT discovery examples; 4 excluded as unparseable — Ex 70, 78, 164, 265). Evaluated on the 200 golden TEST examples. Results: `evaluation/BASELINE_RESULTS.md`, `evaluation/results/baseline_results.json`. |
 | Simple baseline (TF-IDF + Logistic Regression) | COMPLETED | Same 296-example training substitution as above; TF-IDF vocabulary fit on those 296 texts only. Evaluated on the 200 golden TEST examples. Results: `evaluation/BASELINE_RESULTS.md`, `evaluation/results/baseline_results.json`. |
+| LLM-based intent classifier | COMPLETED | gpt-5.4-mini, few-shot demonstrations from a MATCH-status-only subset of the 296-example discovery substitution (39 examples, deterministic selection). Evaluated on the 200 golden TEST examples. Results: `evaluation/LLM_CLASSIFIER_RESULTS.md`, `evaluation/results/llm_classifier_results.json`. |
 | **NOT YET STARTED** | | |
-| LLM-based intent classifier | NOT STARTED | Pending baseline results for comparison. |
 | Retrieval index + evaluation | NOT STARTED | Pending; must be built from RETRIEVAL pool only (`DECISION_LOG.md` #18). |
 | Escalation / triage evaluation | NOT STARTED | Pending classifier + calibration. |
 | Response generation evaluation | NOT STARTED | Pending retrieval + classifier. |
