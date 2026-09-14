@@ -1,0 +1,77 @@
+# TRIAGE_ANNOTATION_40.csv
+#
+# This is a SEPARATE, ADDITIVE annotation layer on top of the frozen intent
+# gold set (golden_set/GOLDEN_200_FINAL.csv). It does NOT modify that file
+# or any of its 200 human_gold_label values.
+#
+# example_id, tweet_id, target_message, human_gold_label are copied
+# read-only from GOLDEN_200_FINAL.csv, shown here per explicit approval --
+# this is an additive triage layer on top of the existing intent gold, not
+# a re-judgment of intent.
+#
+# triage_decision and escalation_reason are filled in by the human annotator
+# (Faiz) via golden_set/TRIAGE_ANNOTATION_40.xlsx and exported to this file by
+# golden_set/export_triage_annotations.py. No automated process infers or
+# suggests these values.
+#
+# notes is optional free text, for the annotator's own use.
+#
+# Sampling method, seed, and the full example_id list are documented in
+# golden_set/TRIAGE_ANNOTATION_PROTOCOL.md.
+example_id,tweet_id,target_message,human_gold_label,triage_decision,escalation_reason,notes
+CAND_0003,1398598,@SpotifyCares please merge the GORD DOWNIE and GORDON GOWNIE artist profiles,ARTIST_SUPPORT,AUTO_HANDLE,,
+CAND_0013,539176,"@SpotifyCares Is it at all possible to get ""Satie: Vexations (840 Times)"" to be removed from Erik Satie's Artist page? It's a joke, I know, but it's really annoying to have to scroll so far to get to any of his other music. It's the same song literally 840 times.",FEATURE_FEEDBACK,AUTO_HANDLE,,
+CAND_0014,2052421,"@SpotifyCares  Report Albums 
+
+On the Heathen artist page: https://t.co/aFV6iSa3yJ there is a mistplaced album.",CONTENT_CATALOG,AUTO_HANDLE,,
+CAND_0017,2883054,"@SpotifyCares I see that in Android mobile and Windows PC.
+When see Strauss autor can see Tchaikovsky song as most played, and song of a band named Strauss.",APP_TECH_ISSUE,AUTO_HANDLE,,
+CAND_0018,2623509,@SpotifyCares My account has been hacked and I'm locked out of both resetting my password and changing my email address. Any help you can offer?,ACCOUNT_ACCESS,HUMAN_ESCALATION,user has no option and theaccount is hacked and theres no way he/she can recover it,
+CAND_0021,2929248,"Help @115888, our account has been hacked. The email has been replaced by an unknown person's and we can't log in. What do we do?",ACCOUNT_ACCESS,HUMAN_ESCALATION,security concerns need additional help,
+CAND_0026,2826952,Help @115888 @SpotifyCares! My account was hacked and the hacker changed my email so I can't reset my password. My credit card is saved in the system and I'm being charged :'(,ACCOUNT_ACCESS,HUMAN_ESCALATION,,
+CAND_0027,2364820,@SpotifyCares My account was hacked - why don't you have a customer support phone number?  I need to talk to someone about this ASAP,ACCOUNT_ACCESS,HUMAN_ESCALATION,,
+CAND_0030,1342991,@SpotifyCares Hey i suscribed to Spotify Premium with the Student discount but i still don't have SpotifyPremium activated on my account,SUBSCRIPTION_BILLING,AUTO_HANDLE,,
+CAND_0034,2139010,"@SpotifyCares trying to extend my student discount for another year but when I log into unidays, the pop-up to log in comes back. What should I do?",APP_TECH_ISSUE,AUTO_HANDLE,,
+CAND_0045,1063177,@SpotifyCares I've removed the old version and reinstalled the Spotify Windows app but it still won't actually play any songs :-/,APP_TECH_ISSUE,AUTO_HANDLE,,
+CAND_0054,1854203,"PSA: @115888 's shuffle algorithm suxx 😒😴
+i have 500+ songs in a playlist and the same ones play every time. wtf??",FEATURE_FEEDBACK,AUTO_HANDLE,,
+CAND_0056,544585,"Hey @115888 can the suggested songs not overkill the album i am actually keen on pkaying. 
+Went:
+Track want to hear
+Suggested song
+Suggested song 
+Album track
+Suggested song
+Album track
+Ad
+Suggested song
+Suggested song
+Like really... not to mention the ad song ad crap ive had.",FEATURE_FEEDBACK,AUTO_HANDLE,,
+CAND_0058,2368021,@spotifycares How can I unlink my spotify account from Facebook?,GENERAL_HOW_TO_INFO,AUTO_HANDLE,,
+CAND_0059,2622906,"@115888 serious question, I need to cancel a prime account but I can’t login at all because my Facebook associated with it is gone. How can I cancel if I can’t even log in to the setting or account page?",SUBSCRIPTION_BILLING,HUMAN_ESCALATION,no access to account,
+CAND_0063,1845703,"@SpotifyCares Hello, how do I change my postcode in my account. My gf and I have recently moved in together and would like Spotify family😁",GENERAL_HOW_TO_INFO,AUTO_HANDLE,,
+CAND_0068,2624563,@SpotifyCares   Is there a phone number I can call someone at,GENERAL_HOW_TO_INFO,HUMAN_ESCALATION,customer is asking for help from support andto call someone,
+CAND_0071,2623503,"I'm stupid and I just needed to restart my phone, spotify is working fine now.",UNKNOWN_OTHER,AUTO_HANDLE,,
+CAND_0072,2917914,"@SpotifyCares Haha, thank you for being here for your users!",UNKNOWN_OTHER,AUTO_HANDLE,,
+CAND_0080,263526,@SpotifyCares Germany i guess,UNKNOWN_OTHER,AUTO_HANDLE,,
+CAND_0084,1067218,@191335 merhaba internete bağlı olmama rağmen bu çıkıyor sitenizde uygulamayı silip yükleyin demişsiniz 3 kez yaptım düzelmedi https://t.co/mfnBMDyjqL,APP_TECH_ISSUE,AUTO_HANDLE,,
+CAND_0085,2385606,@118266 tadi dapet promo 3 bulan 4.000 kok mau di bayar jadi 49.999 ribuan gimana ini min,SUBSCRIPTION_BILLING,AUTO_HANDLE,,
+CAND_0088,1160844,@SpotifyCares Thanks! Windows 10 Pro version 1703. Spotify 1.0.66.478.g1296534d,APP_TECH_ISSUE,AUTO_HANDLE,,
+CAND_0094,2319364,"If you’re a big company that is serious about your apps and still haven’t shipped a version that supports the bigger iPhone X display then you are definitely doing something wrong. Ping @115888, @1511, @33740, @117634, @91052 etc",FEATURE_FEEDBACK,AUTO_HANDLE,,
+CAND_0109,2317775,"@SpotifyCares iOS 11.2 b2, playback won’t resume after being paused by call or video in other app. Have to force close Spotify and reopen",APP_TECH_ISSUE,AUTO_HANDLE,,
+CAND_0110,2859008,@115888 @SpotifyCares Disregard. Found the link on your website for gifting. I was seeking it via the app previously.,UNKNOWN_OTHER,AUTO_HANDLE,,
+CAND_0120,1959613,@SpotifyCares That's not what i asked ^^ I'm looking for the mp3 file.,GENERAL_HOW_TO_INFO,AUTO_HANDLE,,
+CAND_0129,2049949,hi~ can i ask if we can get a photo of @133324 that fits all the 7 members in the Spotify profile? @115888 @SpotifyCares,ARTIST_SUPPORT,AUTO_HANDLE,,
+CAND_0134,2240443,@SpotifyCares Now it's starting up minimized. at least a little bit better but still not what I want.,FEATURE_FEEDBACK,AUTO_HANDLE,,
+CAND_0138,1868960,@115888 please bring back Julion Alvarez's music. I want to cry to his playlists on my way to work. 😭,CONTENT_CATALOG,AUTO_HANDLE,,
+CAND_0140,2614482,"Why isn't there an option to block artists if you don't want them on shuffle its annoying 
+@115888 please add an option to block",FEATURE_FEEDBACK,AUTO_HANDLE,,
+CAND_0141,199164,@115888 When are you going to put @12583 's full Tracker album on please?,CONTENT_CATALOG,AUTO_HANDLE,,
+CAND_0151,1758258,"@SpotifyCares If i buy spotify gift cards, does it work for the family plan?",GENERAL_HOW_TO_INFO,AUTO_HANDLE,,
+CAND_0165,2310896,@117153 I've been charged for premium family but am not getting it on my app; already tried updating app and logging out/ back in,SUBSCRIPTION_BILLING,HUMAN_ESCALATION,customer is being charged but not getting the service,
+CAND_0177,1471765,@SpotifyCares It will take all of one artist and not start it until toward the end of the shuffle every time. Is there a way to make it simply random?,FEATURE_FEEDBACK,AUTO_HANDLE,,
+CAND_0179,1264086,How to get your podcast on @115888 and how much does it cost? #podcasts,GENERAL_HOW_TO_INFO,AUTO_HANDLE,,
+CAND_0183,2095103,@125633 I know how to add a playlist to my profile but is it possible to create it as the artist and not as my personal account?,ARTIST_SUPPORT,AUTO_HANDLE,,
+CAND_0187,2183058,"@SpotifyCares I get that it’s a great showcase for new music and labels want their tracks on it, however, it would be great to still keep the mix of old, or give us another discover playlist for older/classic (not brand new) tracks. Happy with either option",FEATURE_FEEDBACK,AUTO_HANDLE,,
+CAND_0190,2139004,"@115888 why does my playlist start over every time I get out of my car , then leave again? #aggrivated",APP_TECH_ISSUE,AUTO_HANDLE,,
+CAND_0200,1942805,"@SpotifyCares It’s usually okay, but now every 5 minutes or so random music blares out (on full volume) - for headphone users like me, it’s horrible.",APP_TECH_ISSUE,AUTO_HANDLE,,
