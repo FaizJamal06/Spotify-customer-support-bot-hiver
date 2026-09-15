@@ -1,0 +1,66 @@
+# retrieval_inspection_annotations.csv
+#
+# Canonical record of Faiz's manual retrieval-inspection judgments
+# (implementation_plan.md §9, "Manual retrieval inspection"), exported from
+# evaluation/results/RETRIEVAL_INSPECTION_20.xlsx by
+# evaluation/export_retrieval_inspection.py.
+#
+# ONE ROW PER GOLDEN EXAMPLE (20 rows) -- NOT one row per retrieved pair.
+#
+# GRANULARITY NOTE: the original scaffold, evaluation/results/
+# retrieval_inspection_scaffold.csv, has 100 rows (20 examples x 5 retrieved
+# pairs) and reserved a qualitative-judgment column on every one of those rows,
+# assuming a per-pair judgment. That was never how the annotation was actually
+# done: the human-facing workbook presents all 5 retrieved pairs for an example
+# side-by-side and asks for ONE summary judgment across all 5. This file reflects
+# that real granularity honestly rather than duplicating one judgment across 5
+# rows as if they were independent. retrieval_inspection_scaffold.csv is untouched
+# and remains valid as raw per-pair retrieval-evidence reference data; its 5
+# qualitative columns are simply not used going forward.
+#
+# example_id, tweet_id, predicted_intent are copied read-only from
+# golden_set/GOLDEN_200_FINAL.csv (candidate_id/tweet_id) and evaluation/results/
+# llm_classifier_results.json (predicted_intent, Experiment 1's output -- NOT the
+# gold intent label). customer_text is the golden example's target_message.
+#
+# retrieval_usefulness, best_rank, relevance_problem, grounding_value,
+# overall_observation are Faiz's own judgments, entered via the xlsx workbook.
+# No automated process infers or suggests these values.
+#
+# Every field above (except the 5 judgment columns) was independently re-derived
+# from source data (GOLDEN_200_FINAL.csv, llm_classifier_results.json, and a fresh
+# evaluation.retrieval.retrieve_top_k() call) and verified to match the workbook
+# before this file was written -- see export_retrieval_inspection.py's
+# validate_and_extract().
+example_id,tweet_id,customer_text,predicted_intent,retrieval_usefulness,best_rank,relevance_problem,grounding_value,overall_observation
+CAND_0163,172534,@115888 @2069 Why do you have paypal as option to pay in US and not in Brazil?,GENERAL_HOW_TO_INFO,NOT_USEFUL,NONE,SUPERFICIAL_SIMILARITY,WEAK,
+CAND_0073,265449,@SpotifyCares Yesss you fixed it! 😍 https://t.co/HvS9R5uQcV,UNKNOWN_OTHER,USEFUL,1,NONE,STRONG,
+CAND_0147,426789,i wish there was a function to block an artist in @115888 so you avoid them popping up in your generated playlists and radios ..,FEATURE_FEEDBACK,USEFUL,4,NONE,STRONG,
+CAND_0184,492383,@3493 all my ads are in German how do I fix this?,GENERAL_HOW_TO_INFO,NOT_USEFUL,4,SUPERFICIAL_SIMILARITY,WEAK,
+CAND_0056,544585,"Hey @115888 can the suggested songs not overkill the album i am actually keen on pkaying. 
+Went:
+Track want to hear
+Suggested song
+Suggested song 
+Album track
+Suggested song
+Album track
+Ad
+Suggested song
+Suggested song
+Like really... not to mention the ad song ad crap ive had.",FEATURE_FEEDBACK,PARTIALLY_USEFUL,4,NONE,STRONG,
+CAND_0015,622817,May I ask why Dan Black has two different artist profiles? @115888 @SpotifyCares,CONTENT_CATALOG,PARTIALLY_USEFUL,1,NONE,MODERATE,
+CAND_0164,727009,@SpotifyCares I put my card details in to upgrade to Premium for a trial. I have now been charged for a years subscription! Please cancel.,SUBSCRIPTION_BILLING,USEFUL,3,NONE,MODERATE,
+CAND_0048,1158629,"@SpotifyCares searched for Tom Petty on the app for andriod and only 3 albums are available, but full discography is available on ps3.",CONTENT_CATALOG,NOT_USEFUL,1,MULTI_ISSUE_MISMATCH,WEAK,
+CAND_0177,1471765,@SpotifyCares It will take all of one artist and not start it until toward the end of the shuffle every time. Is there a way to make it simply random?,FEATURE_FEEDBACK,USEFUL,2,NONE,STRONG,
+CAND_0090,1517179,"@SpotifyCares iPhone 6s+, 8.4.20.535",UNKNOWN_OTHER,USEFUL,1,NONE,STRONG,
+CAND_0001,1855971,"@SpotifyCares Hey, a song of mine was recently released on a label and it created a duplicate artist page. How can I get it on my main?",ARTIST_SUPPORT,USEFUL,4,NONE,STRONG,
+CAND_0197,1865839,".@115888 Any idea why @38290's Track ""When You Come Back Down"" is unavailable?",CONTENT_CATALOG,PARTIALLY_USEFUL,2,NONE,MODERATE,
+CAND_0009,1988904,"@SpotifyCares one of my albums I'd accidentally listed under ""singles"" on my artist page. How can I fix that?",ARTIST_SUPPORT,USEFUL,4,NONE,STRONG,
+CAND_0008,2246055,@115888 as an artist who do we contact at spotify to get them to separate an artist profile/identity from another artists w/the same name?,ARTIST_SUPPORT,USEFUL,1,NONE,STRONG,
+CAND_0131,2280200,@115888 I have a customer support request,UNKNOWN_OTHER,USEFUL,4,NONE,STRONG,
+CAND_0169,2420496,"@115888 Good morning, this morning my account is now set as free when I pay my Mobile Provider for the account (Fido.ca) What's wrong?",SUBSCRIPTION_BILLING,USEFUL,1,NONE,STRONG,
+CAND_0018,2623509,@SpotifyCares My account has been hacked and I'm locked out of both resetting my password and changing my email address. Any help you can offer?,ACCOUNT_ACCESS,USEFUL,1,NONE,STRONG,
+CAND_0025,2641113,@115888 your security is BS some French guy hacked my account and changed my plan to add his own. I’m seeing this a lot...,SUBSCRIPTION_BILLING,USEFUL,5,NONE,STRONG,predicted intent must be account access
+CAND_0170,2787996,@SpotifyCares Hi guys! I am unable to access into my account and the screen says that I've been abroad for 14 days. What can I do to recover my account? Thanks.,ACCOUNT_ACCESS,USEFUL,1,NONE,STRONG,
+CAND_0046,2917808,WHY IS SPOTIFY NOT LETTING ME SEARCH FOR MUSIC ?!?!?! @115888 @191335 @SpotifyCares,APP_TECH_ISSUE,USEFUL,1,NONE,STRONG,
