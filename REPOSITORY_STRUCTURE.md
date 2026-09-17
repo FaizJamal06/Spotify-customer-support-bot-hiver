@@ -73,6 +73,7 @@ The final, isolated 200-example Golden Evaluation Set, sampled entirely from the
 - **`GOLDEN_200_ANALYSIS.md`**: Post-annotation validation results, final gold distribution, AI-prelabel-vs-gold agreement analysis (91.5% exact agreement), disagreement pattern breakdown.
 - **`PROPOSED_GUIDE_CLARIFICATIONS.md`**: 9 candidate guide clarifications derived from the 17 AI/human disagreements, each with evidence, proposed wording, and a `PROPOSED ONLY` marker.
 - **`GUIDE_CHANGELOG_AFTER_GOLD.md`**: Which of those 9 were approved and applied to `discovery/TAXONOMY_REVIEW_GUIDE.md` (7), and which were deliberately left unresolved (3), with reasoning for each.
+- **`REPORT_DECISION_LOG.md`**: Backing detail behind `report/REPORT.md` §6 (Decision Log) — the curated, condensed source list of 14 non-obvious decisions the report's version draws on.
 
 *Known gap*: the scripts that produced `CANDIDATE_MANIFEST_200.csv`, the workbooks, and `ai_prelabels.csv` were run interactively and are not yet checked into this repo — see `PROJECT_CONTEXT.md` §9.
 
@@ -175,6 +176,6 @@ Contains the full evaluation pipeline: intent-classification baselines and the L
 
 ### Report drafts
 
-- **`FAILURE_ANALYSIS_DRAFT.md`**: Draft top-5 failure-mode writeup for the final report, built from already-computed evaluation results; not yet the polished report (see `CHECKLIST.md`).
+- **`FAILURE_ANALYSIS_DRAFT.md`**: Backing detail behind `report/REPORT.md` §3 (Top-5 Failure Analysis) — the full examples, citations, and reasoning the report's condensed version draws on.
 
 **Status**: Complete — intent classification (3 classifiers), retrieval, response generation, the LLM judge, the k=0/1/3/5 retrieval-ablation sweep, the three-tier triage policy, both held-out evaluations (Part J triage, Part I judge calibration), and the final written report (`report/REPORT.md`). See `CHECKLIST.md` for the full status table.
