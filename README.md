@@ -5,13 +5,14 @@ An AI customer-support agent built on the [Customer Support on Twitter](https://
 messages into an 8-intent taxonomy, will draft grounded replies from
 historical resolutions, and will decide auto-handle vs. escalate.
 
-**Status: the full pipeline is built and evaluated end-to-end** — intent
-classification (3 classifiers), retrieval, response generation, an LLM
-judge, a k=0/1/3/5 retrieval-ablation experiment (800 conditions), a
-three-tier triage policy, a held-out triage evaluation (Part J), and a
-judge-vs-human calibration study (Part I). **Only the final written report
-(failure analysis, "misleading headline number," next steps) remains.**
-See [CHECKLIST.md](CHECKLIST.md) for the full status table.
+**Status: complete** — intent classification (3 classifiers), retrieval,
+response generation, an LLM judge, a k=0/1/3/5 retrieval-ablation experiment
+(800 conditions), a three-tier triage policy, a held-out triage evaluation
+(Part J), a judge-vs-human calibration study (Part I), and the final written
+report. **Start with [report/REPORT.md](report/REPORT.md)** — problem
+framing, results vs. baselines, top-5 failure analysis, "misleading headline
+number," next steps, and the decision log. See [CHECKLIST.md](CHECKLIST.md)
+for the full status table.
 
 Two headline findings worth knowing before reading further: (1) retrieval
 measurably improves Groundedness but measurably *hurts* Relevance and Tone
@@ -26,14 +27,15 @@ so finding (1) should be read with that caveat, not as a certified result.
 
 | Doc | What it's for |
 |---|---|
-| [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) | Current project state, hard requirements, dataset facts — read this first |
+| [report/REPORT.md](report/REPORT.md) | **The final report — start here.** Problem framing, results vs. baselines, top-5 failure analysis, "misleading headline number," next steps, decision log |
+| [PROJECT_CONTEXT.md](PROJECT_CONTEXT.md) | Current project state, hard requirements, dataset facts |
 | [DECISION_LOG.md](DECISION_LOG.md) | Why the non-obvious decisions were made, with explicit human-vs-AI-assistance attribution |
 | [discovery/TAXONOMY_REVIEW_GUIDE.md](discovery/TAXONOMY_REVIEW_GUIDE.md) | The frozen, authoritative annotation rulebook |
 | [CHECKLIST.md](CHECKLIST.md) | What's done vs. not started, against the assignment requirements |
 | [REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md) | What every file/directory is for |
 | [hiver_sde_takehome_strategy.md](hiver_sde_takehome_strategy.md) | Strategic north-star doc (architecture, evaluation philosophy) |
-| [evaluation/FAILURE_ANALYSIS_DRAFT.md](evaluation/FAILURE_ANALYSIS_DRAFT.md) | Draft top-5 failure analysis for the final report — not yet polished |
-| [golden_set/REPORT_DECISION_LOG.md](golden_set/REPORT_DECISION_LOG.md) | Curated, presentation-ready decision log for the final report — draft |
+| [evaluation/FAILURE_ANALYSIS_DRAFT.md](evaluation/FAILURE_ANALYSIS_DRAFT.md) | Backing detail for the report's failure analysis — full examples and citations behind `report/REPORT.md` §3 |
+| [golden_set/REPORT_DECISION_LOG.md](golden_set/REPORT_DECISION_LOG.md) | Backing detail for the report's decision log — the curated source list behind `report/REPORT.md` §6 |
 
 ## What's done
 
@@ -54,7 +56,6 @@ so finding (1) should be read with that caveat, not as a certified result.
 
 ## What's NOT done yet (by design, not oversight)
 
-- **The final written report** (problem framing, baseline comparison, top-5 failure analysis, "misleading headline number," next steps) — everything it would draw on is now complete and cited above, but the report itself has not been written.
 - Golden-set generation scripts reproducibility gap (see `PROJECT_CONTEXT.md` §9) — unchanged, not addressed by any later milestone.
 - No production action/tool layer, no trained/learned triage model, no sentiment model — deliberately out of scope throughout (see `implementation_plan.md` §15 and each milestone's own "what not to build" notes).
 

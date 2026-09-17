@@ -177,4 +177,4 @@ Contains the full evaluation pipeline: intent-classification baselines and the L
 
 - **`FAILURE_ANALYSIS_DRAFT.md`**: Draft top-5 failure-mode writeup for the final report, built from already-computed evaluation results; not yet the polished report (see `CHECKLIST.md`).
 
-**Status**: The full pipeline is complete and evaluated end-to-end — intent classification (3 classifiers), retrieval, response generation, the LLM judge, the k=0/1/3/5 retrieval-ablation sweep, the three-tier triage policy, and both held-out evaluations (Part J triage, Part I judge calibration). Only the final written report remains — see `CHECKLIST.md` for the full status table.
+**Status**: Complete — intent classification (3 classifiers), retrieval, response generation, the LLM judge, the k=0/1/3/5 retrieval-ablation sweep, the three-tier triage policy, both held-out evaluations (Part J triage, Part I judge calibration), and the final written report (`report/REPORT.md`). See `CHECKLIST.md` for the full status table.
