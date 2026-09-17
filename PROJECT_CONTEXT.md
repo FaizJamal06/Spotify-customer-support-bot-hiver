@@ -72,6 +72,20 @@ HUMAN ESCALATION → reason
 - **Golden Set Status: COMPLETE AND FINAL.** All 200 examples have a human gold label (`Human Final Label` in `golden_set/GOLDEN_ANNOTATION_200_labeled.xlsx`, exported cleanly to `golden_set/GOLDEN_200_FINAL.csv`). **These 200 labels are immutable and evaluation-only** — see `DECISION_LOG.md` #17. Do not relabel them, do not use them for training/few-shot selection, and do not insert them into the RAG/retrieval corpus.
 - **Development labels vs. final gold**: The 300-example discovery review (`discovery/HUMAN_REVIEW_labeled.md`) and the AI Suggested Label column in the golden workbook are **not** authoritative — they informed taxonomy design and accelerated review, but only `Human Final Label` in the completed golden workbook is gold.
 
+### Leakage/isolation checks: real, executed functions
+
+`implementation_plan.md` §13's `verify_all_isolation()` is planning-stage
+pseudocode, superseded by the real functions below (not deleted or rewritten
+here). Each row is a function that actually exists and actually runs:
+
+| Function | Checks | File | Invoked from |
+|---|---|---|---|
+| `assert_no_overlap` | Generic tweet_id/thread_id set-overlap primitive, raises `LeakageError` | `evaluation/leakage_checks.py:13` | Called by the two `assert_no_leakage`/`assert_hard_leakage_free`/`assert_fewshot_no_golden_leakage` wrappers below |
+| `assert_no_leakage` | Pairwise tweet_id/thread_id overlap across DEV (training)/golden (TEST)/RETRIEVAL pools (6 checks) | `evaluation/leakage_checks.py:22` | `evaluation/run_baselines.py:55`, before training; `evaluation/test_baseline_milestone.py:108` |
+| `assert_hard_leakage_free` | Zero tweet_id/thread_id overlap between the golden 200 and the sampled retrieval index | `evaluation/build_retrieval_index.py:265` | `evaluation/build_retrieval_index.py:333` (index build, main flow); `evaluation/test_retrieval.py:101,116` |
+| `near_duplicate_check` | Warning-level (not a hard stop): flags golden/retrieval-pair text with cosine similarity above threshold | `evaluation/build_retrieval_index.py:241` | `evaluation/build_retrieval_index.py:325` (index build, main flow) |
+| `assert_fewshot_no_golden_leakage` | Zero tweet_id/thread_id overlap between selected few-shot demonstrations and the golden 200 | `evaluation/fewshot_selection.py:92` | `evaluation/run_llm_classifier.py:81`, before classification; `evaluation/test_llm_classifier_milestone.py:167,173` |
+
 ## 6. Intent Taxonomy
 - **STATUS**: The 8-label taxonomy is FROZEN — confirmed to remain exactly 8 intents even after a post-golden review of all 17 AI/human disagreements on the completed golden set (see `DECISION_LOG.md` #22). No intent has been added, removed, merged, or split at any point.
 - **TAXONOMY**: 

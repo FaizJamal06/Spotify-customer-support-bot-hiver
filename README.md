@@ -32,6 +32,8 @@ so finding (1) should be read with that caveat, not as a certified result.
 | [CHECKLIST.md](CHECKLIST.md) | What's done vs. not started, against the assignment requirements |
 | [REPOSITORY_STRUCTURE.md](REPOSITORY_STRUCTURE.md) | What every file/directory is for |
 | [hiver_sde_takehome_strategy.md](hiver_sde_takehome_strategy.md) | Strategic north-star doc (architecture, evaluation philosophy) |
+| [evaluation/FAILURE_ANALYSIS_DRAFT.md](evaluation/FAILURE_ANALYSIS_DRAFT.md) | Draft top-5 failure analysis for the final report — not yet polished |
+| [golden_set/REPORT_DECISION_LOG.md](golden_set/REPORT_DECISION_LOG.md) | Curated, presentation-ready decision log for the final report — draft |
 
 ## What's done
 

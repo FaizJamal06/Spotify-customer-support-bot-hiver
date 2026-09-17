@@ -30,6 +30,7 @@ from pathlib import Path
 
 import numpy as np
 from openpyxl import load_workbook
+from scipy.stats import spearmanr
 from sklearn.metrics import cohen_kappa_score
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -240,6 +241,31 @@ def bootstrap_kappa_ci(human_scores, llm_scores, n_resamples=BOOTSTRAP_N_RESAMPL
     return float(lo), float(hi), len(boot_kappas)
 
 
+def bootstrap_spearman_ci(human_scores, llm_scores, n_resamples=BOOTSTRAP_N_RESAMPLES, seed=BOOTSTRAP_SEED):
+    """Percentile bootstrap 95% CI for Spearman's rho, resampling PAIRS (human_i, llm_i)
+    with replacement -- the same nonparametric resampling approach as bootstrap_kappa_ci()
+    above, for the same reason (report an uncertainty interval, not a bare point estimate,
+    at n=40). scipy.stats.spearmanr rank-correlates via average ranks on ties, which is the
+    correct treatment for these tied 1-5 integer scores (verified against a hand-computed
+    tied-rank case in the test suite)."""
+    rng = np.random.RandomState(seed)
+    n = len(human_scores)
+    human_arr, llm_arr = np.array(human_scores), np.array(llm_scores)
+    boot_rhos = []
+    for _ in range(n_resamples):
+        idx = rng.randint(0, n, size=n)
+        h, l = human_arr[idx], llm_arr[idx]
+        if len(set(h)) < 2 or len(set(l)) < 2:
+            continue  # spearmanr is undefined (nan) when either resampled array is constant
+        rho, _ = spearmanr(h, l)
+        if not np.isnan(rho):
+            boot_rhos.append(rho)
+    if not boot_rhos:
+        return float("nan"), float("nan"), 0
+    lo, hi = np.percentile(boot_rhos, [2.5, 97.5])
+    return float(lo), float(hi), len(boot_rhos)
+
+
 def compute_dimension_stats(human_scores, llm_scores):
     n = len(human_scores)
     diffs = [h - l for h, l in zip(human_scores, llm_scores)]
@@ -249,6 +275,9 @@ def compute_dimension_stats(human_scores, llm_scores):
 
     kappa = cohen_kappa_score(human_scores, llm_scores, weights="quadratic", labels=[1, 2, 3, 4, 5])
     kappa_ci_lo, kappa_ci_hi, n_valid_resamples = bootstrap_kappa_ci(human_scores, llm_scores)
+
+    spearman_rho, _ = spearmanr(human_scores, llm_scores)
+    spearman_ci_lo, spearman_ci_hi, spearman_n_valid_resamples = bootstrap_spearman_ci(human_scores, llm_scores)
 
     mean_signed_diff = statistics.mean(diffs)
     stdev_diff = statistics.stdev(diffs) if n > 1 else 0.0
@@ -261,6 +290,8 @@ def compute_dimension_stats(human_scores, llm_scores):
         within_1_agreement_count=within_1, within_1_agreement_rate=within_1 / n,
         weighted_kappa=float(kappa), kappa_ci_lo=kappa_ci_lo, kappa_ci_hi=kappa_ci_hi,
         kappa_bootstrap_n_valid=n_valid_resamples,
+        spearman_rho=float(spearman_rho), spearman_ci_lo=spearman_ci_lo, spearman_ci_hi=spearman_ci_hi,
+        spearman_bootstrap_n_valid=spearman_n_valid_resamples,
         mean_signed_diff_human_minus_llm=mean_signed_diff, stdev_diff=stdev_diff,
         confusion_matrix={f"human={h}_llm={l}": c for (h, l), c in sorted(confusion.items())},
     )
@@ -316,11 +347,13 @@ def main():
         llm_scores = [llm_scores_by_tweet[row["tweet_id"]][dim] for row in workbook_rows]
         per_dimension[dim] = compute_dimension_stats(human_scores, llm_scores)
 
-    print(f"\n{'dimension':<14}{'exact':>8}{'within1':>10}{'kappa':>10}{'kappa_ci':>18}{'mean_diff':>11}")
+    print(f"\n{'dimension':<14}{'exact':>8}{'within1':>10}{'kappa':>10}{'kappa_ci':>18}"
+          f"{'spearman':>11}{'spearman_ci':>18}{'mean_diff':>11}")
     for dim in DIMENSIONS:
         s = per_dimension[dim]
         print(f"{dim:<14}{s['exact_agreement_rate']:>8.1%}{s['within_1_agreement_rate']:>10.1%}"
               f"{s['weighted_kappa']:>10.3f}   [{s['kappa_ci_lo']:.3f}, {s['kappa_ci_hi']:.3f}]"
+              f"{s['spearman_rho']:>11.3f}   [{s['spearman_ci_lo']:.3f}, {s['spearman_ci_hi']:.3f}]"
               f"{s['mean_signed_diff_human_minus_llm']:>11.3f}")
 
     disagreements = find_large_disagreements(workbook_rows, llm_scores_by_tweet, threshold=2)

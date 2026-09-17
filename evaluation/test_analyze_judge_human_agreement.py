@@ -14,6 +14,7 @@ from pathlib import Path
 
 import pytest
 from openpyxl import Workbook
+from scipy.stats import spearmanr
 from sklearn.metrics import cohen_kappa_score
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
@@ -195,6 +196,27 @@ def test_compute_dimension_stats_kappa_matches_direct_sklearn_call():
     stats = compute_dimension_stats(human, llm)
     expected = cohen_kappa_score(human, llm, weights="quadratic", labels=[1, 2, 3, 4, 5])
     assert stats["weighted_kappa"] == pytest.approx(expected)
+
+
+def test_compute_dimension_stats_spearman_matches_direct_scipy_call():
+    human = [1, 2, 3, 4, 5, 3, 2, 4, 1, 5, 2, 3, 4, 5, 1]
+    llm =   [1, 3, 3, 4, 4, 2, 2, 5, 1, 5, 3, 3, 3, 5, 2]
+    stats = compute_dimension_stats(human, llm)
+    expected_rho, _ = spearmanr(human, llm)
+    assert stats["spearman_rho"] == pytest.approx(expected_rho)
+
+
+def test_spearman_handles_tied_ranks_correctly():
+    """Hand-verifiable tied-rank case: three tied 3's in human and three tied 2's in
+    llm each collapse to the same average rank (2), so both sequences co-vary in rank
+    exactly -- verified directly against scipy.stats.spearmanr's own tie-handling
+    (average-rank method) rather than assumed."""
+    human = [3, 3, 3, 4, 5]
+    llm =   [2, 2, 2, 4, 5]
+    stats = compute_dimension_stats(human, llm)
+    expected_rho, _ = spearmanr(human, llm)
+    assert stats["spearman_rho"] == pytest.approx(expected_rho)
+    assert stats["spearman_rho"] == pytest.approx(1.0)
 
 
 def test_quadratic_weighting_penalizes_large_gaps_more_than_small_ones():

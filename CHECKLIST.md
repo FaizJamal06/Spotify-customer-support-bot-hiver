@@ -35,6 +35,6 @@
 | Response generation evaluation | COMPLETED | Covered by the k-ablation sweep row above (Experiment 3) — generation was evaluated jointly with retrieval, not as a separate step, per `implementation_plan.md`'s design. |
 | LLM judge calibration (Part I) | COMPLETED | 40 shared examples (same subset as the Part J holdout), k=3 condition, independently human-graded with no judge scores/reasoning shown to the human. Agreement is weak on every dimension: weighted Cohen's kappa 0.09 (Relevance) / -0.04 (Groundedness) / 0.22 (Helpfulness) / 0.23 (Tone); 3 of 4 dimensions' 95% bootstrap CIs include zero. Valid for k=3 only, not generalized to k=0/1/5. `evaluation/build_judge_human_calibration_workbook.py`, `evaluation/analyze_judge_human_agreement.py`. Results: `evaluation/results/JUDGE_HUMAN_CALIBRATION_40.xlsx` (committed), `evaluation/results/judge_human_agreement.json` (gitignored). |
 | **NOT YET STARTED** | | |
-| Final failure analysis | NOT STARTED | Pending — all evaluation results it would draw on (above) are now complete. |
-| Headline-number limitations analysis | NOT STARTED | Pending final report. |
+| Final failure analysis | NOT STARTED | Pending — all evaluation results it would draw on (above) are now complete. Draft exists: `evaluation/FAILURE_ANALYSIS_DRAFT.md`. |
+| Headline-number limitations analysis | NOT STARTED | Pending final report. Draft exists: `golden_set/REPORT_DECISION_LOG.md`. |
 | Golden-set generation scripts checked into repo | NOT STARTED | Known reproducibility gap — see `PROJECT_CONTEXT.md` §9. Outputs are committed; the interactive scripts that produced them are not yet. |
