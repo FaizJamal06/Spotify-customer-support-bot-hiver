@@ -1,0 +1,12 @@
+# Force LF line endings for all detected text files on checkout, regardless of
+# the grader's local git config (core.autocrlf) -- prevents a Windows client
+# with core.autocrlf=true from rewriting committed LF text to CRLF on clone,
+# which previously broke an exact-string-match test comparing a checked-out
+# CSV against text embedded in a binary .xlsx workbook (the .xlsx is immune to
+# text normalization, so a CRLF-converted CSV silently stopped matching it).
+* text=auto eol=lf
+
+# Explicit, not dependent on git's content-based binary autodetection (which
+# already treats .xlsx this way, but this repo's tests depend on these two
+# workbooks' bytes never being touched by any line-ending conversion).
+*.xlsx binary

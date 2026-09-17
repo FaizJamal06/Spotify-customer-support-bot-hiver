@@ -50,7 +50,7 @@ so finding (1) should be read with that caveat, not as a certified result.
 - **20-example manual retrieval-inspection complete**: human-graded (Retrieval Usefulness / Best Rank / Relevance Problem / Grounding Value) via `evaluation/build_retrieval_inspection_workbook.py`, filled in, exported to the canonical `evaluation/results/retrieval_inspection_annotations.csv`.
 - **Three-tier triage policy implemented and evaluated against a held-out human triage set** (Part J): Tier 1 deterministic safety rules (UNKNOWN intent / security language / legal language → escalate), a confidence-threshold hypothesis explicitly tested and rejected (per the calibration finding above), one evidence-driven intent-specific rule (ACCOUNT_ACCESS) that a follow-up Fisher's-exact audit found "plausible but fragile" (p=0.094 vs. its closest competitor) and is therefore **shipped disabled by default** (`TIER2_ACCOUNT_ACCESS_RULE_ENABLED = False`), and an explicitly-unvalidated Tier-3 anger-keyword heuristic. `evaluation/triage.py`, `evaluation/audit_triage_tier2.py`. Evaluated against `golden_set/TRIAGE_ANNOTATION_40.csv` (the shipped-default policy agrees with the human triage decision on 32/40 = 80.0% of examples; 3/40 dangerous false-auto-handles, 5/40 false-escalates). `evaluation/run_part_j_triage_eval.py`, `evaluation/results/part_j_triage_eval.json` (gitignored).
 - **Judge-vs-human calibration complete** (Part I): 40 shared examples (same subset as the triage holdout, k=3 condition), independently human-graded on the same rubric with no judge scores/reasoning shown. Agreement is weak on every dimension — weighted Cohen's κ ranges 0.09 (Relevance) to 0.23 (Tone/Helpfulness), and 3 of 4 dimensions' 95% bootstrap CIs include zero (Groundedness's CI tops out *at* zero). `evaluation/build_judge_human_calibration_workbook.py`, `evaluation/analyze_judge_human_agreement.py`; workbook at `evaluation/results/JUDGE_HUMAN_CALIBRATION_40.xlsx` (committed), stats at `evaluation/results/judge_human_agreement.json` (gitignored).
-- **326 tests** across `evaluation/`, `discovery/`, and `golden_set/`. From a bare fresh clone: 299 passed, 16 failed (all explained — data-prep prerequisite or API credit, none a logic bug), 11 skipped (correctly gated on the embedding cache). Full breakdown and exact fresh-clone verification: see "What you can reproduce today" below.
+- **328 tests** across `evaluation/`, `discovery/`, and `golden_set/`. From a bare fresh clone: 301 passed, 16 failed (all explained — data-prep prerequisite or API credit, none a logic bug), 11 skipped (correctly gated on the embedding cache). Full breakdown and exact fresh-clone verification: see "What you can reproduce today" below.
 
 ## What's NOT done yet (by design, not oversight)
 
@@ -71,7 +71,25 @@ are genuinely absent from a fresh clone. `evaluation/results/` is gitignored
 as a whole directory, but the specific files needed for analysis-only
 reproduction are individually force-committed — see the list below.
 
-### Fast / free — works from a bare fresh clone, no API calls, ~1 minute total
+**No raw dataset is required to reproduce the headline results.** The fast/free
+path below needs nothing from `twcs.csv` (~500MB, not committed) — every input
+it reads is already committed to this repo. `twcs.csv` is only relevant to the
+separate, optional "Requires `twcs.csv`" section further down.
+
+**This project's own design already follows the assignment's "subsample is
+expected and encouraged" rule** (`assignment.text`: *"we will not run your code
+on the full dataset — a subsample is expected and encouraged"*), independent of
+raw-data subsampling: the golden evaluation set is 200 examples (not the full
+~8,700-pair TEST pool), the retrieval index is a 3,000-pair sample (not the
+full 26,914-pair deduplicated RETRIEVAL pool), and the LLM classifier's
+few-shot set is 39 examples. Separately, if a grader wants to exercise the
+optional data-preparation path below with less than the full ~500MB file,
+`data/prepare.py` and `data/split.py` were confirmed (by filtering the real
+`twcs.csv` down to a 2.6%-sized, SpotifyCares-only subsample and running both
+scripts against it) to run correctly against a subsampled `twcs.csv` — they
+produce proportionally smaller pools, not an error.
+
+### Fast / free — works from a bare fresh clone, no API calls, roughly 4–8 minutes total
 
 ```bash
 pip install -r requirements.txt
@@ -86,9 +104,11 @@ python evaluation/analyze_judge_human_agreement.py
 ```
 
 Verified from a genuine fresh clone (not this working tree): the test suite
-collects **326 tests → 299 passed, 16 failed, 11 skipped** in ~38s. The 16
-failures are **not** random — every one is explained below, none are a
-logic bug:
+collects **328 tests → 301 passed, 16 failed, 11 skipped**, taking roughly
+2–3 minutes on its own (measured 123s and 161s across two fresh-clone runs on
+the same machine — pytest startup and the bootstrap-heavy calibration tests
+dominate; expect it to vary by hardware). The 16 failures are **not** random —
+every one is explained below, none are a logic bug:
 - **13** (`test_baseline_milestone.py` x7, `test_llm_classifier_milestone.py` x6)
   need `data/generated/dev_pairs.jsonl`, which requires the data-prep step
   below (`twcs.csv` + `data/prepare.py` + `data/split.py`) — not part of the
@@ -101,6 +121,14 @@ logic bug:
   `RETRIEVAL_INSPECTION_20.xlsx` (Excel rewrites an internal view-state
   attribute on save; the actual freeze-pane *behavior* the test cares about
   is unaffected) — cosmetic, not a defect.
+
+(This repo ships a `.gitattributes` forcing LF line endings on checkout,
+regardless of the grader's local git config. Without it, a Windows client with
+`core.autocrlf=true` would silently convert `evaluation/results/retrieval_inspection_scaffold.csv`'s
+committed LF endings to CRLF on clone, which previously broke 2 additional
+tests that compare that CSV's checked-out text against the same content
+embedded — still LF — inside the binary `RETRIEVAL_INSPECTION_20.xlsx`. Verified
+fixed by cloning fresh with `core.autocrlf=true` explicitly set.)
 
 The 11 skips are all correctly gated on `cache/retrieval_index/` (the
 embedding index) being absent, which is expected in a bare clone.
@@ -115,6 +143,16 @@ the following committed files, no others:
 `evaluation/results/k_ablation_sweep.json`,
 `evaluation/results/JUDGE_HUMAN_CALIBRATION_40.xlsx`,
 `golden_set/TRIAGE_ANNOTATION_40.csv`.
+The five short scripts (`run_calibration.py` through
+`run_part_j_triage_eval.py`) each finish in 1–2s. `analyze_judge_human_agreement.py`
+is the outlier — its two bootstrap 95% CIs (kappa and Spearman, 10,000
+resamples each, across 4 dimensions) dominate its cost, measured between 74s
+and 220s across separate runs on the same machine, depending on system load.
+Combined, the whole fast/free sequence (`pip install` + pytest + all 6
+scripts) measured **roughly 4–8 minutes end to end** across repeated runs in
+this repo's own testing — comfortably under the assignment's 15-minute
+requirement even at the high end, but noticeably more than "a minute," which
+is why this section now gives a range instead of a single figure.
 
 The golden set itself never needs regenerating — it's already committed at
 `golden_set/GOLDEN_200_FINAL.csv`.
