@@ -95,13 +95,13 @@ produce proportionally smaller pools, not an error.
 ```bash
 pip install -r requirements.txt
 
-python -m pytest evaluation/ discovery/ golden_set/ -q
-python evaluation/run_calibration.py
-python evaluation/run_k_ablation_stats.py
-python evaluation/triage.py
-python evaluation/audit_triage_tier2.py
-python evaluation/run_part_j_triage_eval.py
-python evaluation/analyze_judge_human_agreement.py
+python3 -m pytest evaluation/ discovery/ golden_set/ -q
+python3 evaluation/run_calibration.py
+python3 evaluation/run_k_ablation_stats.py
+python3 evaluation/triage.py
+python3 evaluation/audit_triage_tier2.py
+python3 evaluation/run_part_j_triage_eval.py
+python3 evaluation/analyze_judge_human_agreement.py
 ```
 
 Verified from a genuine fresh clone (not this working tree): the test suite
@@ -162,9 +162,9 @@ The golden set itself never needs regenerating — it's already committed at
 
 ```bash
 # 1. Download the raw Kaggle TWCS CSV and place it at the repo root as twcs.csv (~500MB, not committed).
-python data/prepare.py
-python data/split.py
-python evaluation/run_baselines.py
+python3 data/prepare.py
+python3 data/split.py
+python3 evaluation/run_baselines.py
 ```
 
 This also unblocks the 13 currently-failing baseline/classifier tests noted
@@ -178,10 +178,10 @@ Re-running them makes new API calls and is **not** part of the fast/free path.
 ```bash
 export OPENAI_API_KEY=...        # must have credit
 
-python evaluation/build_retrieval_index.py     # embeds a 3,000-pair sample of the RETRIEVAL pool
-python evaluation/run_llm_classifier.py        # classifies the 200 golden examples (gpt-5.4-mini)
-python evaluation/run_generation_judge_pilot.py  # 8-example generate+judge pilot
-python evaluation/run_k_ablation_sweep.py      # the full 200x4=800-condition sweep
+python3 evaluation/build_retrieval_index.py     # embeds a 3,000-pair sample of the RETRIEVAL pool
+python3 evaluation/run_llm_classifier.py        # classifies the 200 golden examples (gpt-5.4-mini)
+python3 evaluation/run_generation_judge_pilot.py  # 8-example generate+judge pilot
+python3 evaluation/run_k_ablation_sweep.py      # the full 200x4=800-condition sweep
 ```
 
 The full sweep (`run_k_ablation_sweep.py`) is the most expensive step: ~$6.21
