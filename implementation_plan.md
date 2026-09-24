@@ -1,4 +1,4 @@
-# Hiver Take-Home: Final Design & Experiment Plan (v3)
+# Final Design & Experiment Plan (v3)
 
 ---
 

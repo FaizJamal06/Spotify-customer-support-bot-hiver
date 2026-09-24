@@ -1,6 +1,6 @@
 # Repository Structure Guide
 
-This document provides a comprehensive overview of the current repository structure, detailing what each directory and file does. This is intended to help new agents and engineers navigate the Hiver SDE Take-Home project.
+This document provides a comprehensive overview of the current repository structure, detailing what each directory and file does. This is intended to help new agents and engineers navigate this project.
 
 ## 📂 Root Directory
 
@@ -13,7 +13,7 @@ The root directory contains project-level documentation, core configuration, and
 - **`hiver_sde_takehome_strategy.md`**: The strategic "North Star" document. Details the agent architecture, evaluation methodology, baseline definitions, and overall project philosophy.
 - **`implementation_plan.md`**: A detailed, step-by-step pipeline execution plan (Phase 1 through Phase 16).
 - **`candidate_taxonomy.md`**: An early historical draft of the intent taxonomy (now superseded by `discovery/TAXONOMY_REVIEW_GUIDE.md`).
-- **`assignment.text`**: The original instructions/prompt for the Hiver SDE take-home assignment.
+- **`assignment.text`**: The original instructions/prompt for the assignment.
 
 ### Code & Data
 - **`config.py`**: Centralized configuration file containing global constants, file paths, and environment variable requirements.

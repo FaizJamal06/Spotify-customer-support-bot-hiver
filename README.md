@@ -1,4 +1,4 @@
-# Hiver SDE Take-Home — SpotifyCares Support Agent
+# SpotifyCares Support Agent
 
 An AI customer-support agent built on the [Customer Support on Twitter](https://www.kaggle.com/datasets/thoughtvector/customer-support-on-twitter)
 (TWCS) dataset, for the **SpotifyCares** brand. Classifies incoming customer

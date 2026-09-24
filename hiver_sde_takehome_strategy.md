@@ -1,8 +1,8 @@
-# Hiver SDE Intern Take-Home — Golden Dataset + AI Support Agent Strategy
+# Golden Dataset + AI Support Agent Strategy
 
 ## 0. The Core Goal
 
-The Hiver assignment is testing whether you can:
+The assignment is testing whether you can:
 
 > **turn a messy real-world dataset into a working AI system and prove it works.**
 
@@ -1395,7 +1395,7 @@ This project is guided by four principles that tie everything together, connecti
 3. **Use AI to accelerate annotation, but keep humans in the evaluation loop.** (From the Second Person / Annotation Principle: AI makes the first pass, humans own the final evaluation labels based on a clear, frozen 8-label taxonomy).
 4. **Make the agent's decisions measurable and prove where it works and fails.**
 
-Connected directly to the Hiver assignment, the agent must:
+Connected directly to the assignment, the agent must:
 - Classify the customer's primary support action
 - Determine whether the case can be handled safely
 - Retrieve evidence from historical support interactions
